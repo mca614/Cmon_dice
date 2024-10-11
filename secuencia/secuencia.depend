@@ -1,0 +1,33 @@
+# depslib dependency file v1.0
+1728682448 source:c:\universidad\algoritmos\trabajo_practico\secuencia\api.c
+	"API.h"
+
+1728682198 c:\universidad\algoritmos\trabajo_practico\secuencia\api.h
+	<stdio.h>
+	<stdlib.h>
+	<curl/curl.h>
+
+1728688599 source:c:\universidad\algoritmos\trabajo_practico\secuencia\main.c
+	"secuencia.h"
+
+1728688642 c:\universidad\algoritmos\trabajo_practico\secuencia\secuencia.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<unistd.h>
+	<windows.h>
+	<time.h>
+	"API.h"
+	"lista_d.h"
+
+1728688708 source:c:\universidad\algoritmos\trabajo_practico\secuencia\secuencia.c
+	"secuencia.h"
+
+1727218410 source:c:\universidad\algoritmos\trabajo_practico\secuencia\lista_d.c
+	"lista_d.h"
+
+1728684369 c:\universidad\algoritmos\trabajo_practico\secuencia\lista_d.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+
