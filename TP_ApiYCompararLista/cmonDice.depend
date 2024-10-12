@@ -1,0 +1,13 @@
+# depslib dependency file v1.0
+1728757882 source:c:\users\matia\onedrive\matÍas\unlam\segundo cuatrimestre 2024\algoritmos y estructuras de datos\tp_usandoapi\main.c
+	"listaDinamica.h"
+	<curl/curl.h>
+
+1728757647 source:c:\users\matia\onedrive\matÍas\unlam\segundo cuatrimestre 2024\algoritmos y estructuras de datos\tp_usandoapi\listadinamica.c
+	"listaDinamica.h"
+
+1728757753 c:\users\matia\onedrive\matÍas\unlam\segundo cuatrimestre 2024\algoritmos y estructuras de datos\tp_usandoapi\listadinamica.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+
