@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+
 #define TODO_OK 0
 #define SIN_MEM 1
 #define MIN(x,y) ((x)<=(y)? (x) : (y))
