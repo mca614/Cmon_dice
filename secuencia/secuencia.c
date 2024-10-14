@@ -30,9 +30,10 @@ int obtenerSecuencia(t_lista* plSecuencia)
 
 }
 
-int mostrarSecuencia (t_lista* plSecuencia, unsigned cantLetras)
+int mostrarSecuencia_ (t_lista* plSecuencia, unsigned cantLetras, unsigned tiempoBase)
 {
     unsigned i;
+    int tiempo;
     for(i=0; i<cantLetras; i++)
     {
 
@@ -41,14 +42,26 @@ int mostrarSecuencia (t_lista* plSecuencia, unsigned cantLetras)
 
         // para que vean la secuencia esto en el juego no va a estar
         printf("\n secuencia numero %d\n",i +1);
-        map_TDAlista(plSecuencia,NULL,mostrarLetra_);
+        map_TDAlista(plSecuencia,NULL,mostrarLetra_); // lista completa
         system("pause");
         system("cls");
-
         //
 
-        map_TDAlista(plSecuencia,NULL,mostrarLetra);
+        tiempo = tiempoBase/(i+1);
+
+        map_TDAlista(plSecuencia,&tiempo,mostrarLetra); // letra por letra
     }
+    return 1;
+}
+
+int mostrarSecuencia (t_lista* plSecuencia, unsigned cantLetras, unsigned tiempoBase)
+{
+    int tiempo;
+    if(!(obtenerSecuencia(plSecuencia)))
+            return 0;
+
+    tiempo = tiempoBase/(cantLetras);
+    map_TDAlista(plSecuencia,&tiempo,mostrarLetra);
     return 1;
 }
 
@@ -56,9 +69,10 @@ void mostrarLetra (void* dato, void* cond)
 {
     char* letra = (char*) dato;
     printf("\t%c\t",*letra);
+    int tiempo = *(int*) cond;
 
     fflush(stdout); // Asegurar que el mensaje se imprima antes de la pausa
-    sleep(2); // Pausa de 2 segundos
+    sleep(tiempo); // Pausa de 2 segundos
     system("cls");
     printf(" "); // porque no se diferenciaba si habia dos letras iguales seguidas
     usleep(300000);// Pausa de 0.3 segundos

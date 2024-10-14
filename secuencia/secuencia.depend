@@ -7,10 +7,10 @@
 	<stdlib.h>
 	<curl/curl.h>
 
-1728688599 source:c:\universidad\algoritmos\trabajo_practico\secuencia\main.c
+1728933487 source:c:\universidad\algoritmos\trabajo_practico\secuencia\main.c
 	"secuencia.h"
 
-1728688642 c:\universidad\algoritmos\trabajo_practico\secuencia\secuencia.h
+1728933894 c:\universidad\algoritmos\trabajo_practico\secuencia\secuencia.h
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -20,7 +20,7 @@
 	"API.h"
 	"lista_d.h"
 
-1728688708 source:c:\universidad\algoritmos\trabajo_practico\secuencia\secuencia.c
+1728933907 source:c:\universidad\algoritmos\trabajo_practico\secuencia\secuencia.c
 	"secuencia.h"
 
 1727218410 source:c:\universidad\algoritmos\trabajo_practico\secuencia\lista_d.c

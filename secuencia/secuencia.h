@@ -14,7 +14,9 @@ char seleccionarLetra (char* letras);
 
 int obtenerSecuencia(t_lista* plSecuencia);
 
-int mostrarSecuencia (t_lista* plSecuencia, unsigned cantLetras);
+int mostrarSecuencia_ (t_lista* plSecuencia, unsigned cantLetras, unsigned tiempoBase);
+
+int mostrarSecuencia (t_lista* plSecuencia, unsigned cantLetras, unsigned tiempoBase); // funcion que se va a usa en el juego
 
 void mostrarLetra (void* dato, void* cond);
 
