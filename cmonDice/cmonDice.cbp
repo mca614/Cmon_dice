@@ -31,6 +31,14 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
+		<Unit filename="../../../../Desktop/algoritmo/biblioteca/Lista/lista.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../../../Desktop/algoritmo/biblioteca/Lista/lista.h" />
+		<Unit filename="funciones.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="funciones.h" />
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
 		</Unit>

@@ -3,3 +3,21 @@
 	<stdio.h>
 	<stdlib.h>
 
+1728914270 source:c:\users\familia cruz\documents\github\cmon_dice\cmondice\funciones.c
+	"funciones.h"
+
+1728928010 c:\users\familia cruz\documents\github\cmon_dice\cmondice\funciones.h
+	<stdio.h>
+	<stdlib.h>
+	"../../../../Desktop/algoritmo/biblioteca/Lista/lista.h"
+
+1728914270 source:c:\users\familia cruz\documents\github\cmon_dice\cmondice\main.c
+	"funciones.h"
+
+1726800183 source:c:\users\familia cruz\desktop\algoritmo\biblioteca\lista\lista.c
+	"lista.h"
+
+1726800183 c:\users\familia cruz\desktop\algoritmo\biblioteca\lista\lista.h
+	<string.h>
+	<stdlib.h>
+
