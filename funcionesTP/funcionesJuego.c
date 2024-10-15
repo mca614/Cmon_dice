@@ -94,6 +94,8 @@ int generarInformeDeJuego(tCola* cola)
     time_t tiempo;
     struct tm* tiempoActual;
     char nombreArchivo[MAX_TAM_PATH];
+    tJugador registro;
+    unsigned idAnt;
     FILE* pf;
 
     time(&tiempo);
@@ -107,12 +109,18 @@ int generarInformeDeJuego(tCola* cola)
 
     pf = fopen(nombreArchivo,"wt");
 
-    /////
-
-    //IR DESACOLANDO Y GUARDAR EN ARCHIVO
-
-    ////
-
+    sacarDeCola(cola,sizeof(tJugador),&registro);
+    while(!colaVacia(cola))
+    {
+        idAnt = registro->id;
+        fprintf(pf,"Jugador %d\n",registro->id); //Encabezado de cada jugador
+        while(!colaVacia(cola) && registro->id == idAnt)
+        {
+            fprintf(pf,"%s|%s|%d|%d|%d\n",registro->secuencia,registro->respuesta,registro->vidas,registro->puntajeObtenido,registro->puntajeAcumulado);
+            sacarDeCola(cola,sizeof(tJugador),&registro);
+        }
+    }
+    //// FALTA GRABAR GANADOR////
     fclose(pf);
     return 1;
 }
