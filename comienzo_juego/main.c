@@ -5,7 +5,7 @@ int main()
     t_lista listaJugadores, listaGanadores;
     int cantidadJugadores = 0, comienzaJuego = 0, eligeDificultad = 0, maximaPuntuacion = 0;
     char dificultadElegida[10], opcion = '0';
-    tJugador proximoJugador;
+    tJugador jugador;
     srand(time(NULL));
 
     crearLista(&listaJugadores);
@@ -67,21 +67,22 @@ int main()
 
     printf("\nPosiciones de los jugadores...\n");
     mostrarPosicionesJugadores(&listaJugadores);
-    printf("\nConfiguraciones de dificultad...\n");
-
-    if(mostrarConfDificultad(dificultadElegida) == 0){
-        vaciarlista(&listaJugadores);
-        printf("\nSaliendo...\n");
-        return 0;
-    }
-
-    printf("\nInstrucciones para jugar...\n");
 
     while(!siListaVacia(&listaJugadores)){
-        sacar_primero(&listaJugadores, &proximoJugador, sizeof(tJugador));
+        sacar_primero(&listaJugadores, &jugador, sizeof(tJugador));
 
         do{
-            comienzaJuego = menuComenzarJuego(&listaJugadores, proximoJugador);
+            printf("\nConfiguraciones de dificultad...\n");
+
+            if(mostrarConfDificultad(dificultadElegida) == 0){
+                vaciarlista(&listaJugadores);
+                printf("\nSaliendo...\n");
+                return 0;
+            }
+
+            printf("\nInstrucciones para jugar...\n");
+
+            comienzaJuego = menuComenzarJuego(jugador);
 
             if(comienzaJuego == 0){
                 opcion = menuConError("\nDesea no jugar?\n"
@@ -90,29 +91,34 @@ int main()
                           "Seleccione una opcion: ", "12");
             }
 
+            system("cls");
+
         }while(comienzaJuego == 0 && opcion == '1');
 
-        //jugarPartida(&proximoJugador, &colaRoundsJugador)
+        //jugarPartida(&jugador, &colaRoundsJugador)
 
-        proximoJugador.puntuacion = randomInRange(0, 10);
+        jugador.puntuacion = randomInRange(0, 10);
 
-        if(proximoJugador.puntuacion > maximaPuntuacion)
-            maximaPuntuacion = proximoJugador.puntuacion;
+        if(jugador.puntuacion > maximaPuntuacion)
+            maximaPuntuacion = jugador.puntuacion;
 
-        agregarAlFinal(&listaGanadores, &proximoJugador, sizeof(tJugador));
+        agregarAlFinal(&listaGanadores, &jugador, sizeof(tJugador));
     }
 
+    system("cls");
     printf("\nJuego terminado...\n");
 
 
     printf("\nPuntuaciones\n");
     mapLista(&listaGanadores, NULL, mostrarJugador);
 
-    eliminarApariciones(&listaGanadores, sizeof(tJugador), &maximaPuntuacion, filtrarNoMaximaPuntuacion);
+    jugador.puntuacion = maximaPuntuacion;
+    filtrarLista(&listaGanadores, &jugador, sizeof(tJugador), jugadoresNoGanadores, NULL);
 
     printf("\nGanadores\n");
     mapLista(&listaGanadores, NULL, mostrarJugador);
 
     vaciarlista(&listaGanadores);
+
     return 0;
 }

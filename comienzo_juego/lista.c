@@ -113,20 +113,39 @@ int sacar_primero(t_lista *lista, void *dato, unsigned cant_bytes){
     return 1;
 }
 
-void eliminarApariciones (t_lista* pl, unsigned cantBytes, void *extra, int funFiltrar(void*, void*))
+void eliminarApariciones (t_lista* pl, void* dato, unsigned cantBytes, int comparacion(void*, void*), void accion(void*, void*))
 {
-    t_nodo*elim;
+    t_nodo *elim;
 
      while(*pl)
      {
-         if(funFiltrar((*pl)->info, extra))
+         if(comparacion(dato,(*pl)->info)==0)
          {
             elim = *pl;
-            //res(dato,elim->info);
+            if(accion)
+                accion(dato, elim->info);
             *pl = (elim)->sig;
             free(elim->info);
             free(elim);
-         }
-         pl = &(*pl)->sig;
+         }else
+            pl = &(*pl)->sig;
+     }
+}
+
+void filtrarLista(t_lista* pl, void* dato, unsigned cantBytes, int condicion(void*, void*), void accion(void*, void*)){
+    t_nodo *elim;
+
+     while(*pl)
+     {
+         if(condicion(dato,(*pl)->info))
+         {
+            elim = *pl;
+            if(accion)
+                accion(dato, elim->info);
+            *pl = (elim)->sig;
+            free(elim->info);
+            free(elim);
+         }else
+            pl = &(*pl)->sig;
      }
 }

@@ -18,8 +18,10 @@ typedef struct{
 void ingresarJugador(tJugador *jugador, int cantidadJugadores);
 void mostrarPosicionesJugadores(t_lista *listaJugadores);
 int cmpJugadores(void *a, void *b);
-int filtrarNoMaximaPuntuacion(void *a, void *extra);
+int jugadoresNoGanadores(void *dato, void *info);
 
 void mostrarJugador(void *a, void *extra);
+void agregarJugadorListaGanadores(void* info, void* otraLista);
+void almacenarNombreGanadores(void *dato, void *info);
 
 #endif // JUGADOR_H_INCLUDED

@@ -14,7 +14,7 @@ char menuConError(const char *msj, const char *opc);
 int menuDificultad(char *dificultadElegida);
 void menuIngresoJugadores(t_lista *listaJugadores, int *cantidadJugadores);
 int mostrarConfDificultad(char *dificultadElegida);
-int menuComenzarJuego(t_lista *listaJugadores, tJugador proximoJugador);
+int menuComenzarJuego(tJugador proximoJugador);
 
 int randomInRange(int menorValor, int mayorValor);
 
