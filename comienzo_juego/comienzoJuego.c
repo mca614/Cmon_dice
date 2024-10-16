@@ -122,7 +122,7 @@ int menuDificultad(char *dificultadElegida){
     return opcion == '4' ? 0 : 1;
 }
 
-int menuComenzarJuego(t_lista *listaJugadores, tJugador proximoJugador){
+int menuComenzarJuego(tJugador proximoJugador){
     char opcion = '\0';
 
     printf("\nEs el turno del jugador: %s\n", proximoJugador.nombre);

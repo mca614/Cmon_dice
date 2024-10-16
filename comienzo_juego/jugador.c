@@ -20,8 +20,11 @@ int cmpJugadores(void *a, void *b){
     return j1->orden - j2->orden;
 }
 
-int filtrarNoMaximaPuntuacion(void *a, void *extra){
-    return ((tJugador*)a)->puntuacion == *((int*)extra) ? 0 : 1;
+int jugadoresNoGanadores(void *dato, void *info){
+    int maximaPuntuacion = ((tJugador*)dato)->puntuacion;
+    tJugador *jugador = (tJugador*)info;
+
+    return  jugador->puntuacion != maximaPuntuacion ? 1 : 0;
 }
 
 int randomInRange(int menorValor, int mayorValor) {
