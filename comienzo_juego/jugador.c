@@ -24,7 +24,7 @@ int jugadoresNoGanadores(void *dato, void *info){
     int maximaPuntuacion = ((tJugador*)dato)->puntuacion;
     tJugador *jugador = (tJugador*)info;
 
-    return  jugador->puntuacion != maximaPuntuacion ? 1 : 0;
+    return  (jugador->puntuacion != maximaPuntuacion || jugador->puntuacion == 0) ? 1 : 0;
 }
 
 int randomInRange(int menorValor, int mayorValor) {
