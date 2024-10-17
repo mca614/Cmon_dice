@@ -95,12 +95,14 @@ int main()
 
         }while(comienzaJuego == 0 && opcion == '1');
 
-        //jugarPartida(&jugador, &colaRoundsJugador)
+        if(comienzaJuego){
+            //jugarPartida(&jugador, &colaRoundsJugador)
 
-        jugador.puntuacion = randomInRange(0, 10);
+            jugador.puntuacion = randomInRange(0, 10);
 
-        if(jugador.puntuacion > maximaPuntuacion)
-            maximaPuntuacion = jugador.puntuacion;
+            if(jugador.puntuacion > maximaPuntuacion)
+                maximaPuntuacion = jugador.puntuacion;
+        }
 
         agregarAlFinal(&listaGanadores, &jugador, sizeof(tJugador));
     }
@@ -108,17 +110,18 @@ int main()
     system("cls");
     printf("\nJuego terminado...\n");
 
-
     printf("\nPuntuaciones\n");
     mapLista(&listaGanadores, NULL, mostrarJugador);
 
     jugador.puntuacion = maximaPuntuacion;
     filtrarLista(&listaGanadores, &jugador, sizeof(tJugador), jugadoresNoGanadores, NULL);
 
-    printf("\nGanadores\n");
-    mapLista(&listaGanadores, NULL, mostrarJugador);
-
-    vaciarlista(&listaGanadores);
+    if(!siListaVacia(&listaGanadores)){
+        printf("\nGanadores\n");
+        mapLista(&listaGanadores, NULL, mostrarJugador);
+        vaciarlista(&listaGanadores);
+    }else
+        printf("\nNo hubo ganadores\n");
 
     return 0;
 }
