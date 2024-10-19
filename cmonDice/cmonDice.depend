@@ -21,3 +21,23 @@
 	<string.h>
 	<stdlib.h>
 
+1729304552 source:c:\users\lenovo\onedrive\escritorio\unlam\2024\algoritmos\github\cmon_dice\cmondice\funciones.c
+	"funciones.h"
+
+1729303791 c:\users\lenovo\onedrive\escritorio\unlam\2024\algoritmos\github\cmon_dice\cmondice\funciones.h
+	<stdio.h>
+	<string.h>
+	<stdlib.h>
+	<time.h>
+	"lista.h"
+
+1729301340 c:\users\lenovo\onedrive\escritorio\unlam\2024\algoritmos\github\cmon_dice\cmondice\lista.h
+	<string.h>
+	<stdlib.h>
+
+1729301340 source:c:\users\lenovo\onedrive\escritorio\unlam\2024\algoritmos\github\cmon_dice\cmondice\lista.c
+	"lista.h"
+
+1729296852 source:c:\users\lenovo\onedrive\escritorio\unlam\2024\algoritmos\github\cmon_dice\cmondice\main.c
+	"funciones.h"
+
