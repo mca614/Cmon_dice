@@ -9,8 +9,7 @@
 #define MAX_L_JUGADOR 100
 
 typedef struct{
-    int orden;
-    int posicion;
+    int id;
     char nombre[MAX_L_JUGADOR];
     int puntuacion;
 }tJugador;
