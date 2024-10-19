@@ -1,11 +1,10 @@
 #include "jugador.h"
 
-void mostrarCargarPosicion(void *a, void *extra){
-    int *posicion = (int*)extra;
-    ((tJugador*)a)->posicion = *posicion;
-    (*posicion)++;
+void mostrarCargarId(void *a, void *extra){
+    ((tJugador*)a)->id = (*((int*)extra));
+    (*((int*)extra))++;
 
-    printf("%4d%35s\n", ((tJugador*)a)->posicion , ((tJugador*)a)->nombre);
+    printf("%4d%35s\n", ((tJugador*)a)->id , ((tJugador*)a)->nombre);
 }
 
 void mostrarJugador(void *a, void *extra){
@@ -17,7 +16,7 @@ int cmpJugadores(void *a, void *b){
     j1 = (tJugador*)a;
     j2 = (tJugador*)b;
 
-    return j1->orden - j2->orden;
+    return j1->id - j2->id;
 }
 
 int jugadoresNoGanadores(void *dato, void *info){
@@ -32,10 +31,10 @@ int randomInRange(int menorValor, int mayorValor) {
 }
 
 void mostrarPosicionesJugadores(t_lista *listaJugadores){
-    int posicion = 1;
+    int id = 1;
 
     printf("\n%s%35s\n", "Posicion", "Nombre Jugador");
-    mapLista(listaJugadores, &posicion, mostrarCargarPosicion);
+    mapLista(listaJugadores, &id, mostrarCargarId);
 }
 
 void ingresarJugador(tJugador *jugador, int cantidadJugadores){
@@ -45,7 +44,7 @@ void ingresarJugador(tJugador *jugador, int cantidadJugadores){
     pNombre = strrchr(pNombre, '\n');
     *pNombre = '\0';
 
-    jugador->orden = randomInRange(cantidadJugadores * -1, cantidadJugadores);
+    jugador->id = randomInRange(cantidadJugadores * -1, cantidadJugadores);
     jugador->puntuacion = 0;
     system("cls");
 }
