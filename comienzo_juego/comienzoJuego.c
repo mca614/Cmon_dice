@@ -45,54 +45,8 @@ void menuIngresoJugadores(t_lista *listaJugadores, int *cantidadJugadores){
     }while(opcion != '2');
 }
 
-int mostrarConfDificultad(char *dificultadElegida){
-    FILE *archivoConfDificultad;
-    char linea[MAX_LINEA], *ptr, *resultadoBusquedaDificultad;
-    unsigned tiempoSecuencia, tiempoJugada, cantVidas;
 
-    archivoConfDificultad = fopen("config.txt", "rt");
-
-    if(!archivoConfDificultad){
-        printf("\nError al leer el archivo\n"
-               "No se pudo obtener configuraciones de dificultad...\n"
-        );
-        return 0;
-    }
-
-    resultadoBusquedaDificultad = NULL;
-
-    while(!resultadoBusquedaDificultad && fgets(linea, MAX_LINEA, archivoConfDificultad)){
-        resultadoBusquedaDificultad = strchr(linea, *dificultadElegida);
-
-        if(resultadoBusquedaDificultad){
-            ptr = strrchr(linea, '|');
-            sscanf(ptr+1, "%u", &cantVidas);
-            *ptr = '\0';
-
-            ptr = strrchr(linea, '|');
-            sscanf(ptr+1, "%u", &tiempoJugada);
-            *ptr = '\0';
-
-            ptr = strrchr(linea, '|');
-            sscanf(ptr+1, "%u", &tiempoSecuencia);
-
-            printf(
-               "\nNivel dificultad: %s"
-               "\nTiempo en que se muestra secuencia: %u"
-               "\nTiempo que tiene el jugador para contestar: %u"
-               "\nCantidad de vidas del jugador: %u\n", dificultadElegida, tiempoSecuencia, tiempoJugada, cantVidas
-            );
-        }
-    }
-
-    if(!resultadoBusquedaDificultad)
-        printf("\nNo se pudo obtener configuraciones de dificultad...\n");
-
-    fclose(archivoConfDificultad);
-    return resultadoBusquedaDificultad ? 1 : 0;
-}
-
-int menuDificultad(char *dificultadElegida){
+int menuDificultad(tDificultad *dificultadElegida){
     char opcion;
 
     opcion = menuConError("\n==============================================\n"
@@ -106,16 +60,16 @@ int menuDificultad(char *dificultadElegida){
 
     switch(opcion) {
             case '1':
-                strcpy(dificultadElegida, "Facil");
+                strcpy(dificultadElegida->dificultad, "Facil");
                 break;
             case '2':
-                strcpy(dificultadElegida, "Media");
+                strcpy(dificultadElegida->dificultad, "Media");
                 break;
             case '3':
-                strcpy(dificultadElegida, "Dificil");
+                strcpy(dificultadElegida->dificultad, "Dificil");
                 break;
             case '4':
-                strcpy(dificultadElegida, "\0");
+                strcpy(dificultadElegida->dificultad, "\0");
                 break;
     }
 
@@ -133,4 +87,85 @@ int menuComenzarJuego(tJugador proximoJugador){
                       "Seleccione una opcion: ", "12");
 
     return opcion == '1' ? 1 : 0;
+}
+
+void cargarDatosJugador(void *v, void *extra){
+    tJugador *jugador = (tJugador*)v;
+    tJugador *jugadorAux = (tJugador*)extra;
+
+    jugador->id = jugadorAux->id;
+    jugadorAux->id++;
+    jugador->puntuacion = 0;
+    jugador->vidas = jugadorAux->vidas;
+}
+
+void cargarDatosJugadores(t_lista *listaJugadores, int cantVidas){
+    /// Se usa una variable tJugador auxiliar para realizar el proceso de carga
+    /// de los datos al jugador. Esto se hace con función map que recibe como parámetro a la
+    /// la función cargarDatosJugador()
+    tJugador jugadorAux;
+    jugadorAux.id = 1;
+    jugadorAux.vidas = cantVidas;
+
+    mapLista(listaJugadores, &jugadorAux, cargarDatosJugador);
+}
+
+/// En base al campo "dificultad" de la variable dificultadElegida, se busca
+/// en el archivo config.txt la línea que contiene los datos de dificultad
+/// (tSecuencia, tJugador, vidas)
+int cargarDificultad(tDificultad *dificultadElegida){
+    FILE *archivoConfDificultad;
+    char linea[MAX_LINEA], *ptr, *resultadoBusquedaDificultad;
+
+    archivoConfDificultad = fopen("config.txt", "rt");
+
+    if(!archivoConfDificultad){
+        printf("\nError al leer el archivo\n"
+               "No se pudo obtener configuraciones de dificultad...\n"
+        );
+        return 0;
+    }
+
+    resultadoBusquedaDificultad = NULL;
+
+    while(!resultadoBusquedaDificultad && fgets(linea, MAX_LINEA, archivoConfDificultad)){
+        /// Se busca en el archivo config línea a línea (F | 20 | 20 | 5) el primer caracter
+        /// de la variable dificultadElegida de su campo dificultad (Facil, Media, Dificil)
+        resultadoBusquedaDificultad = strchr(linea, *(dificultadElegida->dificultad));
+
+        if(resultadoBusquedaDificultad){
+            ptr = strrchr(linea, '|');
+            sscanf(ptr+1, "%u", &dificultadElegida->cantVidas);
+            *ptr = '\0';
+
+            ptr = strrchr(linea, '|');
+            sscanf(ptr+1, "%u", &dificultadElegida->tiempoJugada);
+            *ptr = '\0';
+
+            ptr = strrchr(linea, '|');
+            sscanf(ptr+1, "%u", &dificultadElegida->tiempoSecuencia);
+        }
+    }
+
+    if(!resultadoBusquedaDificultad)
+        printf("\nNo se pudo obtener configuraciones de dificultad...\n");
+
+    fclose(archivoConfDificultad);
+    return resultadoBusquedaDificultad ? 1 : 0;
+}
+
+int obtenerValorAleatorio(int menorValor, int mayorValor) {
+    return (rand() % (mayorValor - menorValor + 1)) + menorValor;
+}
+
+void ingresarJugador(tJugador *jugador, int cantidadJugadores){
+    char *pNombre = jugador->nombre;
+
+    fgets(pNombre, MAX_L_JUGADOR, stdin);
+    pNombre = strrchr(pNombre, '\n');
+    *pNombre = '\0';
+
+    /// Valor aleatorio generado para id según la cantidad de jugadores. Ej desde -1 hasta 1
+    jugador->id = obtenerValorAleatorio(cantidadJugadores * -1, cantidadJugadores);
+    system("cls");
 }

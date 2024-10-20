@@ -6,21 +6,22 @@
 #include <time.h>
 #include "lista.h"
 
-#define MAX_L_JUGADOR 100
+#define MAX_L_JUGADOR 50
 
 typedef struct{
     int id;
     char nombre[MAX_L_JUGADOR];
+    int vidas;
     int puntuacion;
 }tJugador;
 
-void ingresarJugador(tJugador *jugador, int cantidadJugadores);
-void mostrarPosicionesJugadores(t_lista *listaJugadores);
+
+// mostrar
+void mostrarPosicionJugador(void *a, void *extra);
+void mostrarPuntuacionJugador(void *a, void *extra);
+
+//comparar
 int cmpJugadores(void *a, void *b);
 int jugadoresNoGanadores(void *dato, void *info);
-
-void mostrarJugador(void *a, void *extra);
-void agregarJugadorListaGanadores(void* info, void* otraLista);
-void almacenarNombreGanadores(void *dato, void *info);
 
 #endif // JUGADOR_H_INCLUDED

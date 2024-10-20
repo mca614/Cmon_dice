@@ -5,7 +5,7 @@ void crearLista (t_lista* pl)
     *pl = NULL;
 }
 
-void vaciarlista (t_lista* pl)
+void vaciarLista (t_lista* pl)
 {
     t_nodo*elim;
 
