@@ -7,7 +7,7 @@ void mostrarLetra(const void *d, const void *param)
 
 int esSecuenciaCorrecta(t_lista *s,t_lista *r, Cmp cmp)
 {
-    while(*s && *r && cmp((*s)->dato,(*r)->dato)==0)
+    while(*s && *r && cmp((*s)->info,(*r)->info)==0)
     {
         s=&(*s)->sig;
         r=&(*r)->sig;
@@ -28,27 +28,33 @@ void generarSecuencia(t_lista *secuencia)
 {
     const char colores[] = {'R', 'V', 'A', 'N'};
     char color = colores[rand() % 4];
-    insertarAlFinal(secuencia, &color, sizeof(char));
+    agregarAlFinal(secuencia, &color, sizeof(char));
 }
 
-void mostrarSecuencia(t_lista *secuencia, int tiempo_mostrar, Accion accion)
+void mostrarSecuencia(t_lista *secuencia, int tiempo_mostrar, int ronda , Accion accion)
 {
+    int tiempo;
     printf("Secuencia: ");
-    recorrerLista(secuencia, accion, NULL);
-    printf("\n");
+    tiempo = tiempo_mostrar/(ronda);
+    mapLista(secuencia,&tiempo,accion);
+}
+
+void mostrarRespuesta(t_lista *respuesta, Accion accion)
+{
+    printf("Respuesta: ");
+    mapLista(respuesta, NULL, accion);
 }
 
 void ingresarSecuencia(t_lista *respuesta, int tiempo_limite, int *cant_letras_resp)
 {
     char cad_resp[100], *aux;/// tendría que ser dinamica
-    printf("Ingresa la secuencia: ");
     fflush(stdin);
     gets(cad_resp);
-    *cant_letras_resp = strlen(cad_resp);
+    *cant_letras_resp += strlen(cad_resp);
     aux = cad_resp;
     while(*aux)
     {
-        insertarAlFinal(respuesta, aux, sizeof(char));
+        agregarAlFinal(respuesta, aux, sizeof(char));
         aux++;
     }
 }
@@ -67,12 +73,14 @@ void jugarTurno(tJugador* jugador, int tiempo_mostrar, int tiempo_limite, Accion
     {
         utilizo_vidas = 0;
         cant_letras_resp = 0;
+
         generarSecuencia(&secuencia);
 
         printf("\n------------------ Ronda: %d ------------------\n", ronda);
 
-        mostrarSecuencia(&secuencia, tiempo_mostrar, accion);
+        mostrarSecuencia(&secuencia, tiempo_mostrar, ronda, accion);
 
+        printf("\nIngresa la secuencia: ");
         ingresarSecuencia(&respuesta, tiempo_limite, &cant_letras_resp);
 
         /// ASIGNAR PUNTAJE Y ACTUALIZAR VIDAS
@@ -83,7 +91,9 @@ void jugarTurno(tJugador* jugador, int tiempo_mostrar, int tiempo_limite, Accion
             if(cant_letras_resp == 0) /// NO INGRESÓ NADA
             {
                 jugador->vidas--;
-                printf("No ingreso ninguna secuencia.\nSe le restara una vida\n");
+                printf("No ingreso ninguna secuencia.\nSe le restara una vida\nSe mostrara nuevamente la secuencia\n");
+                mostrarSecuencia(&secuencia, tiempo_mostrar, ronda, accion);
+                printf("\nIngresa la secuencia: ");
                 ingresarSecuencia(&respuesta, tiempo_limite, &cant_letras_resp);
                 utilizo_vidas = 1;
             }
@@ -103,14 +113,18 @@ void jugarTurno(tJugador* jugador, int tiempo_mostrar, int tiempo_limite, Accion
                 if(cant_retroceso>cant_letras_resp)///le tiene que mostrar la sec otra vez e ingresar de nuevo
                 {
                     vaciarLista(&respuesta);
+                    cant_letras_resp = 0;
                     printf("Le mostraremos nuevamente la secuencia:\n");
-                    mostrarSecuencia(&secuencia, tiempo_mostrar, accion);
+                    mostrarSecuencia(&secuencia, tiempo_mostrar, ronda, accion);
+                    printf("\nIngresa la secuencia: ");
                     ingresarSecuencia(&respuesta, tiempo_limite, &cant_letras_resp);
                 }
                 else
                 {
-                    eliminarNnodosLista(&respuesta, cant_retroceso);
+                    eliminarNnodosLista(&respuesta, cant_retroceso, cant_letras_resp);
+                    cant_letras_resp -= cant_retroceso;
                     printf("Ingrese la secuencia faltante:\n");
+                    mostrarRespuesta(&respuesta, accion);
                     ingresarSecuencia(&respuesta, tiempo_limite, &cant_letras_resp);
                 }
 
@@ -120,7 +134,7 @@ void jugarTurno(tJugador* jugador, int tiempo_mostrar, int tiempo_limite, Accion
         }
 
         /// SI LA RESPUESTA ES CORRECTA SE SUMAN LOS 3 PUNTOS
-        if (jugador->vidas && esSecuenciaCorrecta(&secuencia, &respuesta, cmp))
+        if (esSecuenciaCorrecta(&secuencia, &respuesta, cmp))
         {
             if(utilizo_vidas)
             {
@@ -139,7 +153,9 @@ void jugarTurno(tJugador* jugador, int tiempo_mostrar, int tiempo_limite, Accion
     }
 
     if(jugador->vidas==0)
-        printf("SE QUEDO SIN VIDAS. jUEGO TERMINADO, PUNTUACION: %d\n", jugador->puntuacion);
+        printf("\nSE QUEDO SIN VIDAS. jUEGO TERMINADO, PUNTUACION: %d\n", jugador->puntuacion);
+
+    system("cls");
 }
 
 
