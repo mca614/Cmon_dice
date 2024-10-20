@@ -99,7 +99,7 @@ int agregarOrdenado(t_lista *lista, void *dato, short int duplicado, unsigned ca
     return 1; //Todo bien
 }
 
-int sacar_primero(t_lista *lista, void *dato, unsigned cant_bytes){
+int sacarPrimero(t_lista *lista, void *dato, unsigned cant_bytes){
     t_nodo *elim = *lista;
 
     if(*lista == NULL){
@@ -113,25 +113,10 @@ int sacar_primero(t_lista *lista, void *dato, unsigned cant_bytes){
     return 1;
 }
 
-void eliminarApariciones (t_lista* pl, void* dato, unsigned cantBytes, int comparacion(void*, void*), void accion(void*, void*))
-{
-    t_nodo *elim;
-
-     while(*pl)
-     {
-         if(comparacion(dato,(*pl)->info)==0)
-         {
-            elim = *pl;
-            if(accion)
-                accion(dato, elim->info);
-            *pl = (elim)->sig;
-            free(elim->info);
-            free(elim);
-         }else
-            pl = &(*pl)->sig;
-     }
-}
-
+/// El parámetro condicion, es la funcion que determina si se elimina el nodo
+/// en este caso es la funcion jugadoresNoGanadores, que retorna un 1 en cuando el jugador tiene una puntacion
+/// distinta a la maxima o cuando esta es 0
+/// el parámetro accion no se usa
 void filtrarLista(t_lista* pl, void* dato, unsigned cantBytes, int condicion(void*, void*), void accion(void*, void*)){
     t_nodo *elim;
 

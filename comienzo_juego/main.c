@@ -94,8 +94,12 @@ int main()
     printf("\n%-15s%s\n", "Posicion", "Nombre Jugador");
     mapLista(&listaJugadores, NULL, mostrarPosicionJugador);
 
+    /// Recorre lista listaJugadores usando función sacarPrimero()
+    /// Luego se muestra configuración de dificultad e instrucciones para jugar
+    /// Se le pregunta al jugador si desea comenzar. Luego, empieza el turno del jugador
     while(!siListaVacia(&listaJugadores)){
-        sacar_primero(&listaJugadores, &jugador, sizeof(tJugador));
+        /// Se guarda info del nodo de la lista en variable jugador (estructura tJugador)
+        sacarPrimero(&listaJugadores, &jugador, sizeof(tJugador));
 
         do{
             printf("\nConfiguraciones de dificultad...\n");
@@ -123,33 +127,44 @@ int main()
 
         }while(comienzaJuego == 0 && opcion == '1');
 
+        /// Si el jugador a decidido comenzar se ejecuta la funcion jugarTurno
+        /// que es donde se desarrolla la partida del jugador
+        /// Si ha decidido no jugar, continua el siguiente jugador
+
         if(comienzaJuego){
-            jugarTurno(&jugador, 1, 5, mostrarLetra, cmp_letras);
+            jugarTurno(&jugador, dificultadElegida.tiempoSecuencia, dificultadElegida.tiempoJugada, mostrarLetra, cmp_letras);
 
             if(jugador.puntuacion > maximaPuntuacion)
                 maximaPuntuacion = jugador.puntuacion;
         }
 
+        /// Agrega a todos los jugadores a la lista listaJugadores
         agregarAlFinal(&listaGanadores, &jugador, sizeof(tJugador));
     }
 
     system("cls");
     printf("\nJuego terminado...\n");
 
+    /// Muestra todos los jugadores con sus puntajes
+    /// Lo dejo solo para comprobar si se hace bien la parte de hallar a los ganadores
+    /// que viene a continuación
     printf("\n%-21s%s\n", "Nombre", "Puntuacion");
-
     mapLista(&listaGanadores, NULL, mostrarPuntuacionJugador);
 
+    /// Uso la variable jugador (guardo la máxima puntuación en su campo puntuación),
+    /// que ya no se usa para agregar jugadores, como paramétro en la funcion filtrarLista
+    /// puntuación para filtrar a los jugadores que no tienen la máxima puntuación
     jugador.puntuacion = maximaPuntuacion;
     filtrarLista(&listaGanadores, &jugador, sizeof(tJugador), jugadoresNoGanadores, NULL);
 
+    /// Si hay ganadores (listaGanadores no es vacia) muestra a los ganadores con sus puntuaciones
     if(!siListaVacia(&listaGanadores)){
         printf("\nGanadores\n");
         printf("\n%-21s%s\n", "Nombre", "Puntuacion");
         mapLista(&listaGanadores, NULL, mostrarPuntuacionJugador);
-        vaciarLista(&listaGanadores);
     }else
         printf("\nNo hubo ganadores\n");
 
+    vaciarLista(&listaGanadores);
     return 0;
 }
