@@ -4,8 +4,10 @@ int main()
 {
     t_lista listaJugadores, listaGanadores;
     int cantidadJugadores = 0, comienzaJuego = 0, eligeDificultad = 0, maximaPuntuacion = 0;
-    char dificultadElegida[10], opcion = '0';
+    tDificultad dificultadElegida;
+    char opcion;
     tJugador jugador;
+
     srand(time(NULL));
 
     crearLista(&listaJugadores);
@@ -25,6 +27,8 @@ int main()
     system("cls");
 
     do{
+        /// Ingresa de forma ordenada a listaJugadores un jugador según su valor del campo id,
+        /// que es generado de forma aleatoria
         menuIngresoJugadores(&listaJugadores, &cantidadJugadores);
 
         if(siListaVacia(&listaJugadores)){
@@ -38,13 +42,17 @@ int main()
 
     system("cls");
 
+    /// Si no se ha ingresado ningún jugador, se términa el juego
     if(siListaVacia(&listaJugadores)){
         printf("\nSaliendo...\n");
         return 0;
     }
 
     do{
-        eligeDificultad = menuDificultad(dificultadElegida);
+        /// Se guarda en variable dificultadElegida (estructura) en su campo dificultad
+        /// una cadena de caracteres que representa la dificultad elegida por el usuario
+        /// (facil, media o difícil)
+        eligeDificultad = menuDificultad(&dificultadElegida);
 
         if(eligeDificultad == 0){
             system("cls");
@@ -57,16 +65,34 @@ int main()
 
     }while(eligeDificultad == 0 && opcion == '1');
 
+
+    /// Si el usuario no ha elegido dificultad, se términa el juego
     if(eligeDificultad == 0){
-        vaciarlista(&listaJugadores);
+        vaciarLista(&listaJugadores);
         printf("\nSaliendo...\n");
         return 0;
     }
 
     system("cls");
 
+    /// Se carga los datos de dificultad en variable dificultadElegida (tSecuencia, tJugador, vidas)
+    /// desde el archivo config. Si este proceso falla, se términa el juego
+    if(cargarDificultad(&dificultadElegida) == 0){
+        vaciarLista(&listaJugadores);
+        printf("\nSaliendo...\n");
+        return 0;
+    }
+
     printf("\nPosiciones de los jugadores...\n");
-    mostrarPosicionesJugadores(&listaJugadores);
+
+    /// Se cargan los datos de cada jugador antes de comenzar el juego
+    /// el campo id ahora es usado para identificar posición del jugador en la lista
+    /// Se pone puntuacion en 0. Se completa el campo vidas según la dificultad elegida (variable dificultadElegida)
+    cargarDatosJugadores(&listaJugadores, dificultadElegida.cantVidas);
+
+    /// Se muestran las posiciones de los jugadores
+    printf("\n%-15s%s\n", "Posicion", "Nombre Jugador");
+    mapLista(&listaJugadores, NULL, mostrarPosicionJugador);
 
     while(!siListaVacia(&listaJugadores)){
         sacar_primero(&listaJugadores, &jugador, sizeof(tJugador));
@@ -74,11 +100,13 @@ int main()
         do{
             printf("\nConfiguraciones de dificultad...\n");
 
-            if(mostrarConfDificultad(dificultadElegida) == 0){
-                vaciarlista(&listaJugadores);
-                printf("\nSaliendo...\n");
-                return 0;
-            }
+            printf(
+               "\nNivel dificultad: %s"
+               "\nTiempo en que se muestra secuencia: %u"
+               "\nTiempo que tiene el jugador para contestar: %u"
+               "\nCantidad de vidas del jugador: %u\n", dificultadElegida.dificultad, dificultadElegida.tiempoSecuencia,
+                dificultadElegida.tiempoJugada, dificultadElegida.cantVidas
+            );
 
             printf("\nInstrucciones para jugar...\n");
 
@@ -96,9 +124,7 @@ int main()
         }while(comienzaJuego == 0 && opcion == '1');
 
         if(comienzaJuego){
-            //jugarPartida(&jugador, &colaRoundsJugador)
-
-            jugador.puntuacion = randomInRange(0, 10);
+            jugarTurno(&jugador, 1, 5, mostrarLetra, cmp_letras);
 
             if(jugador.puntuacion > maximaPuntuacion)
                 maximaPuntuacion = jugador.puntuacion;
@@ -110,16 +136,18 @@ int main()
     system("cls");
     printf("\nJuego terminado...\n");
 
-    printf("\nPuntuaciones\n");
-    mapLista(&listaGanadores, NULL, mostrarJugador);
+    printf("\n%-21s%s\n", "Nombre", "Puntuacion");
+
+    mapLista(&listaGanadores, NULL, mostrarPuntuacionJugador);
 
     jugador.puntuacion = maximaPuntuacion;
     filtrarLista(&listaGanadores, &jugador, sizeof(tJugador), jugadoresNoGanadores, NULL);
 
     if(!siListaVacia(&listaGanadores)){
         printf("\nGanadores\n");
-        mapLista(&listaGanadores, NULL, mostrarJugador);
-        vaciarlista(&listaGanadores);
+        printf("\n%-21s%s\n", "Nombre", "Puntuacion");
+        mapLista(&listaGanadores, NULL, mostrarPuntuacionJugador);
+        vaciarLista(&listaGanadores);
     }else
         printf("\nNo hubo ganadores\n");
 

@@ -39,6 +39,10 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="jugador.h" />
+		<Unit filename="jugarPartida/funciones.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="jugarPartida/funciones.h" />
 		<Unit filename="lista.c">
 			<Option compilerVar="CC" />
 		</Unit>
