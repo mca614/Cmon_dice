@@ -79,7 +79,7 @@ void jugarTurno(tJugador* jugador, int tiempo_mostrar, int tiempo_limite, Accion
 
         while(jugador->vidas>0 && !esSecuenciaCorrecta(&secuencia, &respuesta, cmp))
         {
-            printf("Vidas: %d\n", jugador->vidas);
+            printf("\nVidas: %d\n", jugador->vidas);
             if(cant_letras_resp == 0) /// NO INGRESÓ NADA
             {
                 jugador->vidas--;
@@ -90,17 +90,17 @@ void jugarTurno(tJugador* jugador, int tiempo_mostrar, int tiempo_limite, Accion
             else /// LA SECUENCIA ERA INCORRECTA
             {
                 printf("Secuencia incorrecta"
-                       "\nSe le restaran las vidas en base a la cantidad de jugadas que desee retroceder\n"
+                       "\nSe le restaran las vidas en base a la cantidad de jugadas que desee retroceder"
                        "\nIngrese la cantidad: ");
                 scanf("%d", &cant_retroceso);
 
-                while(cant_retroceso > jugador->vidas || cant_retroceso > cant_letras_resp || cant_retroceso <= 0)
+                while(cant_retroceso > jugador->vidas || cant_retroceso > cant_letras_resp+1 || cant_retroceso <= 0)
                 {
                     printf("Cantidad no valida. Ingrese nuevamente: ");
                     scanf("%d", &cant_retroceso);
                 }
 
-                if(cant_retroceso==cant_letras_resp)///le tiene que mostrar la sec otra vez e ingresar de nuevo
+                if(cant_retroceso>cant_letras_resp)///le tiene que mostrar la sec otra vez e ingresar de nuevo
                 {
                     vaciarLista(&respuesta);
                     printf("Le mostraremos nuevamente la secuencia:\n");
@@ -109,7 +109,7 @@ void jugarTurno(tJugador* jugador, int tiempo_mostrar, int tiempo_limite, Accion
                 }
                 else
                 {
-                    /// eliminarNnodosLista
+                    eliminarNnodosLista(&respuesta, cant_retroceso);
                     printf("Ingrese la secuencia faltante:\n");
                     ingresarSecuencia(&respuesta, tiempo_limite, &cant_letras_resp);
                 }

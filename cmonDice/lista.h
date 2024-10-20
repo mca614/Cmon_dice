@@ -17,6 +17,7 @@ void crearLista(t_lista *pl);
 
 int insertarAlFinal(t_lista *pl, const void *dato, unsigned tam);
 int insertarOrdLista(t_lista *pl, const void *dato, unsigned tam, int (*cmp)(const void *, const void*), int conDu);
+void eliminarNnodosLista(t_lista *pl, int cant);
 
 void recorrerLista(t_lista *pl, void (*accion)(const void *, const void *), const void *param);
 void vaciarLista(t_lista *pl);

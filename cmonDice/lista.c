@@ -71,6 +71,19 @@ int insertarOrdLista(t_lista *pl, const void *dato, unsigned tam, int (*cmp)(con
     return 1;
 }
 
+void eliminarNnodosLista(t_lista *pl, int cant)
+{
+    t_nodo *elim;
+    while(*pl && cant)
+    {
+        elim = *pl;
+        *pl = elim->sig;
+        free(elim->dato);
+        free(elim);
+        cant--;
+    }
+}
+
 void vaciarLista(t_lista *pl)
 {
     t_nodo *elim;
