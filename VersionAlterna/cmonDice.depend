@@ -1,0 +1,43 @@
+# depslib dependency file v1.0
+1584205420 source:c:\users\familia cruz\documents\github\desktop-tutorial\cmondice\main.c
+	<stdio.h>
+	<stdlib.h>
+
+1728914270 source:c:\users\familia cruz\documents\github\cmon_dice\cmondice\funciones.c
+	"funciones.h"
+
+1728928010 c:\users\familia cruz\documents\github\cmon_dice\cmondice\funciones.h
+	<stdio.h>
+	<stdlib.h>
+	"../../../../Desktop/algoritmo/biblioteca/Lista/lista.h"
+
+1728914270 source:c:\users\familia cruz\documents\github\cmon_dice\cmondice\main.c
+	"funciones.h"
+
+1726800183 source:c:\users\familia cruz\desktop\algoritmo\biblioteca\lista\lista.c
+	"lista.h"
+
+1726800183 c:\users\familia cruz\desktop\algoritmo\biblioteca\lista\lista.h
+	<string.h>
+	<stdlib.h>
+
+1729460355 source:c:\users\lenovo\onedrive\escritorio\unlam\2024\algoritmos\github\cmon_dice\cmondice\funciones.c
+	"funciones.h"
+
+1729460355 c:\users\lenovo\onedrive\escritorio\unlam\2024\algoritmos\github\cmon_dice\cmondice\funciones.h
+	<stdio.h>
+	<string.h>
+	<stdlib.h>
+	<time.h>
+	"lista.h"
+
+1729459270 c:\users\lenovo\onedrive\escritorio\unlam\2024\algoritmos\github\cmon_dice\cmondice\lista.h
+	<string.h>
+	<stdlib.h>
+
+1729459248 source:c:\users\lenovo\onedrive\escritorio\unlam\2024\algoritmos\github\cmon_dice\cmondice\lista.c
+	"lista.h"
+
+1729307040 source:c:\users\lenovo\onedrive\escritorio\unlam\2024\algoritmos\github\cmon_dice\cmondice\main.c
+	"funciones.h"
+
