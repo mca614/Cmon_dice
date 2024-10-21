@@ -1,9 +1,9 @@
 #include "funciones.h"
 
-void mostrarLetra(const void *d, const void *param)
-{
-    printf("%c ", *(char *)d);
-}
+//void mostrarLetra(const void *d, const void *param)
+//{
+//    printf("%c ", *(char *)d);
+//}
 
 int esSecuenciaCorrecta(t_lista *s,t_lista *r, Cmp cmp)
 {
@@ -24,18 +24,28 @@ int cmp_letras(const void *a,const void *b)
     return *(char*)a - *(char*)b;
 }
 
-void generarSecuencia(t_lista *secuencia)
-{
-    const char colores[] = {'R', 'V', 'A', 'N'};
-    char color = colores[rand() % 4];
-    agregarAlFinal(secuencia, &color, sizeof(char));
-}
+//void generarSecuencia(t_lista *secuencia)
+//{
+//    const char colores[] = {'R', 'V', 'A', 'N'};
+//    char color = colores[rand() % 4];
+//    agregarAlFinal(secuencia, &color, sizeof(char));
+//}
 
 void mostrarSecuencia(t_lista *secuencia, int tiempo_mostrar, int ronda, Accion accion)
 {
     int tiempo;
+
+    system("cls");
+
     printf("Secuencia: ");
+
+    sleep(2);
+
     tiempo = tiempo_mostrar/(ronda);
+
+    tiempo = tiempo>2 ? 3 : tiempo;
+    tiempo = tiempo<1 ? 1 : tiempo;
+
     mapLista(secuencia,&tiempo,accion);
 }
 
@@ -71,16 +81,23 @@ void jugarTurno(tJugador* jugador, int tiempo_mostrar, int tiempo_limite, Accion
 
     printf("%s, es tu turno! Vidas: %d\n", jugador->nombre, jugador->vidas);
 
+    sleep (2);
+    system("cls");
+
     while(jugador->vidas>=0 && !turnoTerminado)
     {
         utilizo_vidas = 0;
         cant_letras_resp = 0;
 
-        generarSecuencia(&secuencia);
+            if(!(obtenerSecuencia(&secuencia)))
+            return ;
 
         printf("\n------------------ Ronda: %d ------------------\n", ronda);
 
         printf("Vidas: %d\n", jugador->vidas);
+
+        sleep(5);
+
         mostrarSecuencia(&secuencia, tiempo_mostrar, ronda, accion);
 
         printf("\nIngresa la secuencia: ");
@@ -120,6 +137,7 @@ void jugarTurno(tJugador* jugador, int tiempo_mostrar, int tiempo_limite, Accion
 
                 while(cant_retroceso > jugador->vidas || cant_retroceso > cant_letras_resp+1 || cant_retroceso <= 0)
                 {
+                    system("cls");
                     printf("Cantidad no valida. Ingrese nuevamente: ");
                     fflush(stdin);
                     res = scanf("%d", &cant_retroceso);
@@ -155,6 +173,8 @@ void jugarTurno(tJugador* jugador, int tiempo_mostrar, int tiempo_limite, Accion
                 jugador->vidas-=cant_retroceso;
                 utilizo_vidas = 1;
             }
+
+            system("cls");
         }
 
         /// SI LA RESPUESTA ES CORRECTA SE SUMAN LOS 3 PUNTOS
@@ -172,6 +192,9 @@ void jugarTurno(tJugador* jugador, int tiempo_mostrar, int tiempo_limite, Accion
                 jugador->puntuacion += 3;
                 vaciarLista(&respuesta);
             }
+
+            sleep (4);
+            system("cls");
         }
         else
         {

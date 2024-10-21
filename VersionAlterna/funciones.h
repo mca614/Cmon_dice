@@ -6,6 +6,7 @@
 #include <stdlib.h>
 #include <time.h>
 #include "lista.h"
+#include "secuencia/secuencia.h"
 
 #define MAX_L_JUGADOR 50
 #define MAX_SECUENCIA 10
@@ -23,7 +24,7 @@ typedef struct
 typedef int (*Cmp)(const void *,const void *);
 typedef void (*Accion)(const void *,const void *);
 
-void mostrarLetra(const void *d, const void *param);
+//void mostrarLetra(const void *d, const void *param);
 int cmp_letras(const void *,const void *);
 int esSecuenciaCorrecta(t_lista *p1,t_lista *p2,Cmp cmp);
 
