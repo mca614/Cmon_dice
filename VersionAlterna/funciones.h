@@ -9,6 +9,7 @@
 
 #define MAX_L_JUGADOR 50
 #define MAX_SECUENCIA 10
+#define ES_NUMERO(x) ((x)>= '0' && (x)<='9')?
 
 typedef struct
 {
@@ -34,6 +35,5 @@ void ingresarSecuencia(t_lista *respuesta, int tiempo_limite, int *cant_letras_r
 /*********************************************************************************************************/
 
 void jugarTurno(tJugador* jugador, int tiempo_mostrar, int tiempo_limite, Accion accion, Cmp cmp);
-
 
 #endif // FUNCIONES_H_INCLUDED

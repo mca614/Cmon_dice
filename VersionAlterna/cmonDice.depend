@@ -41,3 +41,23 @@
 1729307040 source:c:\users\lenovo\onedrive\escritorio\unlam\2024\algoritmos\github\cmon_dice\cmondice\main.c
 	"funciones.h"
 
+1729475825 source:c:\users\familia cruz\documents\github\cmon_dice\versionalterna\funciones.c
+	"funciones.h"
+
+1729475712 c:\users\familia cruz\documents\github\cmon_dice\versionalterna\funciones.h
+	<stdio.h>
+	<string.h>
+	<stdlib.h>
+	<time.h>
+	"lista.h"
+
+1729470907 c:\users\familia cruz\documents\github\cmon_dice\versionalterna\lista.h
+	<string.h>
+	<stdlib.h>
+
+1729470907 source:c:\users\familia cruz\documents\github\cmon_dice\versionalterna\lista.c
+	"lista.h"
+
+1729470907 source:c:\users\familia cruz\documents\github\cmon_dice\versionalterna\main.c
+	"funciones.h"
+

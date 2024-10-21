@@ -31,7 +31,7 @@ void generarSecuencia(t_lista *secuencia)
     agregarAlFinal(secuencia, &color, sizeof(char));
 }
 
-void mostrarSecuencia(t_lista *secuencia, int tiempo_mostrar, int ronda , Accion accion)
+void mostrarSecuencia(t_lista *secuencia, int tiempo_mostrar, int ronda, Accion accion)
 {
     int tiempo;
     printf("Secuencia: ");
@@ -64,12 +64,14 @@ void jugarTurno(tJugador* jugador, int tiempo_mostrar, int tiempo_limite, Accion
     t_lista secuencia, respuesta;
     crearLista(&secuencia);
     crearLista(&respuesta);
+    int turnoTerminado=0;
+    int res;
 
     int ronda = 1, utilizo_vidas = 0, cant_retroceso, cant_letras_resp = 0;
 
     printf("%s, es tu turno! Vidas: %d\n", jugador->nombre, jugador->vidas);
 
-    while(jugador->vidas>0)
+    while(jugador->vidas>=0 && !turnoTerminado)
     {
         utilizo_vidas = 0;
         cant_letras_resp = 0;
@@ -78,6 +80,7 @@ void jugarTurno(tJugador* jugador, int tiempo_mostrar, int tiempo_limite, Accion
 
         printf("\n------------------ Ronda: %d ------------------\n", ronda);
 
+        printf("Vidas: %d\n", jugador->vidas);
         mostrarSecuencia(&secuencia, tiempo_mostrar, ronda, accion);
 
         printf("\nIngresa la secuencia: ");
@@ -91,23 +94,44 @@ void jugarTurno(tJugador* jugador, int tiempo_mostrar, int tiempo_limite, Accion
             if(cant_letras_resp == 0) /// NO INGRESÓ NADA
             {
                 jugador->vidas--;
-                printf("No ingreso ninguna secuencia.\nSe le restara una vida\nSe mostrara nuevamente la secuencia\n");
+                printf("No ingreso ninguna secuencia.\nSe le restara una vida.\nVidas:%d\nSe mostrara nuevamente la secuencia\n",jugador->vidas);
                 mostrarSecuencia(&secuencia, tiempo_mostrar, ronda, accion);
                 printf("\nIngresa la secuencia: ");
+
                 ingresarSecuencia(&respuesta, tiempo_limite, &cant_letras_resp);
                 utilizo_vidas = 1;
             }
             else /// LA SECUENCIA ERA INCORRECTA
             {
                 printf("Secuencia incorrecta"
-                       "\nSe le restaran las vidas en base a la cantidad de jugadas que desee retroceder"
-                       "\nIngrese la cantidad: ");
-                scanf("%d", &cant_retroceso);
+                           "\nSe le restaran las vidas en base a la cantidad de jugadas que desee retroceder"
+                           "\nIngrese la cantidad: ");
+                    fflush(stdin);
+                    res = scanf("%d", &cant_retroceso);
+                    while(res!= 1)
+                    {
+                        printf("Entrada no válida. Ingrese nuevamente: ");
+                        fflush(stdin);
+                        res = scanf("%d", &cant_retroceso);
+
+                    }
+
+
 
                 while(cant_retroceso > jugador->vidas || cant_retroceso > cant_letras_resp+1 || cant_retroceso <= 0)
                 {
                     printf("Cantidad no valida. Ingrese nuevamente: ");
-                    scanf("%d", &cant_retroceso);
+                    fflush(stdin);
+                    res = scanf("%d", &cant_retroceso);
+                    while(res!= 1)
+                    {
+                        printf("Cantidad no valida. Ingrese nuevamente: ");
+                        fflush(stdin);
+                        res = scanf("%d", &cant_retroceso);
+
+                    }
+
+
                 }
 
                 if(cant_retroceso>cant_letras_resp)///le tiene que mostrar la sec otra vez e ingresar de nuevo
@@ -149,14 +173,22 @@ void jugarTurno(tJugador* jugador, int tiempo_mostrar, int tiempo_limite, Accion
                 vaciarLista(&respuesta);
             }
         }
+        else
+        {
+
+            if(jugador->vidas==0 && !esSecuenciaCorrecta(&secuencia, &respuesta, cmp))
+                turnoTerminado=1;
+
+        }
         ronda++;
     }
 
-    if(jugador->vidas==0)
-        printf("\nSE QUEDO SIN VIDAS. jUEGO TERMINADO, PUNTUACION: %d\n", jugador->puntuacion);
+    if(turnoTerminado==1)
+        printf("\nSECUENCIA INCORRECTA Y SE QUEDO SIN VIDAS.\nPUNTUACION FINAL: %d\n", jugador->puntuacion);
 
-    system("cls");
+
 }
+
 
 
 
