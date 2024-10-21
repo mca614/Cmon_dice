@@ -28,7 +28,8 @@ int esSecuenciaCorrecta(t_lista *p1,t_lista *p2,Cmp cmp);
 
 /*****  ESTAS FUNCIONES SON SOLO PARA PROBAR LA FUNCION: REEMPLAZAR POR LAS QUE DEPENDEN DEL TIEMPO  *****/
 void generarSecuencia(t_lista *secuencia);
-void mostrarSecuencia(t_lista *secuencia, int tiempo_mostrar, Accion accion);
+void mostrarSecuencia(t_lista *secuencia, int tiempo_mostrar, int ronda , Accion accion);
+void mostrarRespuesta(t_lista *respuesta, Accion accion);
 void ingresarSecuencia(t_lista *respuesta, int tiempo_limite, int *cant_letras_resp);
 /*********************************************************************************************************/
 
