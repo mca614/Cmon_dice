@@ -47,3 +47,24 @@
 1728879041 source:c:\users\matia\onedrive\matÍas\unlam\segundo cuatrimestre 2024\algoritmos y estructuras de datos\cmon_dice\funcionestp\funcionesjuego.c
 	"funcionesJuego.h"
 
+1728875442 source:c:\users\matia\documents\github\cmon_dice\funcionestp\coladinamica.c
+	"colaDinamica.h"
+
+1728875542 c:\users\matia\documents\github\cmon_dice\funcionestp\coladinamica.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+
+1729518662 source:c:\users\matia\documents\github\cmon_dice\funcionestp\main.c
+	"listaDinamica.h"
+	"funcionesJuego.h"
+
+1729518691 c:\users\matia\documents\github\cmon_dice\funcionestp\funcionesjuego.h
+	<curl/curl.h>
+	<time.h>
+	"colaDinamica.h"
+	"listaDinamica.h"
+
+1729518578 source:c:\users\matia\documents\github\cmon_dice\funcionestp\funcionesjuego.c
+	"funcionesJuego.h"
+

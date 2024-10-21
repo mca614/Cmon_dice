@@ -89,41 +89,79 @@ int obtenerNumerosAleatorios(int *numeros, int cantidad, int min, int max)
     convertirCadenaNumeros(numeros, respuesta);
     return 1;
 }
-int generarInformeDeJuego(tCola* cola)
+FILE* generarArchivoDeInforme(const char* nombrePrefijo)
 {
     time_t tiempo;
     struct tm* tiempoActual;
     char nombreArchivo[MAX_TAM_PATH];
-    tJugador registro;
-    unsigned idAnt;
     FILE* pf;
 
     time(&tiempo);
     tiempoActual = localtime(&tiempo);
-    sprintf(nombreArchivo,"informe-juego_%d-%02d-%02d-%02d-%02d.txt",
-           tiempoActual->tm_year+1900,
-           tiempoActual->tm_mon+1,
-           tiempoActual->tm_mday,
-           tiempoActual->tm_hour,
-           tiempoActual->tm_min);
-
+    sprintf(nombreArchivo,"%s_%d-%02d-%02d-%02d-%02d.txt",nombrePrefijo,tiempoActual->tm_year+1900,tiempoActual->tm_mon+1,tiempoActual->tm_mday,tiempoActual->tm_hour,tiempoActual->tm_min);
     pf = fopen(nombreArchivo,"wt");
 
-    sacarDeCola(cola,sizeof(tJugador),&registro);
-    while(!colaVacia(cola))
-    {
-        idAnt = registro->id;
-        fprintf(pf,"Jugador %d\n",registro->id); //Encabezado de cada jugador
-        while(!colaVacia(cola) && registro->id == idAnt)
-        {
-            fprintf(pf,"%s|%s|%d|%d|%d\n",registro->secuencia,registro->respuesta,registro->vidas,registro->puntajeObtenido,registro->puntajeAcumulado);
-            sacarDeCola(cola,sizeof(tJugador),&registro);
-        }
-    }
-    //// FALTA GRABAR GANADOR////
     fclose(pf);
-    return 1;
+    return pf;
 }
+void exportarRondasJugadorHaciaInforme(FILE* archInforme, tCola* colaTurno)
+{
+    tRonda registro;
+    fprintf(pf,"Jugador %d\n",registro->id); //Encabezado de cada jugador
+    while(!colaVacia(colaTurno))
+    {
+        sacarDeCola(colaTurno,sizeof(tRonda),registro);
+        fprintf(archInforme,"%s|%s|%d|%d|%d\n",registro->secuencia,registro->respuesta,registro->vidasUsadas,registro->puntosObtenidos);
+    }
+    fprintf(pf,"Puntos obtenidos: %d",registro->puntajeAcumulado);
+}
+int exportarGanadoresHaciaInforme(FILE* archInforme, tLista* ganadores)
+{
+    tJugador jugador;
+    //fprintf("================ GANADORES ==============="); ---> Si se incluye haría difícil leer el archivo posteriormente
+    //fprintf("ID JUGADOR | NOMBRE JUGADOR | PUNTUACION");
+    while(esListaVacia(ganadores))
+    {
+        eliminarPrimeroDeLista(ganadores,jugador,sizeof(tJugador));
+        fprintf(archInforme,"%d|%s|%d",jugador->id,jugador->nombre,jugador->puntuacion);
+    }
+
+}
+//int generarInformeDeJuego(tCola* cola)
+//{
+//    time_t tiempo;
+//    struct tm* tiempoActual;
+//    char nombreArchivo[MAX_TAM_PATH];
+//    tJugador registro;
+//    unsigned idAnt;
+//    FILE* pf;
+//
+//    time(&tiempo);
+//    tiempoActual = localtime(&tiempo);
+//    sprintf(nombreArchivo,"informe-juego_%d-%02d-%02d-%02d-%02d.txt",
+//           tiempoActual->tm_year+1900,
+//           tiempoActual->tm_mon+1,
+//           tiempoActual->tm_mday,
+//           tiempoActual->tm_hour,
+//           tiempoActual->tm_min);
+//
+//    pf = fopen(nombreArchivo,"wt");
+//
+//    sacarDeCola(cola,sizeof(tJugador),&registro);
+//    while(!colaVacia(cola))
+//    {
+//        idAnt = registro->id;
+//        fprintf(pf,"Jugador %d\n",registro->id); //Encabezado de cada jugador
+//        while(!colaVacia(cola) && registro->id == idAnt)
+//        {
+//            fprintf(pf,"%s|%s|%d|%d|%d\n",registro->secuencia,registro->respuesta,registro->vidas,registro->puntajeObtenido,registro->puntajeAcumulado);
+//            sacarDeCola(cola,sizeof(tJugador),&registro);
+//        }
+//    }
+//    //// FALTA GRABAR GANADOR////
+//    fclose(pf);
+//    return 1;
+//}
 int cmpCaracter(const void* a, const void* b)
 {
     return *(char*)a-*(char*)b;
