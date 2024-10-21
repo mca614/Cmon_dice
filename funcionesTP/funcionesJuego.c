@@ -106,23 +106,27 @@ FILE* generarArchivoDeInforme(const char* nombrePrefijo)
 }
 void exportarRondasJugadorHaciaInforme(FILE* archInforme, tCola* colaTurno)
 {
-    tRonda registro;
-    fprintf(pf,"Jugador %d\n",registro->id); //Encabezado de cada jugador
-    while(!colaVacia(colaTurno))
+    tRonda* registro;
+    if(!colaVacia(colaTurno))
     {
         sacarDeCola(colaTurno,sizeof(tRonda),registro);
-        fprintf(archInforme,"%s|%s|%d|%d|%d\n",registro->secuencia,registro->respuesta,registro->vidasUsadas,registro->puntosObtenidos);
+        fprintf(archInforme,"Jugador %d\n",registro->id); //Encabezado de cada jugador
     }
-    fprintf(pf,"Puntos obtenidos: %d",registro->puntajeAcumulado);
+    while(!colaVacia(colaTurno))
+    {
+        fprintf(archInforme,"%s|%s|%d|%d\n",registro->secuencia,registro->respuesta,registro->vidasUsadas,registro->puntosObtenidos);
+        sacarDeCola(colaTurno,sizeof(tRonda),registro);
+    }
+    fprintf(archInforme,"Puntos obtenidos: %d",registro->puntosObtenidos);
 }
-int exportarGanadoresHaciaInforme(FILE* archInforme, tLista* ganadores)
+void exportarGanadoresHaciaInforme(FILE* archInforme, tLista* ganadores)
 {
-    tJugador jugador;
+    tJugador* jugador;
     //fprintf("================ GANADORES ==============="); ---> Si se incluye haría difícil leer el archivo posteriormente
     //fprintf("ID JUGADOR | NOMBRE JUGADOR | PUNTUACION");
     while(esListaVacia(ganadores))
     {
-        eliminarPrimeroDeLista(ganadores,jugador,sizeof(tJugador));
+        //eliminarPrimeroDeLista(ganadores,&jugador,sizeof(tJugador)); --> falta implementar
         fprintf(archInforme,"%d|%s|%d",jugador->id,jugador->nombre,jugador->puntuacion);
     }
 

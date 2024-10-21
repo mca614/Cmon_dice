@@ -9,11 +9,19 @@
 #define MAX_TAM_RESP 1024
 #define MAX_TAM_URL 500
 #define MAX_TAM_PATH 50
+#define MAX_L_JUGADOR 25
 
 typedef struct {
     char *cadena;
     size_t tam;
 }tRespuesta;
+
+typedef struct{
+    int id;
+    char nombre[MAX_L_JUGADOR];
+    int vidas;
+    int puntuacion;
+}tJugador;
 
 typedef struct{
     int id;
@@ -30,7 +38,7 @@ int obtenerNumerosAleatorios(int *numeros, int cantidad, int min, int max);
 
 FILE* generarArchivoDeInforme(const char* nombrePrefijo);
 void exportarRondasJugadorHaciaInforme(FILE* archInforme, tCola* colaTurno);
-int exportarGanadoresHaciaInforme(FILE* archInforme, tLista* ganadores);
+void exportarGanadoresHaciaInforme(FILE* archInforme, tLista* ganadores);
 
 int generarInformeDeJuego(tCola* cola);
 
