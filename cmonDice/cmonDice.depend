@@ -6,12 +6,14 @@
 1728914270 source:c:\users\familia cruz\documents\github\cmon_dice\cmondice\funciones.c
 	"funciones.h"
 
-1728928010 c:\users\familia cruz\documents\github\cmon_dice\cmondice\funciones.h
+1729468956 c:\users\familia cruz\documents\github\cmon_dice\cmondice\funciones.h
 	<stdio.h>
+	<string.h>
 	<stdlib.h>
-	"../../../../Desktop/algoritmo/biblioteca/Lista/lista.h"
+	<time.h>
+	"lista.h"
 
-1728914270 source:c:\users\familia cruz\documents\github\cmon_dice\cmondice\main.c
+1729310445 source:c:\users\familia cruz\documents\github\cmon_dice\cmondice\main.c
 	"funciones.h"
 
 1726800183 source:c:\users\familia cruz\desktop\algoritmo\biblioteca\lista\lista.c
@@ -40,4 +42,11 @@
 
 1729307040 source:c:\users\lenovo\onedrive\escritorio\unlam\2024\algoritmos\github\cmon_dice\cmondice\main.c
 	"funciones.h"
+
+1729452478 source:c:\users\familia cruz\documents\github\cmon_dice\cmondice\lista.c
+	"lista.h"
+
+1729452478 c:\users\familia cruz\documents\github\cmon_dice\cmondice\lista.h
+	<string.h>
+	<stdlib.h>
 

@@ -83,7 +83,8 @@ void jugarTurno(tJugador* jugador, int tiempo_mostrar, int tiempo_limite, Accion
             if(cant_letras_resp == 0) /// NO INGRESÓ NADA
             {
                 jugador->vidas--;
-                printf("No ingreso ninguna secuencia.\nSe le restara una vida\n");
+                printf("No ingreso ninguna secuencia.\nSe le restara una vida y se le mostrara nuevamente la secuencia\n");
+                mostrarSecuencia(&secuencia, tiempo_mostrar, accion);
                 ingresarSecuencia(&respuesta, tiempo_limite, &cant_letras_resp);
                 utilizo_vidas = 1;
             }
@@ -94,7 +95,7 @@ void jugarTurno(tJugador* jugador, int tiempo_mostrar, int tiempo_limite, Accion
                        "\nIngrese la cantidad: ");
                 scanf("%d", &cant_retroceso);
 
-                while(cant_retroceso > jugador->vidas || cant_retroceso > cant_letras_resp+1 || cant_retroceso <= 0)
+                while((cant_retroceso > jugador->vidas || cant_retroceso <= 0) && cant_retroceso > cant_letras_resp+1)
                 {
                     printf("Cantidad no valida. Ingrese nuevamente: ");
                     scanf("%d", &cant_retroceso);
@@ -109,7 +110,7 @@ void jugarTurno(tJugador* jugador, int tiempo_mostrar, int tiempo_limite, Accion
                 }
                 else
                 {
-                    eliminarNnodosLista(&respuesta, cant_retroceso);
+                    eliminarNnodosLista(&respuesta, cant_retroceso,cant_letras_resp);
                     printf("Ingrese la secuencia faltante:\n");
                     ingresarSecuencia(&respuesta, tiempo_limite, &cant_letras_resp);
                 }
@@ -120,7 +121,7 @@ void jugarTurno(tJugador* jugador, int tiempo_mostrar, int tiempo_limite, Accion
         }
 
         /// SI LA RESPUESTA ES CORRECTA SE SUMAN LOS 3 PUNTOS
-        if (jugador->vidas && esSecuenciaCorrecta(&secuencia, &respuesta, cmp))
+        if (jugador->vidas>0  && esSecuenciaCorrecta(&secuencia, &respuesta, cmp))
         {
             if(utilizo_vidas)
             {
