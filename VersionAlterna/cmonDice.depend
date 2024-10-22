@@ -103,3 +103,47 @@
 1729518153 source:c:\users\milagros quispe\documents\github\cmon_dice\versionalterna\secuencia\secuencia.c
 	"secuencia.h"
 
+1729562061 source:c:\users\lenovo\onedrive\escritorio\unlam\2024\algoritmos\github\cmon_dice\versionalterna\funciones.c
+	"funciones.h"
+
+1729556780 c:\users\lenovo\onedrive\escritorio\unlam\2024\algoritmos\github\cmon_dice\versionalterna\funciones.h
+	<stdio.h>
+	<string.h>
+	<stdlib.h>
+	<time.h>
+	"lista.h"
+	"secuencia/secuencia.h"
+	<stdlib.h>
+	<conio.h>
+
+1729465753 c:\users\lenovo\onedrive\escritorio\unlam\2024\algoritmos\github\cmon_dice\versionalterna\lista.h
+	<string.h>
+	<stdlib.h>
+
+1729556685 c:\users\lenovo\onedrive\escritorio\unlam\2024\algoritmos\github\cmon_dice\versionalterna\secuencia\secuencia.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<unistd.h>
+	<windows.h>
+	<time.h>
+	"API.h"
+	"../lista.h"
+
+1729521500 c:\users\lenovo\onedrive\escritorio\unlam\2024\algoritmos\github\cmon_dice\versionalterna\secuencia\api.h
+	<stdio.h>
+	<stdlib.h>
+	<curl/curl.h>
+
+1729465766 source:c:\users\lenovo\onedrive\escritorio\unlam\2024\algoritmos\github\cmon_dice\versionalterna\lista.c
+	"lista.h"
+
+1729556721 source:c:\users\lenovo\onedrive\escritorio\unlam\2024\algoritmos\github\cmon_dice\versionalterna\main.c
+	"funciones.h"
+
+1729521500 source:c:\users\lenovo\onedrive\escritorio\unlam\2024\algoritmos\github\cmon_dice\versionalterna\secuencia\api.c
+	"API.h"
+
+1729556840 source:c:\users\lenovo\onedrive\escritorio\unlam\2024\algoritmos\github\cmon_dice\versionalterna\secuencia\secuencia.c
+	"secuencia.h"
+

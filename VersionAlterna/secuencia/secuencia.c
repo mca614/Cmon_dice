@@ -49,7 +49,7 @@ int mostrarSecuencia_ (t_lista* plSecuencia, unsigned cantLetras, unsigned tiemp
 
         tiempo = tiempoBase/(i+1);
 
-        mapLista(plSecuencia,&tiempo,mostrarLetra); // letra por letra
+        mapLista(plSecuencia,&tiempo,mostrarLetraSecuencia); // letra por letra
     }
     return 1;
 }
@@ -65,7 +65,7 @@ int mostrarSecuencia_ (t_lista* plSecuencia, unsigned cantLetras, unsigned tiemp
 //    return 1;
 //}
 
-void mostrarLetra (const void * dato,const void * cond)
+void mostrarLetraSecuencia (const void * dato,const void * cond)
 {
     char* letra = (char*) dato;
     int tiempo = *(int*) cond;

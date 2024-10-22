@@ -20,7 +20,7 @@ int mostrarSecuencia_ (t_lista* plSecuencia, unsigned cantLetras, unsigned tiemp
 
 //int mostrarSecuencia (t_lista* plSecuencia, unsigned cantLetras, unsigned tiempoBase, void accion (void* a, void* b)); // funcion que se va a usa en el juego
 
-void mostrarLetra (const void * dato,const void * cond);
+void mostrarLetraSecuencia (const void * dato,const void * cond);
 
 void mostrarLetra_ (const void * dato,const void * cond);
 
