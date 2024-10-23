@@ -28,11 +28,11 @@ void mostrarSecuencia(t_lista *secuencia, int tiempo_mostrar, int ronda, Accion 
 {
     int tiempo;
 
-    //system("cls");
+    system("cls");
 
     printf("Secuencia: ");
 
-    //sleep(2);
+    sleep(2);
 
     tiempo = tiempo_mostrar/(ronda);
 
@@ -44,32 +44,60 @@ void mostrarSecuencia(t_lista *secuencia, int tiempo_mostrar, int ronda, Accion 
 
 void mostrarRespuesta(t_lista *respuesta, Accion accion)
 {
-    printf("Respuesta: ");
-    mapLista(respuesta, NULL, accion);
+    if(*respuesta)
+    {
+        printf("Respuesta: ");
+        mapLista(respuesta, NULL, accion);
+    }
 }
 
-void ingresarSecuencia(t_lista *respuesta, int tiempo_limite, int cant_max_ingreso, int *cant_letras_resp)
+void ingresarSecuencia(t_lista *respuesta, int tiempo_limite, int cant_max_ingreso, int *cant_letras_resp, int *tecla)
 {
     char letra;
+    //datos del cronometro
+    pthread_t cronometro;
+    t_cronometroDatos datos;
 
-    while(cant_max_ingreso>0)
+    datos.limiteTiempo = tiempo_limite; // Puedes cambiar esto para probar otros lÃ­mites de tiempo
+    datos.tiempoAcabado = 0; //inicializar cronometro
+
+    crearHiloCronometro(&cronometro, &datos); // iniciar hilo, es una tarea paralela
+
+     while (!datos.tiempoAcabado) // termina si se acabo el tiempo o ingreso
     {
+        if (datos.tiempoAcabado) { // se acabo el tiempo
+            break;
+        }
+
         letra = getch(); // getch te trae el caracter de la pantalla
         if(letra != 13 && letra !=27) // si es un enter o escape no quiero que le muestre (valor ascii de enter es 13 y esc 27)
-            printf("%c ", letra);// para imprimir el caracter que leyó
+            printf("%c ", letra);// para imprimir el caracter que leyÃ³
 
-        while(!ES_COLOR(letra))
+        while(!ES_COLOR(letra) && !datos.tiempoAcabado)
         {
             printf("\nCaracter no valido. Ingrese un color: ");
             letra = getch();
             if(letra != 13 && letra !=27)
                 printf("%c ", letra);
         }
+        if(!datos.tiempoAcabado)
+        {
+            agregarAlFinal(respuesta, &letra, sizeof(char));
+            (*cant_letras_resp)++;
+            cant_max_ingreso--;
+        }
 
-        agregarAlFinal(respuesta, &letra, sizeof(char));
-        (*cant_letras_resp)++;
-        cant_max_ingreso--;
+//        if(letra == /* tecla que elegimos*/)
+//        {
+//            datos.tiempoAcabado =1;
+//            *tecla = 1;
+//        }
+
+        if(cant_max_ingreso == 0)
+            datos.tiempoAcabado =1; // para el cronometro
+
     }
+    esperarHiloCronometro (&cronometro);
 
     printf("\n");
 }
@@ -95,12 +123,14 @@ void jugarTurno(tJugador* jugador, int tiempo_mostrar, int tiempo_limite, Accion
     crearLista(&respuesta);
     int turnoTerminado=0;
 
+    int tecla=0; // para saber si se apreto esa tecla
+
     int ronda = 1, utilizo_vidas = 0, cant_retroceso, cant_letras_resp = 0;
 
     printf("%s, es tu turno! Vidas: %d\n", jugador->nombre, jugador->vidas);
 
-//    sleep (2);
-//    system("cls");
+    sleep (2);
+    system("cls");
 
     while(jugador->vidas>=0 && !turnoTerminado)
     {
@@ -114,25 +144,31 @@ void jugarTurno(tJugador* jugador, int tiempo_mostrar, int tiempo_limite, Accion
 
         printf("Vidas: %d\n", jugador->vidas);
 
-//        sleep(5);
+        sleep(5);
 
         mostrarSecuencia(&secuencia, tiempo_mostrar, ronda, mostrar_sec);
 
         printf("\nIngresa la secuencia: ");
-        ingresarSecuencia(&respuesta, tiempo_limite, ronda, &cant_letras_resp);
+        ingresarSecuencia(&respuesta, tiempo_limite, ronda, &cant_letras_resp, &tecla);
 
         /// ASIGNAR PUNTAJE Y ACTUALIZAR VIDAS
 
         while(jugador->vidas>0 && !esSecuenciaCorrecta(&secuencia, &respuesta, cmp))
         {
             printf("\nVidas: %d\n", jugador->vidas);
-            if(cant_letras_resp == 0) /// NO INGRESÓ NADA
+            if(cant_letras_resp == 0) /// NO INGRESÃ“ NADA
             {
+                system("cls");
+
                 jugador->vidas--;
                 printf("No ingreso ninguna secuencia.\nSe le restara una vida.\nVidas:%d\nSe mostrara nuevamente la secuencia\n",jugador->vidas);
+
+                sleep(6);
+
                 mostrarSecuencia(&secuencia, tiempo_mostrar, ronda, mostrar_sec);
                 printf("\nIngresa la secuencia: ");
-                ingresarSecuencia(&respuesta, tiempo_limite, ronda, &cant_letras_resp);
+
+                ingresarSecuencia(&respuesta, tiempo_limite, ronda, &cant_letras_resp, &tecla);
                 utilizo_vidas = 1;
             }
             else /// LA SECUENCIA ERA INCORRECTA
@@ -154,7 +190,7 @@ void jugarTurno(tJugador* jugador, int tiempo_mostrar, int tiempo_limite, Accion
                     printf("Le mostraremos nuevamente la secuencia:\n");
                     mostrarSecuencia(&secuencia, tiempo_mostrar, ronda, mostrar_sec);
                     printf("\nIngresa la secuencia: ");
-                    ingresarSecuencia(&respuesta, tiempo_limite, ronda, &cant_letras_resp);
+                    ingresarSecuencia(&respuesta, tiempo_limite, ronda, &cant_letras_resp, &tecla);
                 }
                 else
                 {
@@ -162,14 +198,14 @@ void jugarTurno(tJugador* jugador, int tiempo_mostrar, int tiempo_limite, Accion
                     cant_letras_resp -= cant_retroceso;
                     printf("Ingrese la secuencia faltante:\n");
                     mostrarRespuesta(&respuesta, mostrar_resp);
-                    ingresarSecuencia(&respuesta, tiempo_limite, cant_retroceso, &cant_letras_resp);
+                    ingresarSecuencia(&respuesta, tiempo_limite, cant_retroceso, &cant_letras_resp, &tecla);
                 }
 
                 jugador->vidas-=cant_retroceso;
                 utilizo_vidas = 1;
             }
 
-//            system("cls");
+            system("cls");
         }
 
         /// SI LA RESPUESTA ES CORRECTA
@@ -188,8 +224,8 @@ void jugarTurno(tJugador* jugador, int tiempo_mostrar, int tiempo_limite, Accion
                 vaciarLista(&respuesta);
             }
 
-//            sleep (4);
-//            system("cls");
+            sleep (4);
+            system("cls");
         }
         else
         {

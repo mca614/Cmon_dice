@@ -1,112 +1,8 @@
 # depslib dependency file v1.0
-1584205420 source:c:\users\familia cruz\documents\github\desktop-tutorial\cmondice\main.c
-	<stdio.h>
-	<stdlib.h>
-
-1728914270 source:c:\users\familia cruz\documents\github\cmon_dice\cmondice\funciones.c
+1729725921 source:c:\universidad\algoritmos\trabajo_practico\cmon_dice\versionalterna\funciones.c
 	"funciones.h"
 
-1728928010 c:\users\familia cruz\documents\github\cmon_dice\cmondice\funciones.h
-	<stdio.h>
-	<stdlib.h>
-	"../../../../Desktop/algoritmo/biblioteca/Lista/lista.h"
-
-1728914270 source:c:\users\familia cruz\documents\github\cmon_dice\cmondice\main.c
-	"funciones.h"
-
-1726800183 source:c:\users\familia cruz\desktop\algoritmo\biblioteca\lista\lista.c
-	"lista.h"
-
-1726800183 c:\users\familia cruz\desktop\algoritmo\biblioteca\lista\lista.h
-	<string.h>
-	<stdlib.h>
-
-1729460355 source:c:\users\lenovo\onedrive\escritorio\unlam\2024\algoritmos\github\cmon_dice\cmondice\funciones.c
-	"funciones.h"
-
-1729460355 c:\users\lenovo\onedrive\escritorio\unlam\2024\algoritmos\github\cmon_dice\cmondice\funciones.h
-	<stdio.h>
-	<string.h>
-	<stdlib.h>
-	<time.h>
-	"lista.h"
-
-1729459270 c:\users\lenovo\onedrive\escritorio\unlam\2024\algoritmos\github\cmon_dice\cmondice\lista.h
-	<string.h>
-	<stdlib.h>
-
-1729459248 source:c:\users\lenovo\onedrive\escritorio\unlam\2024\algoritmos\github\cmon_dice\cmondice\lista.c
-	"lista.h"
-
-1729307040 source:c:\users\lenovo\onedrive\escritorio\unlam\2024\algoritmos\github\cmon_dice\cmondice\main.c
-	"funciones.h"
-
-1729475825 source:c:\users\familia cruz\documents\github\cmon_dice\versionalterna\funciones.c
-	"funciones.h"
-
-1729475712 c:\users\familia cruz\documents\github\cmon_dice\versionalterna\funciones.h
-	<stdio.h>
-	<string.h>
-	<stdlib.h>
-	<time.h>
-	"lista.h"
-
-1729470907 c:\users\familia cruz\documents\github\cmon_dice\versionalterna\lista.h
-	<string.h>
-	<stdlib.h>
-
-1729470907 source:c:\users\familia cruz\documents\github\cmon_dice\versionalterna\lista.c
-	"lista.h"
-
-1729470907 source:c:\users\familia cruz\documents\github\cmon_dice\versionalterna\main.c
-	"funciones.h"
-
-1729520181 source:c:\users\milagros quispe\documents\github\cmon_dice\versionalterna\funciones.c
-	"funciones.h"
-
-1729517946 c:\users\milagros quispe\documents\github\cmon_dice\versionalterna\funciones.h
-	<stdio.h>
-	<string.h>
-	<stdlib.h>
-	<time.h>
-	"lista.h"
-	"secuencia/secuencia.h"
-
-1729517210 c:\users\milagros quispe\documents\github\cmon_dice\versionalterna\lista.h
-	<string.h>
-	<stdlib.h>
-
-1729517210 source:c:\users\milagros quispe\documents\github\cmon_dice\versionalterna\lista.c
-	"lista.h"
-
-1729518180 source:c:\users\milagros quispe\documents\github\cmon_dice\versionalterna\main.c
-	"funciones.h"
-
-1729518152 c:\users\milagros quispe\documents\github\cmon_dice\versionalterna\secuencia\secuencia.h
-	<stdio.h>
-	<stdlib.h>
-	<string.h>
-	<unistd.h>
-	<windows.h>
-	<time.h>
-	"API.h"
-	"../lista.h"
-
-1728682198 c:\users\milagros quispe\documents\github\cmon_dice\versionalterna\secuencia\api.h
-	<stdio.h>
-	<stdlib.h>
-	<curl/curl.h>
-
-1728682448 source:c:\users\milagros quispe\documents\github\cmon_dice\versionalterna\secuencia\api.c
-	"API.h"
-
-1729518153 source:c:\users\milagros quispe\documents\github\cmon_dice\versionalterna\secuencia\secuencia.c
-	"secuencia.h"
-
-1729562061 source:c:\users\lenovo\onedrive\escritorio\unlam\2024\algoritmos\github\cmon_dice\versionalterna\funciones.c
-	"funciones.h"
-
-1729556780 c:\users\lenovo\onedrive\escritorio\unlam\2024\algoritmos\github\cmon_dice\versionalterna\funciones.h
+1729726162 c:\universidad\algoritmos\trabajo_practico\cmon_dice\versionalterna\funciones.h
 	<stdio.h>
 	<string.h>
 	<stdlib.h>
@@ -115,12 +11,13 @@
 	"secuencia/secuencia.h"
 	<stdlib.h>
 	<conio.h>
+	"cronometro/hiloCronometro.h"
 
-1729465753 c:\users\lenovo\onedrive\escritorio\unlam\2024\algoritmos\github\cmon_dice\versionalterna\lista.h
+1729707813 c:\universidad\algoritmos\trabajo_practico\cmon_dice\versionalterna\lista.h
 	<string.h>
 	<stdlib.h>
 
-1729556685 c:\users\lenovo\onedrive\escritorio\unlam\2024\algoritmos\github\cmon_dice\versionalterna\secuencia\secuencia.h
+1729707813 c:\universidad\algoritmos\trabajo_practico\cmon_dice\versionalterna\secuencia\secuencia.h
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -130,20 +27,85 @@
 	"API.h"
 	"../lista.h"
 
-1729521500 c:\users\lenovo\onedrive\escritorio\unlam\2024\algoritmos\github\cmon_dice\versionalterna\secuencia\api.h
+1729707813 c:\universidad\algoritmos\trabajo_practico\cmon_dice\versionalterna\secuencia\api.h
 	<stdio.h>
 	<stdlib.h>
 	<curl/curl.h>
 
-1729465766 source:c:\users\lenovo\onedrive\escritorio\unlam\2024\algoritmos\github\cmon_dice\versionalterna\lista.c
+1729709044 c:\herramientas\curl-8.10.1_7-win64-mingw\include\curl\curl.h
+	"curlver.h"
+	"system.h"
+	<stdio.h>
+	<limits.h>
+	<sys/param.h>
+	<sys/types.h>
+	<time.h>
+	<winsock2.h>
+	<ws2tcpip.h>
+	<sys/select.h>
+	<sys/socket.h>
+	<sys/time.h>
+	"easy.h"
+	"multi.h"
+	"urlapi.h"
+	"options.h"
+	"header.h"
+	"websockets.h"
+	"mprintf.h"
+	"typecheck-gcc.h"
+
+1729709044 c:\herramientas\curl-8.10.1_7-win64-mingw\include\curl\curlver.h
+
+1729709044 c:\herramientas\curl-8.10.1_7-win64-mingw\include\curl\system.h
+	<ConditionalMacros.h>
+	<inttypes.h>
+	<inttypes.h>
+	<sys/types.h>
+	<sys/socket.h>
+	<sys/poll.h>
+
+1729709044 c:\herramientas\curl-8.10.1_7-win64-mingw\include\curl\easy.h
+
+1729709044 c:\herramientas\curl-8.10.1_7-win64-mingw\include\curl\multi.h
+	"curl.h"
+
+1729709044 c:\herramientas\curl-8.10.1_7-win64-mingw\include\curl\urlapi.h
+	"curl.h"
+
+1729709044 c:\herramientas\curl-8.10.1_7-win64-mingw\include\curl\options.h
+
+1729709044 c:\herramientas\curl-8.10.1_7-win64-mingw\include\curl\header.h
+
+1729709044 c:\herramientas\curl-8.10.1_7-win64-mingw\include\curl\websockets.h
+
+1729709044 c:\herramientas\curl-8.10.1_7-win64-mingw\include\curl\mprintf.h
+	<stdarg.h>
+	<stdio.h>
+	"curl.h"
+
+1729709044 c:\herramientas\curl-8.10.1_7-win64-mingw\include\curl\typecheck-gcc.h
+
+1729707813 source:c:\universidad\algoritmos\trabajo_practico\cmon_dice\versionalterna\lista.c
 	"lista.h"
 
-1729556721 source:c:\users\lenovo\onedrive\escritorio\unlam\2024\algoritmos\github\cmon_dice\versionalterna\main.c
+1729707813 source:c:\universidad\algoritmos\trabajo_practico\cmon_dice\versionalterna\main.c
 	"funciones.h"
 
-1729521500 source:c:\users\lenovo\onedrive\escritorio\unlam\2024\algoritmos\github\cmon_dice\versionalterna\secuencia\api.c
+1729707813 source:c:\universidad\algoritmos\trabajo_practico\cmon_dice\versionalterna\secuencia\api.c
 	"API.h"
 
-1729556840 source:c:\users\lenovo\onedrive\escritorio\unlam\2024\algoritmos\github\cmon_dice\versionalterna\secuencia\secuencia.c
+1729707813 source:c:\universidad\algoritmos\trabajo_practico\cmon_dice\versionalterna\secuencia\secuencia.c
 	"secuencia.h"
+
+1729717280 c:\universidad\algoritmos\trabajo_practico\cmon_dice\versionalterna\cronometro\hilocronometro.h
+	<stdio.h>
+	<stdlib.h>
+	<pthread.h>
+	<time.h>
+	<string.h>
+	<unistd.h>
+	<windows.h>
+
+1729724316 source:c:\universidad\algoritmos\trabajo_practico\cmon_dice\versionalterna\cronometro\hilocronometro.c
+	"hiloCronometro.h"
 

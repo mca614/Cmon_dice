@@ -9,6 +9,7 @@
 #include "secuencia/secuencia.h"
 #include <stdlib.h>
 #include <conio.h>
+#include"cronometro/hiloCronometro.h"
 
 #define MAX_L_JUGADOR 50
 #define MAX_SECUENCIA 10
@@ -40,7 +41,7 @@ void leer_cant_retroceso_valido(int *cant_retroceso, int vidas, int cant_letras_
 void generarSecuencia(t_lista *secuencia);
 void mostrarSecuencia(t_lista *secuencia, int tiempo_mostrar, int ronda , Accion accion);
 void mostrarRespuesta(t_lista *respuesta, Accion accion);
-void ingresarSecuencia(t_lista *respuesta, int tiempo_limite, int cant_max_ingreso, int *cant_letras_resp);
+void ingresarSecuencia(t_lista *respuesta, int tiempo_limite, int cant_max_ingreso, int *cant_letras_resp, int *tecla); // actualizado con cronometro
 /*********************************************************************************************************/
 
 void jugarTurno(tJugador* jugador, int tiempo_mostrar, int tiempo_limite, Accion mostrar_sec,
