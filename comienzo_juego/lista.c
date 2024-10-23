@@ -117,7 +117,7 @@ int sacarPrimero(t_lista *lista, void *dato, unsigned cant_bytes){
 /// en este caso es la funcion jugadoresNoGanadores, que retorna un 1 en cuando el jugador tiene una puntacion
 /// distinta a la maxima o cuando esta es 0
 /// el parámetro accion no se usa
-void filtrarLista(t_lista* pl, void* dato, unsigned cantBytes, int condicion(void*, void*), void accion(void*, void*)){
+void filtrarLista(t_lista* pl, void* dato, int condicion(void*, void*), void accion(void*, void*)){
     t_nodo *elim;
 
      while(*pl)

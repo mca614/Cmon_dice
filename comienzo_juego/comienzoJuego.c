@@ -12,7 +12,6 @@ char menuConError(const char *msj, const char *opc)
     }
     while(strchr(opc, opcElegida)==NULL);
     return opcElegida;
-
 }
 
 void menuIngresoJugadores(t_lista *listaJugadores, int *cantidadJugadores){
@@ -46,7 +45,7 @@ void menuIngresoJugadores(t_lista *listaJugadores, int *cantidadJugadores){
 }
 
 
-int menuDificultad(tDificultad *dificultadElegida){
+int menuDificultad(tDatosPartida *datosPartida){
     char opcion;
 
     opcion = menuConError("\n==============================================\n"
@@ -60,16 +59,13 @@ int menuDificultad(tDificultad *dificultadElegida){
 
     switch(opcion) {
             case '1':
-                strcpy(dificultadElegida->dificultad, "Facil");
+                datosPartida->dificultad = 'F';
                 break;
             case '2':
-                strcpy(dificultadElegida->dificultad, "Media");
+                datosPartida->dificultad = 'M';
                 break;
             case '3':
-                strcpy(dificultadElegida->dificultad, "Dificil");
-                break;
-            case '4':
-                strcpy(dificultadElegida->dificultad, "\0");
+                datosPartida->dificultad = 'D';
                 break;
     }
 
@@ -89,33 +85,10 @@ int menuComenzarJuego(tJugador proximoJugador){
     return opcion == '1' ? 1 : 0;
 }
 
-void cargarDatosJugador(void *v, void *extra){
-    tJugador *jugador = (tJugador*)v;
-    tJugador *jugadorAux = (tJugador*)extra;
-
-    jugador->id = jugadorAux->id;
-    jugadorAux->id++;
-    jugador->puntuacion = 0;
-    jugador->vidas = jugadorAux->vidas;
-}
-
-void cargarDatosJugadores(t_lista *listaJugadores, int cantVidas){
-    /// Se usa una variable tJugador auxiliar para realizar el proceso de carga
-    /// de los datos al jugador. Esto se hace con función map que recibe como parámetro a la
-    /// la función cargarDatosJugador()
-    tJugador jugadorAux;
-    jugadorAux.id = 1;
-    jugadorAux.vidas = cantVidas;
-
-    mapLista(listaJugadores, &jugadorAux, cargarDatosJugador);
-}
-
-/// En base al campo "dificultad" de la variable dificultadElegida, se busca
-/// en el archivo config.txt la línea que contiene los datos de dificultad
-/// (tSecuencia, tJugador, vidas)
-int cargarDificultad(tDificultad *dificultadElegida){
+int cargarDificultad(tDatosPartida *datosPartida){
     FILE *archivoConfDificultad;
-    char linea[MAX_LINEA], *ptr, *resultadoBusquedaDificultad;
+    char linea[MAX_LINEA], *ptr;
+    int resultadoBusquedaDificultad = 0;
 
     archivoConfDificultad = fopen("config.txt", "rt");
 
@@ -126,24 +99,21 @@ int cargarDificultad(tDificultad *dificultadElegida){
         return 0;
     }
 
-    resultadoBusquedaDificultad = NULL;
-
     while(!resultadoBusquedaDificultad && fgets(linea, MAX_LINEA, archivoConfDificultad)){
         /// Se busca en el archivo config línea a línea (F | 20 | 20 | 5) el primer caracter
-        /// de la variable dificultadElegida de su campo dificultad (Facil, Media, Dificil)
-        resultadoBusquedaDificultad = strchr(linea, *(dificultadElegida->dificultad));
+        resultadoBusquedaDificultad = *linea == datosPartida->dificultad ? 1 : 0;
 
         if(resultadoBusquedaDificultad){
             ptr = strrchr(linea, '|');
-            sscanf(ptr+1, "%u", &dificultadElegida->cantVidas);
+            sscanf(ptr+1, "%u", &datosPartida->cantVidas);
             *ptr = '\0';
 
             ptr = strrchr(linea, '|');
-            sscanf(ptr+1, "%u", &dificultadElegida->tiempoJugada);
+            sscanf(ptr+1, "%u", &datosPartida->tiempoJugada);
             *ptr = '\0';
 
             ptr = strrchr(linea, '|');
-            sscanf(ptr+1, "%u", &dificultadElegida->tiempoSecuencia);
+            sscanf(ptr+1, "%u", &datosPartida->tiempoSecuencia);
         }
     }
 
@@ -151,7 +121,7 @@ int cargarDificultad(tDificultad *dificultadElegida){
         printf("\nNo se pudo obtener configuraciones de dificultad...\n");
 
     fclose(archivoConfDificultad);
-    return resultadoBusquedaDificultad ? 1 : 0;
+    return resultadoBusquedaDificultad;
 }
 
 int obtenerValorAleatorio(int menorValor, int mayorValor) {
@@ -168,4 +138,30 @@ void ingresarJugador(tJugador *jugador, int cantidadJugadores){
     /// Valor aleatorio generado para id según la cantidad de jugadores. Ej desde -1 hasta 1
     jugador->id = obtenerValorAleatorio(cantidadJugadores * -1, cantidadJugadores);
     system("cls");
+}
+
+void cargarMostrarDatosJugador(void *v, void *extra){
+    tJugador *jugador = (tJugador*)v;
+    tJugador *jugadorAux = (tJugador*)extra;
+
+    jugador->id = jugadorAux->id;
+    jugadorAux->id++;
+    jugador->puntuacion = jugadorAux->puntuacion;
+    jugador->vidas = jugadorAux->vidas;
+
+    printf("%3s%-12d%s\n", "", jugador->id , jugador->nombre);
+}
+
+void jugarPartida(void *jugador, void *extra){
+    tDatosPartida *datos = (tDatosPartida*)extra;
+
+    if(menuComenzarJuego(*((tJugador*)jugador))){
+        system("cls");
+        jugarTurno(((tJugador*)jugador), datos->tiempoSecuencia, datos->tiempoJugada, mostrarLetra, cmp_letras);
+
+        if(((tJugador*)jugador)->puntuacion > datos->maximaPuntuacion)
+            datos->maximaPuntuacion = ((tJugador*)jugador)->puntuacion;
+
+        system("cls");
+    }
 }

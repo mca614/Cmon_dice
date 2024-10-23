@@ -29,6 +29,6 @@ int agregarOrdenado(t_lista *lista, void *dato, short int duplicado, unsigned ca
 int sacarPrimero(t_lista *lista, void *dato, unsigned cant_bytes);
 
 // filtrar
-void filtrarLista(t_lista* pl, void* dato, unsigned cantBytes, int condicion(void*, void*), void accion(void*, void*));
+void filtrarLista(t_lista* pl, void* dato, int condicion(void*, void*), void accion(void*, void*));
 
 #endif // LISTA_H_INCLUDED

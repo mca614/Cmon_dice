@@ -8,22 +8,25 @@
 #include "lista.h"
 #include "jugador.h"
 
-#define MAX_L_DIFICULTAD 10
 #define MAX_LINEA 1024
 
 typedef struct{
-    char dificultad[MAX_L_DIFICULTAD];
+    char dificultad;
     unsigned tiempoSecuencia;
     unsigned tiempoJugada;
+    unsigned maximaPuntuacion;
     unsigned cantVidas;
-}tDificultad;
+}tDatosPartida;
 
 char menuConError(const char *msj, const char *opc);
-int menuDificultad(tDificultad *dificultadElegida);
+int menuDificultad(tDatosPartida *datosPartida);
 void menuIngresoJugadores(t_lista *listaJugadores, int *cantidadJugadores);
 int menuComenzarJuego(tJugador proximoJugador);
 
-int cargarDificultad(tDificultad *dificultadElegida);
+int cargarDificultad(tDatosPartida *datosPartida);
 void ingresarJugador(tJugador *jugador, int cantidadJugadores);
-void cargarDatosJugadores(t_lista *listaJugadores, int cantVidas);
+void cargarMostrarDatosJugador(void *v, void *extra);
+
+void jugarPartida(void *jugador, void *extra);
+
 #endif // COMIENZOJUEGO_H_INCLUDED
