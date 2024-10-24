@@ -55,9 +55,10 @@
 	<stdlib.h>
 	<string.h>
 
-1729518662 source:c:\users\matia\documents\github\cmon_dice\funcionestp\main.c
+1729792140 source:c:\users\matia\documents\github\cmon_dice\funcionestp\main.c
 	"listaDinamica.h"
 	"funcionesJuego.h"
+	"musica.h"
 
 1729521625 c:\users\matia\documents\github\cmon_dice\funcionestp\funcionesjuego.h
 	<curl/curl.h>
@@ -65,6 +66,13 @@
 	"colaDinamica.h"
 	"listaDinamica.h"
 
-1729518578 source:c:\users\matia\documents\github\cmon_dice\funcionestp\funcionesjuego.c
+1729522076 source:c:\users\matia\documents\github\cmon_dice\funcionestp\funcionesjuego.c
 	"funcionesJuego.h"
+
+1729790378 source:c:\users\matia\documents\github\cmon_dice\funcionestp\musica.c
+
+1729790427 c:\users\matia\documents\github\cmon_dice\funcionestp\musica.h
+	<stdio.h>
+	<windows.h>
+	<MMsystem.h>
 
