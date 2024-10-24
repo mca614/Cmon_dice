@@ -13,6 +13,7 @@
 
 #define MAX_L_JUGADOR 50
 #define MAX_SECUENCIA 10
+#define MINIMO(x,y)((x)<(y)? (x):(y))
 
 #define ES_COLOR(c) (((c)=='A' || (c)=='N' || (c)=='R' || (c)=='V'\
                     ||(c)=='a' || (c)=='n' || (c)=='r' || (c)=='v') ? 1 : 0)

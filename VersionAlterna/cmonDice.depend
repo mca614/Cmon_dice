@@ -109,3 +109,110 @@
 1729724316 source:c:\universidad\algoritmos\trabajo_practico\cmon_dice\versionalterna\cronometro\hilocronometro.c
 	"hiloCronometro.h"
 
+1729745660 source:c:\users\familia cruz\documents\github\cmon_dice\versionalterna\cronometro\hilocronometro.c
+	"hiloCronometro.h"
+
+1729745660 c:\users\familia cruz\documents\github\cmon_dice\versionalterna\cronometro\hilocronometro.h
+	<stdio.h>
+	<stdlib.h>
+	<pthread.h>
+	<time.h>
+	<string.h>
+	<unistd.h>
+	<windows.h>
+
+1729470907 source:c:\users\familia cruz\documents\github\cmon_dice\versionalterna\lista.c
+	"lista.h"
+
+1729470907 c:\users\familia cruz\documents\github\cmon_dice\versionalterna\lista.h
+	<string.h>
+	<stdlib.h>
+
+1729711106 source:c:\users\familia cruz\documents\github\cmon_dice\versionalterna\main.c
+	"funciones.h"
+
+1729746016 c:\users\familia cruz\documents\github\cmon_dice\versionalterna\funciones.h
+	<stdio.h>
+	<string.h>
+	<stdlib.h>
+	<time.h>
+	"lista.h"
+	"secuencia/secuencia.h"
+	<stdlib.h>
+	<conio.h>
+	"cronometro/hiloCronometro.h"
+
+1729711107 c:\users\familia cruz\documents\github\cmon_dice\versionalterna\secuencia\secuencia.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<unistd.h>
+	<windows.h>
+	<time.h>
+	"API.h"
+	"../lista.h"
+
+1729521697 c:\users\familia cruz\documents\github\cmon_dice\versionalterna\secuencia\api.h
+	<stdio.h>
+	<stdlib.h>
+	<curl/curl.h>
+
+1726649800 c:\users\familia cruz\desktop\curl\curl-8.10.1_6-win64-mingw\include\curl\curl.h
+	"curlver.h"
+	"system.h"
+	<stdio.h>
+	<limits.h>
+	<sys/param.h>
+	<sys/types.h>
+	<time.h>
+	<winsock2.h>
+	<ws2tcpip.h>
+	<sys/select.h>
+	<sys/socket.h>
+	<sys/time.h>
+	"easy.h"
+	"multi.h"
+	"urlapi.h"
+	"options.h"
+	"header.h"
+	"websockets.h"
+	"mprintf.h"
+	"typecheck-gcc.h"
+
+1726649800 c:\users\familia cruz\desktop\curl\curl-8.10.1_6-win64-mingw\include\curl\curlver.h
+
+1726649800 c:\users\familia cruz\desktop\curl\curl-8.10.1_6-win64-mingw\include\curl\system.h
+	<ConditionalMacros.h>
+	<inttypes.h>
+	<inttypes.h>
+	<sys/types.h>
+	<sys/socket.h>
+	<sys/poll.h>
+
+1726649800 c:\users\familia cruz\desktop\curl\curl-8.10.1_6-win64-mingw\include\curl\easy.h
+
+1726649800 c:\users\familia cruz\desktop\curl\curl-8.10.1_6-win64-mingw\include\curl\multi.h
+	"curl.h"
+
+1726649800 c:\users\familia cruz\desktop\curl\curl-8.10.1_6-win64-mingw\include\curl\urlapi.h
+	"curl.h"
+
+1726649800 c:\users\familia cruz\desktop\curl\curl-8.10.1_6-win64-mingw\include\curl\options.h
+
+1726649800 c:\users\familia cruz\desktop\curl\curl-8.10.1_6-win64-mingw\include\curl\header.h
+
+1726649800 c:\users\familia cruz\desktop\curl\curl-8.10.1_6-win64-mingw\include\curl\websockets.h
+
+1726649800 c:\users\familia cruz\desktop\curl\curl-8.10.1_6-win64-mingw\include\curl\mprintf.h
+	<stdarg.h>
+	<stdio.h>
+	"curl.h"
+
+1726649800 c:\users\familia cruz\desktop\curl\curl-8.10.1_6-win64-mingw\include\curl\typecheck-gcc.h
+
+1729521697 source:c:\users\familia cruz\documents\github\cmon_dice\versionalterna\secuencia\api.c
+	"API.h"
+
+1729711107 source:c:\users\familia cruz\documents\github\cmon_dice\versionalterna\secuencia\secuencia.c
+	"secuencia.h"
+

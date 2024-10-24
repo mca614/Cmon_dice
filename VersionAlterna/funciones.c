@@ -70,14 +70,14 @@ void ingresarSecuencia(t_lista *respuesta, int tiempo_limite, int cant_max_ingre
         }
 
         letra = getch(); // getch te trae el caracter de la pantalla
-        if(letra != 13 && letra !=27) // si es un enter o escape no quiero que le muestre (valor ascii de enter es 13 y esc 27)
+        if(ES_COLOR(letra)) // si es un enter o escape no quiero que le muestre (valor ascii de enter es 13 y esc 27)
             printf("%c ", letra);// para imprimir el caracter que leyó
 
         while(!ES_COLOR(letra) && !datos.tiempoAcabado)
         {
             printf("\nCaracter no valido. Ingrese un color: ");
             letra = getch();
-            if(letra != 13 && letra !=27)
+            if(ES_COLOR(letra))
                 printf("%c ", letra);
         }
         if(!datos.tiempoAcabado)
@@ -176,7 +176,7 @@ void jugarTurno(tJugador* jugador, int tiempo_mostrar, int tiempo_limite, Accion
                 printf("Secuencia incorrecta\n");
                 mostrarRespuesta(&respuesta, mostrar_resp);
                 printf("\nSe le restaran las vidas en base a la cantidad de jugadas que desee retroceder"
-                       "\nIngrese un entero de 1 a %d para retroceder", cant_letras_resp);
+                       "\nIngrese un entero de 1 a %d para retroceder",MINIMO(cant_letras_resp,jugador->vidas));
                 if(jugador->vidas > cant_letras_resp)
                     printf("\nO puede ingresar %d para volver a ver la secuencia "
                            "e ingresar una respuesta nueva (-%d vidas)", cant_letras_resp+1, cant_letras_resp+1);

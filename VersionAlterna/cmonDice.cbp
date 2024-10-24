@@ -13,13 +13,13 @@
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-g" />
-					<Add directory="C:/herramientas/curl-8.10.1_7-win64-mingw/include" />
+					<Add directory="../../../../Desktop/curl/curl-8.10.1_6-win64-mingw/include" />
 				</Compiler>
 				<ResourceCompiler>
-					<Add directory="C:/herramientas/curl-8.10.1_7-win64-mingw/include" />
+					<Add directory="../../../../Desktop/curl/curl-8.10.1_6-win64-mingw/include" />
 				</ResourceCompiler>
 				<Linker>
-					<Add library="C:/herramientas/curl-8.10.1_7-win64-mingw/lib/libcurl.dll.a" />
+					<Add library="../../../../Desktop/curl/curl-8.10.1_6-win64-mingw/lib/libcurl.dll.a" />
 					<Add directory="C:/herramientas/curl-8.10.1_7-win64-mingw/lib" />
 				</Linker>
 			</Target>
