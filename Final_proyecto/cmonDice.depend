@@ -1,0 +1,30 @@
+# depslib dependency file v1.0
+1729790576 source:c:\users\tomas\desktop\cmon_dice\coladinamica.c
+	"colaDinamica.h"
+
+1729793023 c:\users\tomas\desktop\cmon_dice\coladinamica.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+
+1729802057 source:c:\users\tomas\desktop\cmon_dice\funcionesjuego.c
+	"funcionesJuego.h"
+
+1729800093 c:\users\tomas\desktop\cmon_dice\funcionesjuego.h
+	<curl/curl.h>
+	<time.h>
+	"colaDinamica.h"
+	"listaDinamica.h"
+
+1729793023 c:\users\tomas\desktop\cmon_dice\listadinamica.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+
+1729792996 source:c:\users\tomas\desktop\cmon_dice\listadinamica.c
+	"listaDinamica.h"
+
+1729898101 source:c:\users\tomas\desktop\cmon_dice\main.c
+	"listaDinamica.h"
+	"funcionesJuego.h"
+
