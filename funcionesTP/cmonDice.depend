@@ -55,10 +55,8 @@
 	<stdlib.h>
 	<string.h>
 
-1729792140 source:c:\users\matia\documents\github\cmon_dice\funcionestp\main.c
-	"listaDinamica.h"
-	"funcionesJuego.h"
-	"musica.h"
+1729907022 source:c:\users\matia\documents\github\cmon_dice\funcionestp\main.c
+	"comienzoJuego.h"
 
 1729521625 c:\users\matia\documents\github\cmon_dice\funcionestp\funcionesjuego.h
 	<curl/curl.h>
@@ -75,4 +73,63 @@
 	<stdio.h>
 	<windows.h>
 	<MMsystem.h>
+
+1729907022 c:\users\matia\documents\github\cmon_dice\funcionestp\comienzojuego.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"lista/lista.h"
+	"jugarPartida/funciones.h"
+	"jugador/jugador.h"
+
+1729907022 c:\users\matia\documents\github\cmon_dice\funcionestp\lista\lista.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+
+1729907022 c:\users\matia\documents\github\cmon_dice\funcionestp\jugarpartida\funciones.h
+	<stdio.h>
+	<string.h>
+	<stdlib.h>
+	<conio.h>
+	"../jugador/jugador.h"
+	"../secuencia/secuencia.h"
+	"../cronometro/hiloCronometro.h"
+	"../cola/colaDinamica.h"
+
+1729907022 c:\users\matia\documents\github\cmon_dice\funcionestp\jugador\jugador.h
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	"../lista/lista.h"
+
+1729907022 c:\users\matia\documents\github\cmon_dice\funcionestp\secuencia\secuencia.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<unistd.h>
+	<windows.h>
+	<time.h>
+	"API.h"
+	"../lista/lista.h"
+
+1729907022 c:\users\matia\documents\github\cmon_dice\funcionestp\secuencia\api.h
+	<stdio.h>
+	<stdlib.h>
+	<curl/curl.h>
+
+1729907022 c:\users\matia\documents\github\cmon_dice\funcionestp\cronometro\hilocronometro.h
+	<stdio.h>
+	<stdlib.h>
+	<pthread.h>
+	<time.h>
+	<string.h>
+	<unistd.h>
+	<windows.h>
+
+1729907022 c:\users\matia\documents\github\cmon_dice\funcionestp\cola\coladinamica.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"../lista/lista.h"
 

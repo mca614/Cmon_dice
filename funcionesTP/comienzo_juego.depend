@@ -1,0 +1,60 @@
+# depslib dependency file v1.0
+1729019489 source:c:\users\contt\onedrive\escritorio\comienzo_juego\comienzojuego.c
+	"comienzoJuego.h"
+
+1729019520 c:\users\contt\onedrive\escritorio\comienzo_juego\comienzojuego.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"lista.h"
+	"jugador.h"
+
+1728428504 c:\users\contt\onedrive\escritorio\comienzo_juego\usoapi\usoapi.h
+	<stdio.h>
+	<stdlib.h>
+	<curl/curl.h>
+
+1728428387 source:c:\users\contt\onedrive\escritorio\comienzo_juego\usoapi\usoapi.c
+	"usoApi.h"
+
+1728336417 c:\users\contt\onedrive\escritorio\comienzo_juego\lista\lista_circular.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"nodo.h"
+
+1728163682 c:\users\contt\onedrive\escritorio\comienzo_juego\lista\nodo.h
+	<stdio.h>
+	<stdlib.h>
+
+1728336417 source:c:\users\contt\onedrive\escritorio\comienzo_juego\lista\lista_circular.c
+	"lista_circular.h"
+
+1729024140 source:c:\users\contt\onedrive\escritorio\comienzo_juego\main.c
+	"comienzoJuego.h"
+
+1727118913 c:\users\contt\onedrive\escritorio\comienzo_juego\lista\funciones.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+
+1727118976 source:c:\users\contt\onedrive\escritorio\comienzo_juego\lista\funciones.c
+	"funciones.h"
+
+1729023641 c:\users\contt\onedrive\escritorio\comienzo_juego\jugador.h
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	"lista.h"
+
+1729023839 source:c:\users\contt\onedrive\escritorio\comienzo_juego\jugador.c
+	"jugador.h"
+
+1729024084 c:\users\contt\onedrive\escritorio\comienzo_juego\lista.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+
+1729024060 source:c:\users\contt\onedrive\escritorio\comienzo_juego\lista.c
+	"lista.h"
+
