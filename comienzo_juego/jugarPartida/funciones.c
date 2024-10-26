@@ -1,8 +1,8 @@
 #include "funciones.h"
 
-void mostrarLetra( void *d,  void *param)
+void mostrarLetraRespuesta( void *dato,  void *cond)
 {
-    printf("%c ", *(char *)d);
+    printf("%c ", *(char*)dato);
 }
 
 int esSecuenciaCorrecta(t_lista *s,t_lista *r, Cmp cmp)
@@ -19,128 +19,277 @@ int esSecuenciaCorrecta(t_lista *s,t_lista *r, Cmp cmp)
     return 0;
 }
 
-int cmp_letras(const void *a,const void *b)
+int cmp_letras( void *a, void *b)
 {
-    return *(char*)a - *(char*)b;
+    return tolower(*(char*)a) - tolower(*(char*)b);
 }
 
-void generarSecuencia(t_lista *secuencia)
+void mostrarSecuencia(t_lista *secuencia, int tiempo_mostrar, int ronda, Accion accion)
 {
-    const char colores[] = {'R', 'V', 'A', 'N'};
-    char color = colores[rand() % 4];
-    agregarAlFinal(secuencia, &color, sizeof(char));
-}
+    int tiempo;
+    float aux = 0;
 
-void mostrarSecuencia(t_lista *secuencia, int tiempo_mostrar, Accion accion)
-{
+    printf("\e[?25l"); // Ocultar mouse
+    fflush(stdout);
+
+    system("cls");
+
     printf("Secuencia: ");
-    mapLista(secuencia, NULL, accion);
-    printf("\n");
+
+    sleep(1);
+
+    aux = tiempo_mostrar/(ronda);
+    aux = aux > 1.5 ? 1.5 : aux;
+    aux = aux < 0.1 ? 0.1 : aux;
+
+    tiempo = (int)(aux * 1000);
+    mapLista(secuencia, &tiempo, accion); /// agregar cadena que guarda la secuencia mostrada
 }
 
-void ingresarSecuencia(t_lista *respuesta, int tiempo_limite, int *cant_letras_resp)
+void mostrarRespuesta(t_lista *respuesta, Accion accion)
 {
-    char cad_resp[100], *aux;/// tendría que ser dinamica
-    printf("Ingresa la secuencia: ");
-    fflush(stdin);
-    gets(cad_resp);
-    *cant_letras_resp = strlen(cad_resp);
-    aux = cad_resp;
-    while(*aux)
+    if(*respuesta)
     {
-        agregarAlFinal(respuesta, aux, sizeof(char));
-        aux++;
+        printf("Respuesta: ");
+        mapLista(respuesta, NULL, accion);
     }
 }
 
-void jugarTurno(tJugador* jugador, int tiempo_mostrar, int tiempo_limite, Accion accion, Cmp cmp)
+/// Quito parÃ¡metro tecla de la funcion
+void ingresarSecuencia(t_lista *respuesta, char **respuestaRonda, int tiempo_limite, int cant_max_ingreso, int *cant_letras_resp)
+{
+    char letra;
+    //datos del cronometro
+    pthread_t cronometro;
+    t_cronometroDatos datos;
+    **respuestaRonda = '\0';
+
+    datos.limiteTiempo = tiempo_limite + cant_max_ingreso; /// Se agrega 1 segundo por letra
+    datos.tiempoAcabado = 0; //inicializar cronometro
+    crearHiloCronometro(&cronometro, &datos); // iniciar hilo, es una tarea paralela
+
+    printf("\e[?25h"); // mostrar mouse
+    fflush(stdout);
+
+    while (!datos.tiempoAcabado) // termina si se acabo el tiempo o ingreso
+    {
+        if (datos.tiempoAcabado) { // se acabo el tiempo
+            break;
+        }
+
+        letra = getch();
+        if(ES_COLOR(letra)){
+            printf("%c ", letra);
+        }
+
+        while(!ES_COLOR(letra) && !datos.tiempoAcabado)
+        {
+            printf("\nCaracter no valido. Ingrese un color: ");
+            letra = getch();
+            if(ES_COLOR(letra))
+                printf("%c ", letra);
+        }
+        if(!datos.tiempoAcabado)
+        {
+            agregarAlFinal(respuesta, &letra, sizeof(char));
+            **respuestaRonda = A_MAYUS(letra);
+            (*respuestaRonda)++;
+            **respuestaRonda = '\0';
+
+            (*cant_letras_resp)++;
+            cant_max_ingreso--;
+        }
+
+        if(cant_max_ingreso == 0)
+            datos.tiempoAcabado =1; // para el cronometro
+
+    }
+    esperarHiloCronometro (&cronometro);
+
+    printf("\e[?25l"); // Ocultar mouse
+    fflush(stdout);
+    printf("\n");
+}
+
+void leer_cant_retroceso_valido(int *cant_retroceso, int vidas, int cant_letras_resp)
+{
+    printf("\e[?25h"); // mostrar mouse
+    fflush(stdout);
+
+    int res = scanf("%d", cant_retroceso);
+    while(res == 0 || (res && (*cant_retroceso > vidas
+                             || *cant_retroceso > cant_letras_resp+1
+                             || *cant_retroceso <= 0)))
+    {
+        printf("Entrada no valida. Ingrese nuevamente: ");
+        fflush(stdin);
+        res = scanf("%d", cant_retroceso);
+    }
+
+    printf("\e[?25l"); // Ocultar mouse
+    fflush(stdout);
+}
+
+void jugarTurno(tJugador* jugador, tCola *colaRondas, int tiempo_mostrar, int tiempo_limite, Accion mostrar_sec, Accion mostrar_resp, Cmp cmp)
 {
     t_lista secuencia, respuesta;
     crearLista(&secuencia);
     crearLista(&respuesta);
-
+    int turnoTerminado=0;
     int ronda = 1, utilizo_vidas = 0, cant_retroceso, cant_letras_resp = 0;
+    unsigned vidasIniciales = jugador->vidas;
+    tRonda rondasJugador;
+
+    char *ptrSecuencia = rondasJugador.secuencia;
+    char *ptrRespuesta = rondasJugador.respuesta;
+    char *inicioRespuesta = ptrRespuesta;
+
+    printf("\e[?25l"); // Ocultar mouse
+    fflush(stdout);
 
     printf("%s, es tu turno! Vidas: %d\n", jugador->nombre, jugador->vidas);
 
-    while(jugador->vidas>0)
+    sleep(1);
+    system("cls");
+
+    while(jugador->vidas>=0 && !turnoTerminado)
     {
         utilizo_vidas = 0;
         cant_letras_resp = 0;
-        generarSecuencia(&secuencia);
+
+        if(!(obtenerSecuencia(&secuencia, &ptrSecuencia)))
+            return;
 
         printf("\n------------------ Ronda: %d ------------------\n", ronda);
 
-        mostrarSecuencia(&secuencia, tiempo_mostrar, accion);
+        printf("Vidas: %d\n", jugador->vidas);
 
-        ingresarSecuencia(&respuesta, tiempo_limite, &cant_letras_resp);
+        sleep(1);
+
+        mostrarSecuencia(&secuencia, tiempo_mostrar, ronda, mostrar_sec);
+
+        system("pause");
+        printf("\nIngresa la secuencia: ");
+
+        ptrRespuesta = inicioRespuesta;
+        ingresarSecuencia(&respuesta, &ptrRespuesta, tiempo_limite, ronda, &cant_letras_resp);
 
         /// ASIGNAR PUNTAJE Y ACTUALIZAR VIDAS
 
         while(jugador->vidas>0 && !esSecuenciaCorrecta(&secuencia, &respuesta, cmp))
         {
-            printf("Vidas: %d\n", jugador->vidas);
-            if(cant_letras_resp == 0) /// NO INGRESÓ NADA
+            printf("\nVidas: %d\n", jugador->vidas);
+            if(cant_letras_resp == 0) /// NO INGRESÃ“ NADA
             {
+                system("cls");
+
                 jugador->vidas--;
-                printf("No ingreso ninguna secuencia.\nSe le restara una vida\n");
-                ingresarSecuencia(&respuesta, tiempo_limite, &cant_letras_resp);
+                printf("No ingreso ninguna secuencia.\nSe le restara una vida.\nVidas:%d\nSe mostrara nuevamente la secuencia\n",jugador->vidas);
+
+                //sleep(6);
+                sleep(2);
+
+                mostrarSecuencia(&secuencia, tiempo_mostrar, ronda, mostrar_sec);
+
+                system("pause");
+                printf("\nIngresa la secuencia: ");
+
+                ptrRespuesta = inicioRespuesta;
+                ingresarSecuencia(&respuesta, &ptrRespuesta, tiempo_limite, ronda, &cant_letras_resp);
                 utilizo_vidas = 1;
             }
             else /// LA SECUENCIA ERA INCORRECTA
             {
-                printf("Secuencia incorrecta"
-                       "\nSe le restaran las vidas en base a la cantidad de jugadas que desee retroceder\n"
-                       "\nIngrese la cantidad: ");
-                scanf("%d", &cant_retroceso);
+                printf("Secuencia incorrecta\n");
+                mostrarRespuesta(&respuesta, mostrar_resp);
+                printf("\nSe le restaran las vidas en base a la cantidad de jugadas que desee retroceder"
+                       "\nIngrese un entero de 1 a %d para retroceder",MINIMO(cant_letras_resp,jugador->vidas));
+                if(jugador->vidas > cant_letras_resp)
+                    printf("\nO puede ingresar %d para volver a ver la secuencia "
+                           "e ingresar una respuesta nueva (-%d vidas)", cant_letras_resp+1, cant_letras_resp+1);
+                printf("\n---->: ");
+                leer_cant_retroceso_valido(&cant_retroceso, jugador->vidas, cant_letras_resp);
 
-                while(cant_retroceso > jugador->vidas || cant_retroceso > cant_letras_resp || cant_retroceso <= 0)
-                {
-                    printf("Cantidad no valida. Ingrese nuevamente: ");
-                    scanf("%d", &cant_retroceso);
-                }
-
-                if(cant_retroceso==cant_letras_resp)///le tiene que mostrar la sec otra vez e ingresar de nuevo
+                if(cant_retroceso>cant_letras_resp)///le tiene que mostrar la sec otra vez e ingresar de nuevo
                 {
                     vaciarLista(&respuesta);
+                    cant_letras_resp = 0;
                     printf("Le mostraremos nuevamente la secuencia:\n");
-                    mostrarSecuencia(&secuencia, tiempo_mostrar, accion);
-                    ingresarSecuencia(&respuesta, tiempo_limite, &cant_letras_resp);
+                    mostrarSecuencia(&secuencia, tiempo_mostrar, ronda, mostrar_sec);
+
+                    system("pause");
+                    printf("\nIngresa la secuencia: ");
+
+                    ptrRespuesta = inicioRespuesta;
+                    ingresarSecuencia(&respuesta, &ptrRespuesta, tiempo_limite, ronda, &cant_letras_resp);
                 }
                 else
                 {
-                    /// eliminarNnodosLista
+                    eliminarNnodosLista(&respuesta, cant_retroceso, cant_letras_resp);
+                    cant_letras_resp -= cant_retroceso;
+
+                    system("cls");
+                    system("pause");
                     printf("Ingrese la secuencia faltante:\n");
-                    ingresarSecuencia(&respuesta, tiempo_limite, &cant_letras_resp);
+
+                    mostrarRespuesta(&respuesta, mostrar_resp);
+
+                    //ptrRespuesta = inicioRespuesta;
+                    ingresarSecuencia(&respuesta, &ptrRespuesta, tiempo_limite, cant_retroceso, &cant_letras_resp);
                 }
 
                 jugador->vidas-=cant_retroceso;
                 utilizo_vidas = 1;
             }
+
+            system("cls");
         }
 
-        /// SI LA RESPUESTA ES CORRECTA SE SUMAN LOS 3 PUNTOS
-        if (jugador->vidas && esSecuenciaCorrecta(&secuencia, &respuesta, cmp))
+        /// SI LA RESPUESTA ES CORRECTA
+        if (esSecuenciaCorrecta(&secuencia, &respuesta, cmp))
         {
             if(utilizo_vidas)
             {
                 printf("Secuencia correcta! +1 puntos por usar vidas\n");
                 jugador->puntuacion += 1;
+
+                rondasJugador.puntosObtenidos = 1;
                 vaciarLista(&respuesta);
             }
             else
             {
                 printf("Secuencia correcta! +3 puntos por no usar vidas\n");
                 jugador->puntuacion += 3;
+
+                rondasJugador.puntosObtenidos = 3;
                 vaciarLista(&respuesta);
             }
+
+            sleep(2);
+            system("cls");
         }
+        else
+        {
+
+            if(jugador->vidas==0 && !esSecuenciaCorrecta(&secuencia, &respuesta, cmp))
+                turnoTerminado=1;
+
+            rondasJugador.puntosObtenidos = 0;
+        }
+
+        //rondasJugador.puntosObtenidos = jugador->puntuacion;
+        rondasJugador.vidasUsadas = vidasIniciales - jugador->vidas;
+        rondasJugador.id = jugador->id;
+        ponerEnCola(colaRondas, sizeof(tRonda), &rondasJugador);
         ronda++;
     }
 
-    if(jugador->vidas==0)
-        printf("SE QUEDO SIN VIDAS. jUEGO TERMINADO, PUNTUACION: %d\n", jugador->puntuacion);
+    if(turnoTerminado==1)
+        printf("\nSECUENCIA INCORRECTA Y SE QUEDO SIN VIDAS.\nPUNTUACION FINAL: %d\n", jugador->puntuacion);
+
+    fflush(stdin);
 }
+
 
 
 

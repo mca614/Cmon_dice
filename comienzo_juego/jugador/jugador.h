@@ -4,7 +4,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-#include "lista.h"
+#include "../lista/lista.h"
 
 #define MAX_L_JUGADOR 50
 
@@ -14,6 +14,14 @@ typedef struct{
     int vidas;
     int puntuacion;
 }tJugador;
+
+typedef struct{
+    unsigned id;
+    char secuencia[MAX_L_JUGADOR];
+    char respuesta[MAX_L_JUGADOR];
+    unsigned vidasUsadas;
+    unsigned puntosObtenidos;
+}tRonda;
 
 
 // mostrar

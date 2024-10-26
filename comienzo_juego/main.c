@@ -2,16 +2,15 @@
 
 int main()
 {
-    t_lista listaJugadores, listaGanadores;
-    int cantidadJugadores = 0, comienzaJuego = 0, eligeDificultad = 0, maximaPuntuacion = 0;
-    tDificultad dificultadElegida;
+    int cantidadJugadores = 0, eligeDificultad = 0;
     char opcion;
-    tJugador jugador;
+    t_lista listaJugadores;
+    tDatosPartida datosPartida;
+    tJugador jugadorAux;
 
     srand(time(NULL));
-
     crearLista(&listaJugadores);
-    crearLista(&listaGanadores);
+    crearCola(&datosPartida.rondasJugador);
 
     opcion = menuConError(
         "[A] Jugar\n"
@@ -49,10 +48,10 @@ int main()
     }
 
     do{
-        /// Se guarda en variable dificultadElegida (estructura) en su campo dificultad
-        /// una cadena de caracteres que representa la dificultad elegida por el usuario
-        /// (facil, media o difícil)
-        eligeDificultad = menuDificultad(&dificultadElegida);
+        /// Se guarda en variable datosPartida (estructura) en su campo dificultad
+        /// un caracter que representa la dificultad elegida por el usuario
+        /// (facil F, media M y difícil D)
+        eligeDificultad = menuDificultad(&datosPartida);
 
         if(eligeDificultad == 0){
             system("cls");
@@ -75,96 +74,70 @@ int main()
 
     system("cls");
 
-    /// Se carga los datos de dificultad en variable dificultadElegida (tSecuencia, tJugador, vidas)
+    /// Se carga los datos de dificultad en variable datosPartida (tSecuencia, tJugador, vidas)
     /// desde el archivo config. Si este proceso falla, se términa el juego
-    if(cargarDificultad(&dificultadElegida) == 0){
+    if(cargarDificultad(&datosPartida) == 0){
         vaciarLista(&listaJugadores);
         printf("\nSaliendo...\n");
         return 0;
     }
 
+    /// Se cargan datos de los jugadores (id, puntuacion, cantVidas) y se los muestra con sus posiciones (se usa un funcion map)
+    /// el campo id se usa ahora para identificar la posicion del jugador dentro de la lista
     printf("\nPosiciones de los jugadores...\n");
 
-    /// Se cargan los datos de cada jugador antes de comenzar el juego
-    /// el campo id ahora es usado para identificar posición del jugador en la lista
-    /// Se pone puntuacion en 0. Se completa el campo vidas según la dificultad elegida (variable dificultadElegida)
-    cargarDatosJugadores(&listaJugadores, dificultadElegida.cantVidas);
+    /// Se usa un jugador auxiliar para hacer todo esto
+    jugadorAux.id = 1;
+    /// Las vidas del jugador se obtienen de la variable datosPartida
+    jugadorAux.vidas = datosPartida.cantVidas;
+    /// Inicializo puntuacion en 0 para luego hacerlo con todos los jugadores
+    jugadorAux.puntuacion = 0;
 
-    /// Se muestran las posiciones de los jugadores
-    printf("\n%-15s%s\n", "Posicion", "Nombre Jugador");
-    mapLista(&listaJugadores, NULL, mostrarPosicionJugador);
+    mapLista(&listaJugadores, &jugadorAux, cargarMostrarDatosJugador);
 
-    /// Recorre lista listaJugadores usando función sacarPrimero()
-    /// Luego se muestra configuración de dificultad e instrucciones para jugar
-    /// Se le pregunta al jugador si desea comenzar. Luego, empieza el turno del jugador
-    while(!siListaVacia(&listaJugadores)){
-        /// Se guarda info del nodo de la lista en variable jugador (estructura tJugador)
-        sacarPrimero(&listaJugadores, &jugador, sizeof(tJugador));
+    printf(
+       "\nInstrucciones para jugar...\n"
+       "\nConfiguraciones de dificultad...\n"
+       "\nTiempo en que se muestra secuencia: %u"
+       "\nTiempo que tiene el jugador para contestar: %u"
+       "\nCantidad de vidas del jugador: %u\n",
+       datosPartida.tiempoSecuencia, datosPartida.tiempoJugada, datosPartida.cantVidas
+    );
 
-        do{
-            printf("\nConfiguraciones de dificultad...\n");
-
-            printf(
-               "\nNivel dificultad: %s"
-               "\nTiempo en que se muestra secuencia: %u"
-               "\nTiempo que tiene el jugador para contestar: %u"
-               "\nCantidad de vidas del jugador: %u\n", dificultadElegida.dificultad, dificultadElegida.tiempoSecuencia,
-                dificultadElegida.tiempoJugada, dificultadElegida.cantVidas
-            );
-
-            printf("\nInstrucciones para jugar...\n");
-
-            comienzaJuego = menuComenzarJuego(jugador);
-
-            if(comienzaJuego == 0){
-                opcion = menuConError("\nDesea no jugar?\n"
-                          "1. No\n"
-                          "2. Si\n"
-                          "Seleccione una opcion: ", "12");
-            }
-
-            system("cls");
-
-        }while(comienzaJuego == 0 && opcion == '1');
-
-        /// Si el jugador a decidido comenzar se ejecuta la funcion jugarTurno
-        /// que es donde se desarrolla la partida del jugador
-        /// Si ha decidido no jugar, continua el siguiente jugador
-
-        if(comienzaJuego){
-            jugarTurno(&jugador, dificultadElegida.tiempoSecuencia, dificultadElegida.tiempoJugada, mostrarLetra, cmp_letras);
-
-            if(jugador.puntuacion > maximaPuntuacion)
-                maximaPuntuacion = jugador.puntuacion;
-        }
-
-        /// Agrega a todos los jugadores a la lista listaJugadores
-        agregarAlFinal(&listaGanadores, &jugador, sizeof(tJugador));
-    }
+    /// Se juega cada partidad de cada jugar a traves de una función map, con jugarPartida como argumento
+    /// Se pone el campo maximaPuntuacion de la variable datosPartida en 0 para usarla dentro de la función map
+    datosPartida.maximaPuntuacion = 0;
+    mapLista(&listaJugadores, &datosPartida, jugarPartida);
 
     system("cls");
     printf("\nJuego terminado...\n");
 
-    /// Muestra todos los jugadores con sus puntajes
-    /// Lo dejo solo para comprobar si se hace bien la parte de hallar a los ganadores
-    /// que viene a continuación
+    /// Este map se puede eliminar, porque muestra a los jugadores con sus puntajes para comprobar los puntajes
     printf("\n%-21s%s\n", "Nombre", "Puntuacion");
-    mapLista(&listaGanadores, NULL, mostrarPuntuacionJugador);
+    mapLista(&listaJugadores, NULL, mostrarPuntuacionJugador);
 
-    /// Uso la variable jugador (guardo la máxima puntuación en su campo puntuación),
-    /// que ya no se usa para agregar jugadores, como paramétro en la funcion filtrarLista
-    /// puntuación para filtrar a los jugadores que no tienen la máxima puntuación
-    jugador.puntuacion = maximaPuntuacion;
-    filtrarLista(&listaGanadores, &jugador, sizeof(tJugador), jugadoresNoGanadores, NULL);
+    /// Se realiza filtrado de la lista listaJugadores, pasando como parámetro la lista,
+    /// datosPartida.maximaPuntuacion (donde se almacenó la máxima puntuación anteriormente) y
+    /// la función jugadoresNoGanadores, que es la función de comparación usada para filtrar a los jugadores
+    /// que no tienen la maxima puntuación
+    filtrarLista(&listaJugadores, &datosPartida.maximaPuntuacion, jugadoresNoGanadores, NULL);
 
-    /// Si hay ganadores (listaGanadores no es vacia) muestra a los ganadores con sus puntuaciones
-    if(!siListaVacia(&listaGanadores)){
+    /// Se usa función map para mostrar a los ganadores (si existen)
+    if(!siListaVacia(&listaJugadores)){
         printf("\nGanadores\n");
         printf("\n%-21s%s\n", "Nombre", "Puntuacion");
-        mapLista(&listaGanadores, NULL, mostrarPuntuacionJugador);
+        mapLista(&listaJugadores, NULL, mostrarPuntuacionJugador);
     }else
         printf("\nNo hubo ganadores\n");
 
-    vaciarLista(&listaGanadores);
+
+    tRonda aux;
+
+    while(!colaVacia(&datosPartida.rondasJugador)){
+        sacarDeCola(&datosPartida.rondasJugador, sizeof(tRonda), &aux);
+        printf("\n%u|%s|%s|%u|%u", aux.id, aux.secuencia, aux.respuesta, aux.vidasUsadas, aux.puntosObtenidos);
+    }
+
+    vaciarLista(&listaJugadores);
     return 0;
 }
