@@ -6,7 +6,13 @@ char menuConError(const char *msj, const char *opc)
 
     do
     {
-        printf( !opcElegida ? "%s" : "\nError!!! \nIngrese una opcion valida\n%s" , msj);
+        //printf( !opcElegida ? "%s" : "\nError!!! \nIngrese una opcion valida\n%s" , msj);
+
+        if(!opcElegida)
+            printf("%s", msj);
+        else
+           printf("\nError!!!\nIngrese una opcion valida\n%s", msj);
+
         scanf("%c", &opcElegida);
         fflush(stdin);
     }
@@ -72,10 +78,13 @@ int menuDificultad(tDatosPartida *datosPartida){
     return opcion == '4' ? 0 : 1;
 }
 
-int menuComenzarJuego(tJugador proximoJugador){
+int menuComenzarJuego(){
     char opcion = '\0';
 
-    printf("\nEs el turno del jugador: %s\n", proximoJugador.nombre);
+    //printf("\nEs el turno del siguiente jugador\n");
+
+    printf("\e[?25h"); // mostrar mouse
+    fflush(stdout);
 
     opcion = menuConError("\nDesea comenzar el juego?\n"
                       "1. Si\n"
@@ -157,11 +166,9 @@ void jugarPartida(void *jugador, void *extra){
 
     if(menuComenzarJuego(*((tJugador*)jugador))){
         system("cls");
-        jugarTurno(((tJugador*)jugador), datos->tiempoSecuencia, datos->tiempoJugada, mostrarLetra, cmp_letras);
+        jugarTurno(((tJugador*)jugador), &datos->rondasJugador, datos->tiempoSecuencia, datos->tiempoJugada, mostrarLetraSecuencia, mostrarLetraRespuesta, cmp_letras);
 
         if(((tJugador*)jugador)->puntuacion > datos->maximaPuntuacion)
             datos->maximaPuntuacion = ((tJugador*)jugador)->puntuacion;
-
-        system("cls");
     }
 }

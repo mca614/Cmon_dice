@@ -1,5 +1,26 @@
 #include "lista.h"
 
+void eliminarNnodosLista(t_lista *pl, int cantElim, int cantElem)
+{
+    t_nodo *elim;
+    int pos = cantElem - cantElim;
+
+    while(*pl && pos)
+    {
+        pl = &(*pl)->sig;
+        pos--;
+    }
+
+    while(*pl)
+    {
+        elim = *pl;
+        *pl = elim->sig;
+        free(elim->info);
+        free(elim);
+    }
+}
+
+
 void crearLista (t_lista* pl)
 {
     *pl = NULL;

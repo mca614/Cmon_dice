@@ -10,6 +10,7 @@ int main()
 
     srand(time(NULL));
     crearLista(&listaJugadores);
+    crearCola(&datosPartida.rondasJugador);
 
     opcion = menuConError(
         "[A] Jugar\n"
@@ -103,7 +104,6 @@ int main()
        datosPartida.tiempoSecuencia, datosPartida.tiempoJugada, datosPartida.cantVidas
     );
 
-
     /// Se juega cada partidad de cada jugar a traves de una función map, con jugarPartida como argumento
     /// Se pone el campo maximaPuntuacion de la variable datosPartida en 0 para usarla dentro de la función map
     datosPartida.maximaPuntuacion = 0;
@@ -129,6 +129,14 @@ int main()
         mapLista(&listaJugadores, NULL, mostrarPuntuacionJugador);
     }else
         printf("\nNo hubo ganadores\n");
+
+
+    tRonda aux;
+
+    while(!colaVacia(&datosPartida.rondasJugador)){
+        sacarDeCola(&datosPartida.rondasJugador, sizeof(tRonda), &aux);
+        printf("\n%u|%s|%s|%u|%u", aux.id, aux.secuencia, aux.respuesta, aux.vidasUsadas, aux.puntosObtenidos);
+    }
 
     vaciarLista(&listaJugadores);
     return 0;

@@ -31,25 +31,45 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
+		<Unit filename="cola/colaDinamica.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="cola/colaDinamica.h" />
 		<Unit filename="comienzoJuego.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="comienzoJuego.h" />
-		<Unit filename="jugador.c">
+		<Unit filename="cronometro/hiloCronometro.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="jugador.h" />
+		<Unit filename="cronometro/hiloCronometro.h" />
+		<Unit filename="informe/funcionesJuego.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="informe/funcionesJuego.h" />
+		<Unit filename="jugador/jugador.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="jugador/jugador.h" />
 		<Unit filename="jugarPartida/funciones.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="jugarPartida/funciones.h" />
-		<Unit filename="lista.c">
+		<Unit filename="lista/lista.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="lista.h" />
+		<Unit filename="lista/lista.h" />
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="secuencia/API.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="secuencia/API.h" />
+		<Unit filename="secuencia/secuencia.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="secuencia/secuencia.h" />
 		<Extensions>
 			<lib_finder disable_auto="1" />
 		</Extensions>

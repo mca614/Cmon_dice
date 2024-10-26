@@ -27,6 +27,7 @@ int agregarOrdenado(t_lista *lista, void *dato, short int duplicado, unsigned ca
 
 // eliminar
 int sacarPrimero(t_lista *lista, void *dato, unsigned cant_bytes);
+void eliminarNnodosLista(t_lista *pl, int cantElim, int cantElem);
 
 // filtrar
 void filtrarLista(t_lista* pl, void* dato, int condicion(void*, void*), void accion(void*, void*));
