@@ -35,8 +35,8 @@ int main()
     /// Generar archivo informe
     datosPartida.archInforme = generarArchivoDeInforme("informe.txt");
 
-    /// Reproducir Musica
-    reproducirMusica(MUSICA1);
+    /// Reproducir Musica (VERIFICAR QUE -lwinmm ESTÉ AGREGADO COMO PARÁMETRO EN BUILD OPTIONS > LINKER SETTINGS > OTHER LINK OPTIONS
+    //reproducirMusica(MUSICA1);
 
     /// Jugar partidas
     mapLista(&listaJugadores, &datosPartida, jugarPartida);

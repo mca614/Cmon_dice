@@ -222,7 +222,7 @@
 1730052407 source:c:\users\matia\documents\github\cmon_dice\cmonfinal\jugarturno.c
 	"jugarTurno.h"
 
-1730065667 source:c:\users\matia\documents\github\cmon_dice\cmonfinal\main.c
+1730065959 source:c:\users\matia\documents\github\cmon_dice\cmonfinal\main.c
 	"cmon.h"
 
 1730052407 source:c:\users\matia\documents\github\cmon_dice\cmonfinal\secuencia\api.c
@@ -237,7 +237,7 @@
 1730065609 source:c:\users\matia\documents\github\cmon_dice\cmonfinal\musica\musica.c
 	"musica.h"
 
-1730065178 c:\users\matia\documents\github\cmon_dice\cmonfinal\musica\musica.h
+1730065772 c:\users\matia\documents\github\cmon_dice\cmonfinal\musica\musica.h
 	<stdio.h>
 	<windows.h>
 	<MMsystem.h>
