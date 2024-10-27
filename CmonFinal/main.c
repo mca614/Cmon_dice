@@ -36,6 +36,7 @@ int main()
     datosPartida.archInforme = generarArchivoDeInforme("informe.txt");
 
     /// Jugar partidas
+    datosPartida.maximaPuntuacion = 0;
     mapLista(&listaJugadores, &datosPartida, jugarPartida);
 
     /// Obtener y mostrar ganadores
