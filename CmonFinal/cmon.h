@@ -1,13 +1,12 @@
 #ifndef CMON_H_INCLUDED
 #define CMON_H_INCLUDED
 
-#include <stdio.h>
-#include <stdlib.h>
-#include "estructurasDatos/cola/colaDinamica.h"
 #define MAX_L_JUGADOR 50
 #define MAX_TAM_PATH 50
 #define MAX_LINEA 1024
 
+#include <stdio.h>
+#include <stdlib.h>
 
 typedef struct{
     char dificultad;
@@ -34,15 +33,15 @@ typedef struct{
     unsigned puntosTotales;
 }tRonda;
 
+#include "estructurasDatos/cola/colaDinamica.h"
 #include "jugarTurno.h"
 #include "estructurasDatos/lista/lista.h"
+#include "menu.h"
 
 void mostrarJugador(void *a, void *extra);
 int jugadoresNoGanadores(void *dato, void *info);
 int cmpJugadores(void *a, void *b);
-
-void menuIngresoJugadores(t_lista *listaJugadores, int *cantidadJugadores);
-int menuDificultad(tDatosPartida *datosPartida);
+void cargarMostrarDatosJugador(void *v, void *extra);
 
 void jugarPartida(void *jugador, void *extra);
 FILE* generarArchivoDeInforme(const char* nombrePrefijo);

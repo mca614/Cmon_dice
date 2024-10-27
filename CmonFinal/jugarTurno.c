@@ -245,8 +245,8 @@ void jugarTurno(tJugador* jugador, tDatosPartida *datos, Accion mostrar_sec, Acc
         /// SI LA RESPUESTA ES CORRECTA
         if (esSecuenciaCorrecta(&secuencia, &respuesta, cmp))
         {
-            /// Copia respuesta del jugador a cadena (rondasJugador.respuesta)
-            listaAcadena(&respuesta, rondasJugador.respuesta, sizeof(char));
+//            /// Copia respuesta del jugador a cadena (rondasJugador.respuesta)
+//            listaAcadena(&respuesta, rondasJugador.respuesta, sizeof(char));
 
             if(utilizo_vidas)
             {
@@ -276,12 +276,15 @@ void jugarTurno(tJugador* jugador, tDatosPartida *datos, Accion mostrar_sec, Acc
 
             rondasJugador.puntosRonda = 0;
 
-            /// Copia respuesta del jugador a cadena (rondasJugador.respuesta)
-            listaAcadena(&respuesta, rondasJugador.respuesta, sizeof(char));
+//            /// Copia respuesta del jugador a cadena (rondasJugador.respuesta)
+//            listaAcadena(&respuesta, rondasJugador.respuesta, sizeof(char));
         }
 
         /// Copia secuencia generada a cadena (rondasJugador.secuencia)
         listaAcadena(&secuencia, rondasJugador.secuencia, sizeof(char));
+
+        /// Copia respuesta del jugador a cadena (rondasJugador.respuesta)
+        listaAcadena(&respuesta, rondasJugador.respuesta, sizeof(char));
 
         rondasJugador.vidasUsadas = datos->cantVidas - jugador->vidas;
         rondasJugador.id = jugador->id;

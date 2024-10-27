@@ -2,15 +2,35 @@
 
 int main()
 {
+    tJugador jugadorAux;
     t_lista listaJugadores;
     tDatosPartida datosPartida;
-    int cantidadJugadores = 0;
+    unsigned cantidadJugadores = 0;
 
     crearLista(&listaJugadores);
 
+    /// Menú ingreso de jugadores
     menuIngresoJugadores(&listaJugadores, &cantidadJugadores);
 
+    /// Menú dificultad
     menuDificultad(&datosPartida);
+
+    /// Cargar datos de jugadores y mostrar posiciones
+    printf("\nPosiciones de los jugadores...\n");
+    jugadorAux.id = 1;
+    jugadorAux.puntuacion = 0;
+    jugadorAux.vidas = datosPartida.cantVidas;
+    mapLista(&listaJugadores, &jugadorAux, cargarMostrarDatosJugador);
+
+    /// Muestra las configuraciones del juego
+    printf(
+       "\nInstrucciones para jugar...\n"
+       "\nConfiguraciones de dificultad...\n"
+       "\nTiempo en que se muestra secuencia: %u"
+       "\nTiempo que tiene el jugador para contestar: %u"
+       "\nCantidad de vidas del jugador: %u\n",
+       datosPartida.tiempoSecuencia, datosPartida.tiempoRespuesta, datosPartida.cantVidas
+    );
 
     /// Generar archivo informe
     datosPartida.archInforme = generarArchivoDeInforme("informe.txt");
