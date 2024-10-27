@@ -51,6 +51,10 @@
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="menu.h" />
+		<Unit filename="menus.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Unit filename="secuencia/API.c">
 			<Option compilerVar="CC" />
 		</Unit>

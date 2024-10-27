@@ -1,37 +1,33 @@
 #include "cmon.h"
 
-char menuConError(const char *msj, const char *opc)
-{
-    char opcElegida = '\0';
-
-    do
-    {
-        if(!opcElegida)
-            printf("%s", msj);
-        else
-           printf("\nError!!!\nIngrese una opcion valida\n%s", msj);
-
-        scanf("%c", &opcElegida);
-        fflush(stdin);
-    }
-    while(strchr(opc, opcElegida)==NULL);
-    return opcElegida;
+void mostrarJugador(void *a, void *extra){
+    printf("%-25s%d\n",((tJugador*)a)->nombre, ((tJugador*)a)->puntuacion);
 }
 
-int menuComenzarJuego(){
-    char opcion = '\0';
+int jugadoresNoGanadores(void *dato, void *info){
+    unsigned *maximaPuntuacion = (unsigned*)dato;
+    tJugador *jugador = (tJugador*)info;
+    return  (jugador->puntuacion != *maximaPuntuacion || jugador->puntuacion == 0) ? 1 : 0;
+}
 
-    printf("\nEs el turno del siguiente jugador...\n");
+int cmpJugadores(void *a, void *b){
+    tJugador *j1, *j2;
+    j1 = (tJugador*)a;
+    j2 = (tJugador*)b;
 
-    printf("\e[?25h"); // mostrar mouse
-    fflush(stdout);
+    return j1->id - j2->id;
+}
 
-    opcion = menuConError("\nDesea comenzar el juego?\n"
-                      "1. Si\n"
-                      "2. No\n"
-                      "Seleccione una opcion: ", "12");
+void cargarMostrarDatosJugador(void *v, void *extra){
+    tJugador *jugador = (tJugador*)v;
+    tJugador *jugadorAux = (tJugador*)extra;
 
-    return opcion == '1' ? 1 : 0;
+    jugador->id = jugadorAux->id;
+    jugadorAux->id++;
+    jugador->puntuacion = jugadorAux->puntuacion;
+    jugador->vidas = jugadorAux->vidas;
+
+    printf("%3s%-12d%s\n", "", jugador->id , jugador->nombre);
 }
 
 void jugarPartida(void *jugador, void *extra){
@@ -39,6 +35,7 @@ void jugarPartida(void *jugador, void *extra){
 
     if(menuComenzarJuego(*((tJugador*)jugador))){
         system("cls");
+
         jugarTurno(((tJugador*)jugador), datos, mostrarLetraSecuencia, mostrarLetraRespuesta, cmp_letras);
 
         if(((tJugador*)jugador)->puntuacion > datos->maximaPuntuacion)
@@ -62,7 +59,6 @@ FILE* generarArchivoDeInforme(const char* nombrePrefijo)
     sprintf(nombreArchivo,"%s_%d-%02d-%02d-%02d-%02d.txt",nombrePrefijo,tiempoActual->tm_year+1900,tiempoActual->tm_mon+1,tiempoActual->tm_mday,tiempoActual->tm_hour,tiempoActual->tm_min);
     pf = fopen(nombreArchivo,"wt");
 
-    //fclose(pf);
     return pf;
 }
 void exportarRondasJugadorHaciaInforme(FILE* archInforme, tCola* colaTurno)

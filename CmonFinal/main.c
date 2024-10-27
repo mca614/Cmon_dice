@@ -1,35 +1,36 @@
 #include "cmon.h"
 
-void mostrarJugador(void *a, void *extra){
-    //printf("%d, %s, %d\n",((tJugador*)a)->id, ((tJugador*)a)->nombre, ((tJugador*)a)->puntuacion);
-    printf("%-25s%d\n",((tJugador*)a)->nombre, ((tJugador*)a)->puntuacion);
-}
-
-int jugadoresNoGanadores(void *dato, void *info){
-    unsigned *maximaPuntuacion = (unsigned*)dato;
-    tJugador *jugador = (tJugador*)info;
-    return  (jugador->puntuacion != *maximaPuntuacion || jugador->puntuacion == 0) ? 1 : 0;
-}
-
 int main()
 {
+    tJugador jugadorAux;
     t_lista listaJugadores;
     tDatosPartida datosPartida;
-
-    /// Aca iría el ingreso de los jugadores
-    tJugador jugadores[] = {{1, "abel", 3, 0}, {2, "tomas", 3, 0}, {3, "milagros", 3, 0}};
-    //tJugador jugadores[] = {{1, "abel", 3, 0}};
+    unsigned cantidadJugadores = 0;
 
     crearLista(&listaJugadores);
 
-    for(int i=0; i<sizeof(jugadores)/sizeof(jugadores[0]); i++)
-        agregarAlFinal(&listaJugadores, &jugadores[i], sizeof(tJugador));
+    /// Menú ingreso de jugadores
+    menuIngresoJugadores(&listaJugadores, &cantidadJugadores);
 
-    /// Aca iría la carga de datos de partida desde el archivo config
-    datosPartida.dificultad = 'D';
-    datosPartida.cantVidas = 3;
-    datosPartida.tiempoSecuencia = 5;
-    datosPartida.tiempoRespuesta = 5;
+    /// Menú dificultad
+    menuDificultad(&datosPartida);
+
+    /// Cargar datos de jugadores y mostrar posiciones
+    printf("\nPosiciones de los jugadores...\n");
+    jugadorAux.id = 1;
+    jugadorAux.puntuacion = 0;
+    jugadorAux.vidas = datosPartida.cantVidas;
+    mapLista(&listaJugadores, &jugadorAux, cargarMostrarDatosJugador);
+
+    /// Muestra las configuraciones del juego
+    printf(
+       "\nInstrucciones para jugar...\n"
+       "\nConfiguraciones de dificultad...\n"
+       "\nTiempo en que se muestra secuencia: %u"
+       "\nTiempo que tiene el jugador para contestar: %u"
+       "\nCantidad de vidas del jugador: %u\n",
+       datosPartida.tiempoSecuencia, datosPartida.tiempoRespuesta, datosPartida.cantVidas
+    );
 
     /// Generar archivo informe
     datosPartida.archInforme = generarArchivoDeInforme("informe.txt");
