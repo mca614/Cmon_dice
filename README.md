@@ -1,2 +1,8 @@
 # Cmon_dice
-TP de algoritmos Cmon dice
+> Juego realizado en C para múltiples jugadores basado en el tradicional Simón Dice
+
+> ## Cómo Jugar
+
+
+
+> ## Requisitos del juego
