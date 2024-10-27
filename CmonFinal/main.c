@@ -16,6 +16,7 @@ int main()
     t_lista listaJugadores;
     tDatosPartida datosPartida;
 
+
     /// Aca iría el ingreso de los jugadores
     tJugador jugadores[] = {{1, "abel", 3, 0}, {2, "tomas", 3, 0}, {3, "milagros", 3, 0}};
     //tJugador jugadores[] = {{1, "abel", 3, 0}};
@@ -33,6 +34,9 @@ int main()
 
     /// Generar archivo informe
     datosPartida.archInforme = generarArchivoDeInforme("informe.txt");
+
+    /// Reproducir Musica
+    reproducirMusica(MUSICA1);
 
     /// Jugar partidas
     mapLista(&listaJugadores, &datosPartida, jugarPartida);

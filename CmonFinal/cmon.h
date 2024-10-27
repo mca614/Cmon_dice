@@ -35,6 +35,7 @@ typedef struct{
 
 #include "jugarTurno.h"
 #include "estructurasDatos/lista/lista.h"
+#include "musica/musica.h"
 
 void jugarPartida(void *jugador, void *extra);
 FILE* generarArchivoDeInforme(const char* nombrePrefijo);
