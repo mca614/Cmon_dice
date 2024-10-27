@@ -6,6 +6,7 @@
 #include "estructurasDatos/cola/colaDinamica.h"
 #define MAX_L_JUGADOR 50
 #define MAX_TAM_PATH 50
+#define MAX_LINEA 1024
 
 
 typedef struct{
@@ -35,6 +36,13 @@ typedef struct{
 
 #include "jugarTurno.h"
 #include "estructurasDatos/lista/lista.h"
+
+void mostrarJugador(void *a, void *extra);
+int jugadoresNoGanadores(void *dato, void *info);
+int cmpJugadores(void *a, void *b);
+
+void menuIngresoJugadores(t_lista *listaJugadores, int *cantidadJugadores);
+int menuDificultad(tDatosPartida *datosPartida);
 
 void jugarPartida(void *jugador, void *extra);
 FILE* generarArchivoDeInforme(const char* nombrePrefijo);
