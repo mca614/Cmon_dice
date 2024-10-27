@@ -133,21 +133,6 @@ int menu(char* menu, const char opciones[][TAM_OPCION], int cantOpciones)
 }
 
 
-void fondoRondas (int ronda, int cfuente)
-{
-    int colores[] = {
-    GRIS_23, GRIS_22, GRIS_21, GRIS_20, GRIS_19,
-    GRIS_18, GRIS_17, GRIS_16, GRIS_15, GRIS_14,
-    GRIS_13, GRIS_12, GRIS_11, GRIS_10, GRIS_9,
-    GRIS_8, GRIS_7, GRIS_6, GRIS_5, GRIS_4,
-    GRIS_3, GRIS_2, GRIS_1, GRIS_0
-    };
-    int *color=colores;
-
-
-    ronda>24 ? colorFondo(*(color + 23), cfuente): colorFondo(*(color + ronda -1), cfuente);
-
-}
 
 void colorFuente (int cFuente)
 {
