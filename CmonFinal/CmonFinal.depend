@@ -77,6 +77,84 @@
 1730033607 source:c:\users\contt\onedrive\escritorio\cmonfinal\jugarturno.c
 	"jugarTurno.h"
 
+1730050005 source:c:\users\lenovo\onedrive\escritorio\unlam\2024\algoritmos\github\cmon_dice\cmonfinal\cmon.c
+	"cmon.h"
+
+1730050005 c:\users\lenovo\onedrive\escritorio\unlam\2024\algoritmos\github\cmon_dice\cmonfinal\cmon.h
+	<stdio.h>
+	<stdlib.h>
+	"estructurasDatos/cola/colaDinamica.h"
+	"jugarTurno.h"
+	"estructurasDatos/lista/lista.h"
+
+1730050005 c:\users\lenovo\onedrive\escritorio\unlam\2024\algoritmos\github\cmon_dice\cmonfinal\estructurasdatos\cola\coladinamica.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"../nodo.h"
+
+1730050005 c:\users\lenovo\onedrive\escritorio\unlam\2024\algoritmos\github\cmon_dice\cmonfinal\estructurasdatos\nodo.h
+
+1730050780 c:\users\lenovo\onedrive\escritorio\unlam\2024\algoritmos\github\cmon_dice\cmonfinal\jugarturno.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<conio.h>
+	"cmon.h"
+	"estructurasDatos/lista/lista.h"
+	"secuencia/secuencia.h"
+	"secuencia/hiloCronometro.h"
+
+1730050005 c:\users\lenovo\onedrive\escritorio\unlam\2024\algoritmos\github\cmon_dice\cmonfinal\estructurasdatos\lista\lista.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"../nodo.h"
+
+1730050007 c:\users\lenovo\onedrive\escritorio\unlam\2024\algoritmos\github\cmon_dice\cmonfinal\secuencia\secuencia.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<windows.h>
+	<time.h>
+	"API.h"
+	"../estructurasDatos/lista/lista.h"
+
+1730050007 c:\users\lenovo\onedrive\escritorio\unlam\2024\algoritmos\github\cmon_dice\cmonfinal\secuencia\api.h
+	<stdio.h>
+	<stdlib.h>
+	<curl/curl.h>
+
+1730050007 c:\users\lenovo\onedrive\escritorio\unlam\2024\algoritmos\github\cmon_dice\cmonfinal\secuencia\hilocronometro.h
+	<stdio.h>
+	<stdlib.h>
+	<pthread.h>
+	<time.h>
+	<string.h>
+	<unistd.h>
+	<windows.h>
+
+1730050005 source:c:\users\lenovo\onedrive\escritorio\unlam\2024\algoritmos\github\cmon_dice\cmonfinal\estructurasdatos\cola\coladinamica.c
+	"colaDinamica.h"
+
+1730050005 source:c:\users\lenovo\onedrive\escritorio\unlam\2024\algoritmos\github\cmon_dice\cmonfinal\estructurasdatos\lista\lista.c
+	"lista.h"
+
+1730050797 source:c:\users\lenovo\onedrive\escritorio\unlam\2024\algoritmos\github\cmon_dice\cmonfinal\jugarturno.c
+	"jugarTurno.h"
+
+1730050006 source:c:\users\lenovo\onedrive\escritorio\unlam\2024\algoritmos\github\cmon_dice\cmonfinal\main.c
+	"cmon.h"
+
+1730050007 source:c:\users\lenovo\onedrive\escritorio\unlam\2024\algoritmos\github\cmon_dice\cmonfinal\secuencia\api.c
+	"API.h"
+
+1730050007 source:c:\users\lenovo\onedrive\escritorio\unlam\2024\algoritmos\github\cmon_dice\cmonfinal\secuencia\hilocronometro.c
+	"hiloCronometro.h"
+
+1730050007 source:c:\users\lenovo\onedrive\escritorio\unlam\2024\algoritmos\github\cmon_dice\cmonfinal\secuencia\secuencia.c
+	"secuencia.h"
+
 1730065720 source:c:\users\contt\onedrive\escritorio\tp estru cturas\cmon_dice\cmonfinal\cmon.c
 	"cmon.h"
 
@@ -96,7 +174,7 @@
 
 1729978442 c:\users\contt\onedrive\escritorio\tp estru cturas\cmon_dice\cmonfinal\estructurasdatos\nodo.h
 
-1730065720 c:\users\contt\onedrive\escritorio\tp estru cturas\cmon_dice\cmonfinal\jugarturno.h
+1730066299 c:\users\contt\onedrive\escritorio\tp estru cturas\cmon_dice\cmonfinal\jugarturno.h
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -146,7 +224,7 @@
 1729880207 source:c:\users\contt\onedrive\escritorio\tp estru cturas\cmon_dice\cmonfinal\estructurasdatos\lista\lista.c
 	"lista.h"
 
-1730065720 source:c:\users\contt\onedrive\escritorio\tp estru cturas\cmon_dice\cmonfinal\jugarturno.c
+1730066299 source:c:\users\contt\onedrive\escritorio\tp estru cturas\cmon_dice\cmonfinal\jugarturno.c
 	"jugarTurno.h"
 
 1730065720 source:c:\users\contt\onedrive\escritorio\tp estru cturas\cmon_dice\cmonfinal\main.c
