@@ -16,6 +16,7 @@
 
 #define ES_COLOR(c) (((c)=='A' || (c)=='N' || (c)=='R' || (c)=='V'\
                     ||(c)=='a' || (c)=='n' || (c)=='r' || (c)=='v') ? 1 : 0)
+#define ES_TECLA_ESP(c) ((c)==8?1:0)
 #define A_MAYUS(l) ((l) >= 'a' && (l) <= 'z' ? (l) - 32 : (l))
 
 
@@ -33,7 +34,7 @@ void leer_cant_retroceso_valido(int *cant_retroceso, int vidas, int cant_letras_
 void generarSecuencia(t_lista *secuencia);
 void mostrarSecuencia(t_lista *secuencia, int tiempo_mostrar, int ronda , Accion accion);
 void mostrarRespuesta(t_lista *respuesta, Accion accion);
-void ingresarSecuencia(t_lista *respuesta, char **respuestaRonda, int tiempo_limite, int cant_max_ingreso, int *cant_letras_resp); // actualizado con cronometro
+void ingresarSecuencia(t_lista *respuesta, char **respuestaRonda, int tiempo_limite, int cant_max_ingreso, int *cant_letras_resp, int *es_tecla_esp); // actualizado con cronometro
 /*********************************************************************************************************/
 
 void jugarTurno(tJugador* jugador, tCola *colaRondas, int tiempo_mostrar, int tiempo_limite, Accion mostrar_sec, Accion mostrar_resp, Cmp cmp);

@@ -56,7 +56,7 @@ void mostrarRespuesta(t_lista *respuesta, Accion accion)
 }
 
 /// Quito parámetro tecla de la funcion
-void ingresarSecuencia(t_lista *respuesta, char **respuestaRonda, int tiempo_limite, int cant_max_ingreso, int *cant_letras_resp)
+void ingresarSecuencia(t_lista *respuesta, char **respuestaRonda, int tiempo_limite, int cant_max_ingreso, int *cant_letras_resp, int *es_tecla_esp)
 {
     char letra;
     //datos del cronometro
@@ -78,17 +78,22 @@ void ingresarSecuencia(t_lista *respuesta, char **respuestaRonda, int tiempo_lim
         }
 
         letra = getch();
-        if(ES_COLOR(letra)){
+        *es_tecla_esp = ES_TECLA_ESP(letra) && *cant_letras_resp ? 1 : 0;
+        if(ES_COLOR(letra))
+        {
             printf("%c ", letra);
         }
-
-        while(!ES_COLOR(letra) && !datos.tiempoAcabado)
+        while(!ES_COLOR(letra) && !datos.tiempoAcabado && !*es_tecla_esp)
         {
             printf("\nCaracter no valido. Ingrese un color: ");
             letra = getch();
+            *es_tecla_esp = ES_TECLA_ESP(letra) && *cant_letras_resp ? 1 : 0;
             if(ES_COLOR(letra))
                 printf("%c ", letra);
         }
+        if(*es_tecla_esp)
+            datos.tiempoAcabado =1;
+
         if(!datos.tiempoAcabado)
         {
             agregarAlFinal(respuesta, &letra, sizeof(char));
@@ -104,6 +109,7 @@ void ingresarSecuencia(t_lista *respuesta, char **respuestaRonda, int tiempo_lim
             datos.tiempoAcabado =1; // para el cronometro
 
     }
+
     esperarHiloCronometro (&cronometro);
 
     printf("\e[?25l"); // Ocultar mouse
@@ -135,7 +141,7 @@ void jugarTurno(tJugador* jugador, tCola *colaRondas, int tiempo_mostrar, int ti
     t_lista secuencia, respuesta;
     crearLista(&secuencia);
     crearLista(&respuesta);
-    int turnoTerminado=0;
+    int turnoTerminado=0, es_tecla_esp = 0;
     int ronda = 1, utilizo_vidas = 0, cant_retroceso, cant_letras_resp = 0;
     unsigned vidasIniciales = jugador->vidas;
     tRonda rondasJugador;
@@ -172,7 +178,7 @@ void jugarTurno(tJugador* jugador, tCola *colaRondas, int tiempo_mostrar, int ti
         printf("\nIngresa la secuencia: ");
 
         ptrRespuesta = inicioRespuesta;
-        ingresarSecuencia(&respuesta, &ptrRespuesta, tiempo_limite, ronda, &cant_letras_resp);
+        ingresarSecuencia(&respuesta, &ptrRespuesta, tiempo_limite, ronda, &cant_letras_resp, &es_tecla_esp);
 
         /// ASIGNAR PUNTAJE Y ACTUALIZAR VIDAS
 
@@ -195,12 +201,15 @@ void jugarTurno(tJugador* jugador, tCola *colaRondas, int tiempo_mostrar, int ti
                 printf("\nIngresa la secuencia: ");
 
                 ptrRespuesta = inicioRespuesta;
-                ingresarSecuencia(&respuesta, &ptrRespuesta, tiempo_limite, ronda, &cant_letras_resp);
+                ingresarSecuencia(&respuesta, &ptrRespuesta, tiempo_limite, ronda, &cant_letras_resp, &es_tecla_esp);
                 utilizo_vidas = 1;
             }
             else /// LA SECUENCIA ERA INCORRECTA
             {
-                printf("Secuencia incorrecta\n");
+                if(es_tecla_esp)
+                    printf("Presiono la tecla especial!\n"); ///aaaa
+                else
+                    printf("Secuencia incorrecta\n");
                 mostrarRespuesta(&respuesta, mostrar_resp);
                 printf("\nSe le restaran las vidas en base a la cantidad de jugadas que desee retroceder"
                        "\nIngrese un entero de 1 a %d para retroceder",MINIMO(cant_letras_resp,jugador->vidas));
@@ -221,7 +230,7 @@ void jugarTurno(tJugador* jugador, tCola *colaRondas, int tiempo_mostrar, int ti
                     printf("\nIngresa la secuencia: ");
 
                     ptrRespuesta = inicioRespuesta;
-                    ingresarSecuencia(&respuesta, &ptrRespuesta, tiempo_limite, ronda, &cant_letras_resp);
+                    ingresarSecuencia(&respuesta, &ptrRespuesta, tiempo_limite, ronda, &cant_letras_resp, &es_tecla_esp);
                 }
                 else
                 {
@@ -235,7 +244,7 @@ void jugarTurno(tJugador* jugador, tCola *colaRondas, int tiempo_mostrar, int ti
                     mostrarRespuesta(&respuesta, mostrar_resp);
 
                     //ptrRespuesta = inicioRespuesta;
-                    ingresarSecuencia(&respuesta, &ptrRespuesta, tiempo_limite, cant_retroceso, &cant_letras_resp);
+                    ingresarSecuencia(&respuesta, &ptrRespuesta, tiempo_limite, ronda-cant_letras_resp, &cant_letras_resp, &es_tecla_esp);
                 }
 
                 jugador->vidas-=cant_retroceso;
