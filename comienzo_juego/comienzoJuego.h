@@ -7,6 +7,7 @@
 #include "lista/lista.h"
 #include "jugarPartida/funciones.h"
 #include "jugador/jugador.h"
+#include "Interfaz/interfaz.h"
 
 #define MAX_LINEA 1024
 
