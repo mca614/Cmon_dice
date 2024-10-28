@@ -1,20 +1,67 @@
 #include "menu.h"
 
+void bienvenidoSimonDice() {
+    system("cls"); // Usa "cls" si estás en Windows
+    printf("=============================================\n");
+    printf("          Bienvenido a Simon Dice       \n");
+    printf("=============================================\n");
+    printf("\n");
+
+     printf("\033[1;37;41m   [ R ]   \033[0m");
+    printf("\033[1;37;43m   [ A ]   \033[0m");
+    printf("\033[1;37;43m   [ N ]   \033[0m");
+    printf("\033[1;37;42m   [ V ]   \033[0m");
+    printf("\n\n");
+
+    printf("Presiona cualquier tecla para comenzar...\n");
+    printf("\033[0m");
+    getchar();
+    system("cls");
+}
+
+ int menuPrincipal(t_lista* listaJugadores,unsigned* cantidadJugadores)
+ {
+    int opc;
+    do{
+        system("cls");
+        printf("\n==============================================\n"
+                            "\t\tCMON DICE\n"
+                "==============================================\n"
+                    "\n1. Jugar"
+                    "\n2. Salir"
+                    "\nElija una opcion:");
+        scanf("%d", &opc);
+        if(opc==1)
+             menuIngresoJugadores(listaJugadores, cantidadJugadores);
+        else{
+            if(opc!=2)
+            {
+                puts("\n ERROR INGRESE VALOR NUEVAMENTE");
+                system("pause");
+            }
+            }
+    }while(opc<1||opc>2);
+    return opc;
+}
+
 char menuConError(const char *msj, const char *opc)
 {
     char opcElegida = '\0';
 
     do
     {
-        if(!opcElegida)
-            printf("%s", msj);
-        else
-           printf("\nError!!!\nIngrese una opcion valida\n%s", msj);
+        system("cls");
 
-        scanf("%c", &opcElegida);
+        printf("%s", msj);
         fflush(stdin);
-    }
-    while(strchr(opc, opcElegida)==NULL);
+        scanf("%c", &opcElegida);
+
+        if(opcElegida<'1' || opcElegida > '2')
+        {
+            puts("\n ERROR INGRESE VALOR NUEVAMENTE");
+            system("pause");
+        }
+    }while(strchr(opc, opcElegida)==NULL);
 
     return opcElegida;
 }
@@ -107,7 +154,7 @@ int menuDificultad(tDatosPartida *datosPartida){
     char opcion;
 
     opcion = menuConError("\n==============================================\n"
-                      "\tELIJA DIFICULTAD\n"
+                      "\t\tELIJA DIFICULTAD\n"
                       "==============================================\n"
                       "1. FACIL\n"
                       "2. MEDIA\n"

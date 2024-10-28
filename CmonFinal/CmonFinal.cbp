@@ -47,6 +47,11 @@
 		</Unit>
 		<Unit filename="estructurasDatos/lista/lista.h" />
 		<Unit filename="estructurasDatos/nodo.h" />
+		<Unit filename="interfaz/Interfaz.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="interfaz/colores.h" />
+		<Unit filename="interfaz/interfaz.h" />
 		<Unit filename="jugarTurno.c">
 			<Option compilerVar="CC" />
 		</Unit>
