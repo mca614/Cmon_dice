@@ -242,7 +242,7 @@
 1730073398 source:c:\users\matia\documents\github\cmon_dice\cmonfinal\cmon.c
 	"cmon.h"
 
-1730074591 c:\users\matia\documents\github\cmon_dice\cmonfinal\cmon.h
+1730075358 c:\users\matia\documents\github\cmon_dice\cmonfinal\cmon.h
 	<stdio.h>
 	<stdlib.h>
 	"estructurasDatos/cola/colaDinamica.h"
@@ -318,20 +318,20 @@
 1730072197 source:c:\users\matia\documents\github\cmon_dice\cmonfinal\secuencia\secuencia.c
 	"secuencia.h"
 
-1730074416 source:c:\users\matia\documents\github\cmon_dice\cmonfinal\jugarturno.c
+1730075401 source:c:\users\matia\documents\github\cmon_dice\cmonfinal\jugarturno.c
 	"jugarTurno.h"
 
-1730074555 source:c:\users\matia\documents\github\cmon_dice\cmonfinal\main.c
+1730075401 source:c:\users\matia\documents\github\cmon_dice\cmonfinal\main.c
 	"cmon.h"
 
 1730073354 source:c:\users\matia\documents\github\cmon_dice\cmonfinal\menus.c
 	"menu.h"
 
-1730072114 c:\users\matia\documents\github\cmon_dice\cmonfinal\musica\musica.h
+1730075359 c:\users\matia\documents\github\cmon_dice\cmonfinal\musica\musica.h
 	<stdio.h>
 	<windows.h>
 	<MMsystem.h>
 
-1730072114 source:c:\users\matia\documents\github\cmon_dice\cmonfinal\musica\musica.c
+1730075359 source:c:\users\matia\documents\github\cmon_dice\cmonfinal\musica\musica.c
 	"musica.h"
 
