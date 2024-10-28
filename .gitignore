@@ -1,2 +1,3 @@
-
-/comienzo_juego/obj
+#Ignora carpetas que se generan al compilar
+/CmonFinal/obj
+/CmonFinal/bin
