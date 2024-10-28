@@ -335,3 +335,99 @@
 1730075359 source:c:\users\matia\documents\github\cmon_dice\cmonfinal\musica\musica.c
 	"musica.h"
 
+1730078464 source:c:\users\tomas\documents\github\cmon_dice\cmonfinal\cmon.c
+	"cmon.h"
+
+1730078464 c:\users\tomas\documents\github\cmon_dice\cmonfinal\cmon.h
+	<stdio.h>
+	<stdlib.h>
+	"estructurasDatos/cola/colaDinamica.h"
+	"jugarTurno.h"
+	"estructurasDatos/lista/lista.h"
+	"menu.h"
+	"musica/musica.h"
+
+1730078464 c:\users\tomas\documents\github\cmon_dice\cmonfinal\estructurasdatos\cola\coladinamica.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"../nodo.h"
+
+1730078464 c:\users\tomas\documents\github\cmon_dice\cmonfinal\estructurasdatos\nodo.h
+
+1730078464 c:\users\tomas\documents\github\cmon_dice\cmonfinal\jugarturno.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<conio.h>
+	"cmon.h"
+	"estructurasDatos/lista/lista.h"
+	"secuencia/secuencia.h"
+	"secuencia/hiloCronometro.h"
+
+1730078464 c:\users\tomas\documents\github\cmon_dice\cmonfinal\estructurasdatos\lista\lista.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"../nodo.h"
+
+1730078464 c:\users\tomas\documents\github\cmon_dice\cmonfinal\secuencia\secuencia.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<windows.h>
+	<time.h>
+	"API.h"
+	"../estructurasDatos/lista/lista.h"
+
+1730078464 c:\users\tomas\documents\github\cmon_dice\cmonfinal\secuencia\api.h
+	<stdio.h>
+	<stdlib.h>
+	<curl/curl.h>
+
+1730078464 c:\users\tomas\documents\github\cmon_dice\cmonfinal\secuencia\hilocronometro.h
+	<stdio.h>
+	<stdlib.h>
+	<pthread.h>
+	<time.h>
+	<string.h>
+	<unistd.h>
+	<windows.h>
+
+1730078464 c:\users\tomas\documents\github\cmon_dice\cmonfinal\menu.h
+	<stdio.h>
+	<stdlib.h>
+	"cmon.h"
+
+1730078464 c:\users\tomas\documents\github\cmon_dice\cmonfinal\musica\musica.h
+	<stdio.h>
+	<windows.h>
+	<MMsystem.h>
+
+1730078464 source:c:\users\tomas\documents\github\cmon_dice\cmonfinal\estructurasdatos\cola\coladinamica.c
+	"colaDinamica.h"
+
+1730078464 source:c:\users\tomas\documents\github\cmon_dice\cmonfinal\estructurasdatos\lista\lista.c
+	"lista.h"
+
+1730078464 source:c:\users\tomas\documents\github\cmon_dice\cmonfinal\jugarturno.c
+	"jugarTurno.h"
+
+1730078464 source:c:\users\tomas\documents\github\cmon_dice\cmonfinal\main.c
+	"cmon.h"
+
+1730078464 source:c:\users\tomas\documents\github\cmon_dice\cmonfinal\menus.c
+	"menu.h"
+
+1730078464 source:c:\users\tomas\documents\github\cmon_dice\cmonfinal\musica\musica.c
+	"musica.h"
+
+1730078464 source:c:\users\tomas\documents\github\cmon_dice\cmonfinal\secuencia\api.c
+	"API.h"
+
+1730078464 source:c:\users\tomas\documents\github\cmon_dice\cmonfinal\secuencia\hilocronometro.c
+	"hiloCronometro.h"
+
+1730078464 source:c:\users\tomas\documents\github\cmon_dice\cmonfinal\secuencia\secuencia.c
+	"secuencia.h"
+
