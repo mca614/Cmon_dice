@@ -38,6 +38,7 @@ typedef struct{
 #include "estructurasDatos/lista/lista.h"
 #include "menu.h"
 #include "musica/musica.h"
+#include "interfaz/interfaz.h"
 
 void mostrarJugador(void *a, void *extra);
 int jugadoresNoGanadores(void *dato, void *info);

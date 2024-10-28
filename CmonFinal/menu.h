@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "cmon.h"
+#include  "interfaz/interfaz.h"
 
 char menuConError(const char *msj, const char *opc);
 void ingresarJugador(tJugador *jugador, unsigned *cantidadJugadores);
