@@ -5,6 +5,7 @@ int main()
     tJugador jugadorAux;
     t_lista listaJugadores;
     tDatosPartida datosPartida;
+    char nombreArchivo[MAX_TAM_PATH];
     unsigned cantidadJugadores = 0;
     int opc;
 
@@ -45,7 +46,7 @@ int main()
         system("pause");
 
         /// Generar archivo informe
-        datosPartida.archInforme = generarArchivoDeInforme("informe.txt");
+        datosPartida.archInforme = generarArchivoDeInforme("informe.txt",nombreArchivo);
 
         /// Reproducir Musica (VERIFICAR QUE -lwinmm ESTÉ AGREGADO COMO PARÁMETRO EN BUILD OPTIONS > LINKER SETTINGS > OTHER LINK OPTIONS
         reproducirMusica(MUSICA1);
@@ -81,12 +82,16 @@ int main()
 
             /// Agregar ganadores al informe
             exportarGanadoresHaciaInforme(datosPartida.archInforme, &listaJugadores);
+            /// Cerrar archivo informe
+            fclose(datosPartida.archInforme);
         }
         else
+        {
             printf("\nNo hubo ganadores\n");
-
-        /// Cerrar archivo informe
-        fclose(datosPartida.archInforme);
+            /// Cerrar archivo informe
+            fclose(datosPartida.archInforme);
+            remove(nombreArchivo);
+        }
     }
 
     return 0;
