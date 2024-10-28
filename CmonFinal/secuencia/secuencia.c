@@ -53,32 +53,59 @@ void mostrarLetraSecuencia ( void * dato, void * cond)
     {
         case 'R':
             system("cls");
+            printf("\n\n\n\n");
             printf("\x1b[38;5;197m"); // color
-            printf("\t%c\t",*letra);
+            printf("\t\t  |||||   \n");
+            printf("\t\t|||    |||  \n");
+            printf("\t\t|||    ||| \n");
+            printf("\t\t||||||||   \n");
+            printf("\t\t|||   |||    \n");
+            printf("\t\t|||    |||   \n");
+//            printf("\x1b[1m\n\n\t\t  %c\t\x1b[22m",*letra);
             printf("\033[0m"); // limita
             break;
 
         case 'V':
             system("cls");
+            printf("\n\n\n\n");
             printf("\x1b[38;5;82m");
-            printf("\t%c\t",*letra);
+            printf("\t\t|||        ||| \n");
+            printf("\t\t |||      ||| \n");
+            printf("\t\t  |||    |||  \n");
+            printf("\t\t   |||  |||  \n");
+            printf("\t\t     ||||    \n");
+//            printf("\x1b[1m\n\n\t\t  %c\t\x1b[22m",*letra);
             printf("\033[0m");
             break;
 
         case 'N':
             system("cls");
+            printf("\n\n\n\n");
             printf("\x1b[38;5;208m");
-            printf("\t%c\t",*letra);
+            printf("\t\t ||||       |||\n");
+            printf("\t\t|||  |||    |||\n");
+            printf("\t\t|||   |||   |||\n");
+            printf("\t\t|||    |||  |||\n");
+            printf("\t\t|||     ||| |||\n");
+            printf("\t\t|||       |||| \n");
+//            printf("\x1b[1m\n\n\t\t  %c\t\x1b[22m",*letra);
             printf("\033[0m");
             break;
 
         case 'A':
             system("cls");
+            printf("\n\n\n\n");
             printf("\x1b[38;5;226m");
-            printf("\t%c\t",*letra);
+            printf("\t\t     ||||   \n");
+            printf("\t\t   |||  |||   \n");
+            printf("\t\t  |||____|||  \n");
+            printf("\t\t |||      ||| \n");
+            printf("\t\t|||        ||| \n");
+//            printf("\x1b[1m\n\n\t\t  %c\t\x1b[22m",*letra);
             printf("\033[0m");
             break;
     }
+
 
     fflush(stdout); // Asegurar que el mensaje se imprima antes de la pausa
     //sleep(tiempo); // Pausa de 2 segundos
@@ -88,6 +115,7 @@ void mostrarLetraSecuencia ( void * dato, void * cond)
     //usleep(300000);// Pausa de 0.3 segundos
     Sleep(300);
     system("cls");
+    colorFondo(VIOLETA_4, VERDE_MEDIO);
 }
 
 void mostrarLetra_ ( void * dato, void * cond)

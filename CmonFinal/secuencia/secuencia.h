@@ -8,6 +8,7 @@
 #include <time.h>
 #include "API.h"
 #include "../estructurasDatos/lista/lista.h"
+#include "../interfaz/interfaz.h"
 
 char seleccionarLetra (char* letras);
 

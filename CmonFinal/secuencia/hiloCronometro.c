@@ -15,7 +15,7 @@ void* hiloCronometro(void* arg) {
             datos->tiempoAcabado = 1;
             system("cls");
 
-            printf("\nSe acabo el tiempo! Ingrese cualquier tecla para continuar...");
+            printf("\nSe acabo el tiempo!\nIngrese cualquier tecla para continuar...");
             //break;
         }
     }
