@@ -8,19 +8,28 @@ int main()
     unsigned cantidadJugadores = 0;
 
     crearLista(&listaJugadores);
+    centrarVentanaConsola();
+    ajustarConsola(80,38,45,25);
+    colorFondo(VIOLETA_4, COLOR_NARANJA_2);
+
 
     /// Menú ingreso de jugadores
     menuIngresoJugadores(&listaJugadores, &cantidadJugadores);
 
+    colorFondo(VIOLETA_4, VIOLETA_0);
     /// Menú dificultad
     menuDificultad(&datosPartida);
 
+    colorFondo(VIOLETA_4, VERDE_MUYCLARO);
     /// Cargar datos de jugadores y mostrar posiciones
     printf("\nPosiciones de los jugadores...\n");
     jugadorAux.id = 1;
     jugadorAux.puntuacion = 0;
     jugadorAux.vidas = datosPartida.cantVidas;
     mapLista(&listaJugadores, &jugadorAux, cargarMostrarDatosJugador);
+
+    system("pause");
+    colorFondo(VIOLETA_4, COLOR_ROJO_5);
 
     /// Muestra las configuraciones del juego
     printf(
@@ -31,6 +40,7 @@ int main()
        "\nCantidad de vidas del jugador: %u\n",
        datosPartida.tiempoSecuencia, datosPartida.tiempoRespuesta, datosPartida.cantVidas
     );
+    system("pause");
 
     /// Generar archivo informe
     datosPartida.archInforme = generarArchivoDeInforme("informe.txt");
@@ -38,6 +48,8 @@ int main()
     /// Reproducir Musica (VERIFICAR QUE -lwinmm ESTÉ AGREGADO COMO PARÁMETRO EN BUILD OPTIONS > LINKER SETTINGS > OTHER LINK OPTIONS
     reproducirMusica(MUSICA1);
 
+
+    colorFondo(VIOLETA_4, VERDE_CLARO);
     /// Jugar partidas
     datosPartida.maximaPuntuacion = 0;
     mapLista(&listaJugadores, &datosPartida, jugarPartida);
@@ -46,6 +58,7 @@ int main()
     filtrarLista(&listaJugadores, &datosPartida.maximaPuntuacion, jugadoresNoGanadores, NULL);
 
     system("cls");
+    colorFondo(VIOLETA_4, COLOR_AMARILLO);
 
     if(!siListaVacia(&listaJugadores)){
         printf("\nGanadores\n");
