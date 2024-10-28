@@ -56,7 +56,7 @@ char menuConError(const char *msj, const char *opc)
         fflush(stdin);
         scanf("%c", &opcElegida);
 
-        if(opcElegida<'1' || opcElegida > '2')
+        if(strchr(opc, opcElegida)==NULL)
         {
             puts("\n ERROR INGRESE VALOR NUEVAMENTE");
             system("pause");

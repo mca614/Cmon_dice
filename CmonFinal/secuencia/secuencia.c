@@ -55,12 +55,12 @@ void mostrarLetraSecuencia ( void * dato, void * cond)
             system("cls");
             printf("\n\n\n\n");
             printf("\x1b[38;5;197m"); // color
-            printf("\t\t  |||||   \n");
-            printf("\t\t|||    |||  \n");
-            printf("\t\t|||    ||| \n");
-            printf("\t\t||||||||   \n");
-            printf("\t\t|||   |||    \n");
-            printf("\t\t|||    |||   \n");
+            printf("\t\t   ||||||   \n");
+            printf("\t\t |||     |||  \n");
+            printf("\t\t |||     ||| \n");
+            printf("\t\t ||||||||   \n");
+            printf("\t\t |||    |||    \n");
+            printf("\t\t |||     |||   \n");
 //            printf("\x1b[1m\n\n\t\t  %c\t\x1b[22m",*letra);
             printf("\033[0m"); // limita
             break;
