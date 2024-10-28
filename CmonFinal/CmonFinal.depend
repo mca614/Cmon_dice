@@ -239,10 +239,10 @@
 1729979833 source:c:\users\contt\onedrive\escritorio\tp estru cturas\cmon_dice\cmonfinal\secuencia\secuencia.c
 	"secuencia.h"
 
-1730073398 source:c:\users\matia\documents\github\cmon_dice\cmonfinal\cmon.c
+1730150868 source:c:\users\matia\documents\github\cmon_dice\cmonfinal\cmon.c
 	"cmon.h"
 
-1730075358 c:\users\matia\documents\github\cmon_dice\cmonfinal\cmon.h
+1730150820 c:\users\matia\documents\github\cmon_dice\cmonfinal\cmon.h
 	<stdio.h>
 	<stdlib.h>
 	"estructurasDatos/cola/colaDinamica.h"
@@ -250,6 +250,7 @@
 	"estructurasDatos/lista/lista.h"
 	"menu.h"
 	"musica/musica.h"
+	"interfaz/interfaz.h"
 
 1730072197 c:\users\matia\documents\github\cmon_dice\cmonfinal\estructurasdatos\cola\coladinamica.h
 	<stdio.h>
@@ -275,7 +276,7 @@
 	<string.h>
 	"../nodo.h"
 
-1730072197 c:\users\matia\documents\github\cmon_dice\cmonfinal\secuencia\secuencia.h
+1730148072 c:\users\matia\documents\github\cmon_dice\cmonfinal\secuencia\secuencia.h
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -283,6 +284,7 @@
 	<time.h>
 	"API.h"
 	"../estructurasDatos/lista/lista.h"
+	"../interfaz/interfaz.h"
 
 1730072197 c:\users\matia\documents\github\cmon_dice\cmonfinal\secuencia\api.h
 	<stdio.h>
@@ -298,10 +300,11 @@
 	<unistd.h>
 	<windows.h>
 
-1730073354 c:\users\matia\documents\github\cmon_dice\cmonfinal\menu.h
+1730148072 c:\users\matia\documents\github\cmon_dice\cmonfinal\menu.h
 	<stdio.h>
 	<stdlib.h>
 	"cmon.h"
+	"interfaz/interfaz.h"
 
 1730072197 source:c:\users\matia\documents\github\cmon_dice\cmonfinal\estructurasdatos\cola\coladinamica.c
 	"colaDinamica.h"
@@ -312,19 +315,19 @@
 1730072197 source:c:\users\matia\documents\github\cmon_dice\cmonfinal\secuencia\api.c
 	"API.h"
 
-1730072197 source:c:\users\matia\documents\github\cmon_dice\cmonfinal\secuencia\hilocronometro.c
+1730148072 source:c:\users\matia\documents\github\cmon_dice\cmonfinal\secuencia\hilocronometro.c
 	"hiloCronometro.h"
 
-1730072197 source:c:\users\matia\documents\github\cmon_dice\cmonfinal\secuencia\secuencia.c
+1730149378 source:c:\users\matia\documents\github\cmon_dice\cmonfinal\secuencia\secuencia.c
 	"secuencia.h"
 
-1730075401 source:c:\users\matia\documents\github\cmon_dice\cmonfinal\jugarturno.c
+1730148072 source:c:\users\matia\documents\github\cmon_dice\cmonfinal\jugarturno.c
 	"jugarTurno.h"
 
-1730075401 source:c:\users\matia\documents\github\cmon_dice\cmonfinal\main.c
+1730151997 source:c:\users\matia\documents\github\cmon_dice\cmonfinal\main.c
 	"cmon.h"
 
-1730073354 source:c:\users\matia\documents\github\cmon_dice\cmonfinal\menus.c
+1730149378 source:c:\users\matia\documents\github\cmon_dice\cmonfinal\menus.c
 	"menu.h"
 
 1730075359 c:\users\matia\documents\github\cmon_dice\cmonfinal\musica\musica.h
@@ -445,4 +448,16 @@
 
 1730080140 source:c:\users\tomas\desktop\cmon_dice-main\cmonfinal\secuencia\secuencia.c
 	"secuencia.h"
+
+1730148072 c:\users\matia\documents\github\cmon_dice\cmonfinal\interfaz\interfaz.h
+	<stdio.h>
+	<stdlib.h>
+	<windows.h>
+	<conio.h>
+	"colores.h"
+
+1730148072 c:\users\matia\documents\github\cmon_dice\cmonfinal\interfaz\colores.h
+
+1730148072 source:c:\users\matia\documents\github\cmon_dice\cmonfinal\interfaz\interfaz.c
+	"interfaz.h"
 

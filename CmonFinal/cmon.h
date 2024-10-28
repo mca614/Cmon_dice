@@ -46,7 +46,7 @@ int cmpJugadores(void *a, void *b);
 void cargarMostrarDatosJugador(void *v, void *extra);
 
 void jugarPartida(void *jugador, void *extra);
-FILE* generarArchivoDeInforme(const char* nombrePrefijo);
+FILE* generarArchivoDeInforme(const char* nombrePrefijo, char* nomArchGenerado);
 void exportarRondasJugadorHaciaInforme(FILE* archInforme, tCola* colaTurno);
 void exportarGanadoresHaciaInforme(FILE* archInforme, t_lista* ganadores);
 
