@@ -40,7 +40,7 @@ void mostrarSecuencia(t_lista *secuencia, int tiempo_mostrar, int ronda, Accion 
 
     aux = tiempo_mostrar/(ronda);
     aux = aux > 1.5 ? 1.5 : aux;
-    aux = aux < 0.1 ? 0.1 : aux;
+    aux = aux < 0.5 ? 0.5 : aux;
 
     tiempo = (int)(aux * 1000);
     mapLista(secuencia, &tiempo, accion); /// agregar cadena que guarda la secuencia mostrada
@@ -297,6 +297,9 @@ void jugarTurno(tJugador* jugador, tDatosPartida *datos, Accion mostrar_sec, Acc
         /// Copia secuencia generada a cadena (rondasJugador.secuencia)
         listaAcadena(&secuencia, rondasJugador.secuencia, sizeof(char));
 
+        /// Copia respuesta del jugador a cadena (rondasJugador.respuesta)
+        listaAcadena(&respuesta, rondasJugador.respuesta, sizeof(char));
+
         rondasJugador.vidasUsadas = datos->cantVidas - jugador->vidas;
         rondasJugador.id = jugador->id;
 
@@ -310,6 +313,9 @@ void jugarTurno(tJugador* jugador, tDatosPartida *datos, Accion mostrar_sec, Acc
 
     /// Desacolar de colaRondas en informe
     exportarRondasJugadorHaciaInforme(datos->archInforme, &colaRondas);
+
+    /// Por si faltó vaciar la cola
+    vaciarCola(&colaRondas);
     fflush(stdin);
 }
 
