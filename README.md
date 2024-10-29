@@ -39,7 +39,7 @@
 > - Cuando todos los jugadores hayan jugado sus respectivos turnos y gastado todas sus vidas, el juego finalizará, ganando el o los jugadores con más puntos obtenidos.  
 
 > ## Configuración ⚙
-> La configuración del juego se realiza automáticamentea a partir  de un archivo .txt llamado config.txt, desde el cual se obtienen los diferentes parámetros que afectan a la partida:
+> La configuración del juego se realiza automáticamente a partir  de un archivo .txt llamado config.txt, desde el cual se obtienen los diferentes parámetros que afectan a la partida:
 
 Dificultad | Tiempo para ver la secuenca | Tiempo para responder | Cantidad de vidas
 ------------- | ------------- | ------------- | -------------
