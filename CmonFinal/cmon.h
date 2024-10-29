@@ -1,7 +1,7 @@
 #ifndef CMON_H_INCLUDED
 #define CMON_H_INCLUDED
 
-#define MAX_L_JUGADOR 50
+#define MAX_L_JUGADOR 10
 #define MAX_TAM_PATH 50
 #define MAX_LINEA 1024
 
@@ -19,7 +19,7 @@ typedef struct{
 
 typedef struct{
     int id;
-    char nombre[MAX_L_JUGADOR];
+    char nombre[MAX_L_JUGADOR + 1];
     int vidas;
     int puntuacion;
 }tJugador;

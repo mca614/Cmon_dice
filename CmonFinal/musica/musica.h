@@ -10,5 +10,8 @@
 #define MUSICA3 "musica/spookyToyland.mp3"
 #define MUSICA4 "musica/underCorruption.mp3"
 #define MUSICA5 "musica/corruption.mp3"
+#define MUSICA6 "musica/doom.mp3"
+#define MUSICA7 "musica/cvh.mp3"
+
 void reproducirMusica(const char* musica);
 #endif // MUSICA_H_INCLUDED

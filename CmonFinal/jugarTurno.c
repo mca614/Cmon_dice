@@ -43,7 +43,7 @@ void mostrarSecuencia(t_lista *secuencia, int tiempo_mostrar, int ronda, Accion 
     aux = aux < 0.5 ? 0.5 : aux;
 
     tiempo = (int)(aux * 1000);
-    mapLista(secuencia, &tiempo, accion); /// agregar cadena que guarda la secuencia mostrada
+    mapLista(secuencia, &tiempo, accion);
 }
 
 void mostrarRespuesta(t_lista *respuesta, Accion accion)
@@ -256,9 +256,6 @@ void jugarTurno(tJugador* jugador, tDatosPartida *datos, Accion mostrar_sec, Acc
         /// SI LA RESPUESTA ES CORRECTA
         if (esSecuenciaCorrecta(&secuencia, &respuesta, cmp))
         {
-//            /// Copia respuesta del jugador a cadena (rondasJugador.respuesta)
-//            listaAcadena(&respuesta, rondasJugador.respuesta, sizeof(char));
-
             if(utilizo_vidas)
             {
                 printf("Secuencia correcta!\n+1 puntos por usar vidas\n");
@@ -286,9 +283,6 @@ void jugarTurno(tJugador* jugador, tDatosPartida *datos, Accion mostrar_sec, Acc
                 turnoTerminado=1;
 
             rondasJugador.puntosRonda = 0;
-
-//            /// Copia respuesta del jugador a cadena (rondasJugador.respuesta)
-//            listaAcadena(&respuesta, rondasJugador.respuesta, sizeof(char));
         }
 
         /// Copia respuesta del jugador a cadena (rondasJugador.respuesta)
