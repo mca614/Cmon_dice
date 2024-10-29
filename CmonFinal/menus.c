@@ -13,55 +13,31 @@ void bienvenidoSimonDice() {
     printf("\033[1;37;42m   [ V ]   \033[0m");
     printf("\n\n");
 
-    printf("Presiona cualquier tecla para comenzar...\n");
-    printf("\033[0m");
-    getchar();
+    system("pause");
     system("cls");
-}
-
- int menuPrincipal(t_lista* listaJugadores,unsigned* cantidadJugadores)
- {
-    int opc;
-    do{
-        system("cls");
-        printf("\n==============================================\n"
-                            "\t\tCMON DICE\n"
-                "==============================================\n"
-                    "\n1. Jugar"
-                    "\n2. Salir"
-                    "\nElija una opcion:");
-        scanf("%d", &opc);
-        if(opc==1)
-             menuIngresoJugadores(listaJugadores, cantidadJugadores);
-        else{
-            if(opc!=2)
-            {
-                puts("\n ERROR INGRESE VALOR NUEVAMENTE");
-                system("pause");
-            }
-            }
-    }while(opc<1||opc>2);
-    return opc;
 }
 
 char menuConError(const char *msj, const char *opc)
 {
     char opcElegida = '\0';
+    fflush(stdin);
 
     do
     {
-        system("cls");
+        if(!opcElegida)
+            printf("%s", msj);
+        else
+           printf("\nError!!!\nIngrese una opcion valida\n%s", msj);
 
-        printf("%s", msj);
+        opcElegida = getch();
         fflush(stdin);
-        scanf("%c", &opcElegida);
 
-        if(strchr(opc, opcElegida)==NULL)
-        {
-            puts("\n ERROR INGRESE VALOR NUEVAMENTE");
-            system("pause");
-        }
-    }while(strchr(opc, opcElegida)==NULL);
+        if(ES_DIGITO_VALIDO(opcElegida))
+            printf("%c", opcElegida);
+
+        system("cls");
+    }
+    while(strchr(opc, opcElegida)==NULL);
 
     return opcElegida;
 }
@@ -70,15 +46,69 @@ int obtenerValorAleatorio(int menorValor, int mayorValor) {
     return (rand() % (mayorValor - menorValor + 1)) + menorValor;
 }
 
-void ingresarJugador(tJugador *jugador, unsigned *cantidadJugadores){
-    char *pNombre = jugador->nombre;
+int ingresarJugador(tJugador *jugador, unsigned *cantidadJugadores){
+    char letra;
+    char *nombre, *ptr;
+    int longMemoria = 1;
 
-    fgets(pNombre, MAX_L_JUGADOR, stdin);
-    pNombre = strrchr(pNombre, '\n');
-    *pNombre = '\0';
+    nombre = (char*)malloc(longMemoria);
+    ptr = nombre;
 
-    jugador->id = obtenerValorAleatorio(*cantidadJugadores * -1, *cantidadJugadores);
+    if(!ptr)
+        return 0;
+
+    *ptr = '\0';
+
+    printf("\nIngrese nombre del jugador o escape para cancelar: ");
+    letra = getch();
+    while(longMemoria <= MAX_L_JUGADOR + 1  && letra != TECLA_ESCAPE && letra != TECLA_ENTER){
+
+        if(longMemoria <= MAX_L_JUGADOR && ES_LETRA(letra)){
+            printf("%c", letra);
+            *ptr = letra;
+            longMemoria++;
+            nombre = (char*)realloc(nombre, longMemoria);
+
+            if(!nombre)
+                return 0;
+
+            ptr++;
+            *ptr = '\0';
+        }
+
+        else if(longMemoria > 1 && letra == TECLA_RETRO){
+            ptr--;
+            *ptr = '\0';
+
+            longMemoria--;
+            nombre = (char*)realloc(nombre, longMemoria);
+
+            system("cls");
+            printf("\nIngrese nombre del jugador o escape para cancelar: ");
+            printf("%s", nombre);
+        }
+
+        letra = getch();
+
+        if(longMemoria > MAX_L_JUGADOR){
+            printf("\nSe excede el largo maximo");
+            printf("\nIngrese nombre del jugador o escape para cancelar: ");
+            printf("%s", nombre);
+        }
+
+    }
+
     system("cls");
+
+    if(letra == TECLA_ENTER && strlen(nombre)){
+        jugador->id = obtenerValorAleatorio(*cantidadJugadores * -1, *cantidadJugadores);
+        strcpy(jugador->nombre, nombre);
+        longMemoria = 1;
+    }else
+        longMemoria = 0;
+
+    free(nombre);
+    return longMemoria ? 1 : 0;
 }
 
 void menuIngresoJugadores(t_lista *listaJugadores, unsigned *cantidadJugadores){
@@ -99,13 +129,11 @@ void menuIngresoJugadores(t_lista *listaJugadores, unsigned *cantidadJugadores){
 
             system("cls");
 
-            do{
-                printf("\nIngrese nombre del jugador: ");
-                ingresarJugador(&jugador, cantidadJugadores);
-            }while(strcmpi(jugador.nombre, "") == 0);
-
-            agregarOrdenado(listaJugadores, &jugador, 1, sizeof(tJugador), cmpJugadores);
-            (*cantidadJugadores)++;
+            if(ingresarJugador(&jugador, cantidadJugadores)){
+                agregarOrdenado(listaJugadores, &jugador, 1, sizeof(tJugador), cmpJugadores);
+                (*cantidadJugadores)++;
+            }else
+                printf("\nCancela ingreso...");
         }
 
     }while(opcion != '2');
@@ -119,9 +147,8 @@ int cargarDificultad(tDatosPartida *datosPartida){
     archivoConfDificultad = fopen("config.txt", "rt");
 
     if(!archivoConfDificultad){
-        printf("\nError al leer el archivo\n"
-               "No se pudo obtener configuraciones de dificultad...\n"
-        );
+        printf("\nNo se logro abrir el archivo\n"
+               "No se pudo obtener configuraciones de dificultad...\n");
         return 0;
     }
 
@@ -143,8 +170,10 @@ int cargarDificultad(tDatosPartida *datosPartida){
         }
     }
 
-    if(!resultadoBusquedaDificultad)
-        printf("\nNo se pudo obtener configuraciones de dificultad...\n");
+    if(!resultadoBusquedaDificultad){
+        printf("\nArchivo de configuracion con formato invalido\n"
+               "No se pudo obtener configuraciones de dificultad...\n");
+    }
 
     fclose(archivoConfDificultad);
     return resultadoBusquedaDificultad;
@@ -174,18 +203,14 @@ int menuDificultad(tDatosPartida *datosPartida){
                 break;
     }
 
-    if(opcion != '4'){
-        cargarDificultad(datosPartida);
-        return 1;
-    }
-
-    return 0;
+    return opcion == '4' ? 0 : 1;
 }
 
 int menuComenzarJuego(){
     char opcion = '\0';
 
     printf("\nEs el turno del siguiente jugador...\n");
+    sleep(1);
 
     printf("\e[?25h"); // mostrar mouse
     fflush(stdout);
