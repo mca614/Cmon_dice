@@ -49,7 +49,7 @@ Difícil| 5 segundos | 10 segundos | 0
 
 > ## Requisitos del juego 📋
 > ### Sistema operativo
-> - Windows
+>   - Windows
 > ### Librerias
-> - Libreria CURL
+>   - Libreria CURL
 
