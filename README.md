@@ -53,14 +53,3 @@ Difícil| 5 segundos | 10 segundos | 0
 > ### Librerias
 > - Libreria CURL
 
-> ## Testing
-> Durante el desarrollo del juego se realizar diferentes pruebas para verificar el correcto funcionamiento del mismo
-------------------
-Descripción | Salida esperada | Salida obtenida
-------------- | ------------- | -------------
-Content Cell  | Content Cell | Content Cell
-Content Cell  | Content Cell | Content Cell
-Content Cell  | Content Cell | Content Cell
-Content Cell  | Content Cell | Content Cell
-Content Cell  | Content Cell | Content Cell
-Content Cell  | Content Cell | Content Cell
