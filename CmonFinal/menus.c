@@ -1,6 +1,8 @@
 #include "menu.h"
 
 void bienvenidoSimonDice() {
+    system("cls");
+
     printf("=============================================\n");
     printf("          Bienvenido a Simon Dice       \n");
     printf("=============================================\n");

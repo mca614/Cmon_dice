@@ -27,7 +27,7 @@ int cmp_letras( void *a, void *b)
 void mostrarSecuencia(t_lista *secuencia, int tiempo_mostrar, int ronda, Accion accion)
 {
     int tiempo;
-    float aux = 0;
+    float tiempoAux = 0;
 
     printf("\e[?25l"); // Ocultar mouse
     fflush(stdout);
@@ -38,11 +38,11 @@ void mostrarSecuencia(t_lista *secuencia, int tiempo_mostrar, int ronda, Accion 
 
     sleep(1);
 
-    aux = tiempo_mostrar/(ronda);
-    aux = aux > 1.5 ? 1.5 : aux;
-    aux = aux < 0.5 ? 0.5 : aux;
+    tiempoAux = tiempo_mostrar/(ronda);
+    tiempoAux = tiempoAux > 1.5 ? 1.5 : tiempoAux;
+    tiempoAux = tiempoAux < 0.5 ? 0.5 : tiempoAux;
 
-    tiempo = (int)(aux * 1000);
+    tiempo = (int)(tiempoAux * 1000);
     mapLista(secuencia, &tiempo, accion);
 }
 
@@ -179,7 +179,7 @@ void jugarTurno(tJugador* jugador, tDatosPartida *datos, Accion mostrar_sec, Acc
         sleep(1);
         mostrarSecuencia(&secuencia, datos->tiempoSecuencia, ronda, mostrar_sec);
 
-        system("pause");
+        //system("pause");
         printf("\nIngresa la secuencia: ");
 
         ingresarSecuencia(&respuesta, datos->tiempoRespuesta, ronda, &cant_letras_resp, &es_tecla_esp);
@@ -199,7 +199,7 @@ void jugarTurno(tJugador* jugador, tDatosPartida *datos, Accion mostrar_sec, Acc
                 sleep(2);
                 mostrarSecuencia(&secuencia, datos->tiempoSecuencia, ronda, mostrar_sec);
 
-                system("pause");
+                //system("pause");
                 printf("\nIngresa la secuencia: ");
 
                 ingresarSecuencia(&respuesta, datos->tiempoRespuesta, ronda, &cant_letras_resp, &es_tecla_esp);
@@ -227,7 +227,7 @@ void jugarTurno(tJugador* jugador, tDatosPartida *datos, Accion mostrar_sec, Acc
                     printf("Le mostraremos nuevamente la secuencia:\n");
                     mostrarSecuencia(&secuencia, datos->tiempoSecuencia, ronda, mostrar_sec);
 
-                    system("pause");
+                    //system("pause");
                     printf("\nIngresa la secuencia: ");
 
                     ingresarSecuencia(&respuesta, datos->tiempoRespuesta, ronda, &cant_letras_resp, &es_tecla_esp);
@@ -238,7 +238,7 @@ void jugarTurno(tJugador* jugador, tDatosPartida *datos, Accion mostrar_sec, Acc
                     cant_letras_resp -= cant_retroceso;
 
                     system("cls");
-                    system("pause");
+                    //system("pause");
                     printf("Ingrese la secuencia faltante:\n");
 
                     mostrarRespuesta(&respuesta, mostrar_resp);
