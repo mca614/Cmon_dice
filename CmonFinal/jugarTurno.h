@@ -5,7 +5,9 @@
 #define ES_COLOR(c) (((c)=='A' || (c)=='N' || (c)=='R' || (c)=='V'\
                     ||(c)=='a' || (c)=='n' || (c)=='r' || (c)=='v') ? 1 : 0)
 #define A_MAYUS(l) ((l) >= 'a' && (l) <= 'z' ? (l) - 32 : (l))
-#define ES_TECLA_ESP(c) ((c)==8?1:0)
+
+#define TECLA_ESP TECLA_RETRO
+#define ES_TECLA_ESP(c) ((c) == TECLA_ESP ? 1 : 0)
 
 
 #include <stdio.h>

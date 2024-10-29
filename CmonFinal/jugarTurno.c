@@ -179,9 +179,7 @@ void jugarTurno(tJugador* jugador, tDatosPartida *datos, Accion mostrar_sec, Acc
         sleep(1);
         mostrarSecuencia(&secuencia, datos->tiempoSecuencia, ronda, mostrar_sec);
 
-        system("pause");
         printf("\nIngresa la secuencia: ");
-
         ingresarSecuencia(&respuesta, datos->tiempoRespuesta, ronda, &cant_letras_resp, &es_tecla_esp);
 
         /// ASIGNAR PUNTAJE Y ACTUALIZAR VIDAS
@@ -199,10 +197,9 @@ void jugarTurno(tJugador* jugador, tDatosPartida *datos, Accion mostrar_sec, Acc
                 sleep(2);
                 mostrarSecuencia(&secuencia, datos->tiempoSecuencia, ronda, mostrar_sec);
 
-                system("pause");
                 printf("\nIngresa la secuencia: ");
-
                 ingresarSecuencia(&respuesta, datos->tiempoRespuesta, ronda, &cant_letras_resp, &es_tecla_esp);
+
                 utilizo_vidas = 1;
             }
             else /// LA SECUENCIA ERA INCORRECTA
@@ -227,9 +224,7 @@ void jugarTurno(tJugador* jugador, tDatosPartida *datos, Accion mostrar_sec, Acc
                     printf("Le mostraremos nuevamente la secuencia:\n");
                     mostrarSecuencia(&secuencia, datos->tiempoSecuencia, ronda, mostrar_sec);
 
-                    system("pause");
                     printf("\nIngresa la secuencia: ");
-
                     ingresarSecuencia(&respuesta, datos->tiempoRespuesta, ronda, &cant_letras_resp, &es_tecla_esp);
                 }
                 else
@@ -238,7 +233,6 @@ void jugarTurno(tJugador* jugador, tDatosPartida *datos, Accion mostrar_sec, Acc
                     cant_letras_resp -= cant_retroceso;
 
                     system("cls");
-                    system("pause");
                     printf("Ingrese la secuencia faltante:\n");
 
                     mostrarRespuesta(&respuesta, mostrar_resp);
@@ -252,13 +246,9 @@ void jugarTurno(tJugador* jugador, tDatosPartida *datos, Accion mostrar_sec, Acc
             system("cls");
         }
 
-
         /// SI LA RESPUESTA ES CORRECTA
         if (esSecuenciaCorrecta(&secuencia, &respuesta, cmp))
         {
-//            /// Copia respuesta del jugador a cadena (rondasJugador.respuesta)
-//            listaAcadena(&respuesta, rondasJugador.respuesta, sizeof(char));
-
             if(utilizo_vidas)
             {
                 printf("Secuencia correcta!\n+1 puntos por usar vidas\n");
@@ -286,13 +276,7 @@ void jugarTurno(tJugador* jugador, tDatosPartida *datos, Accion mostrar_sec, Acc
                 turnoTerminado=1;
 
             rondasJugador.puntosRonda = 0;
-
-//            /// Copia respuesta del jugador a cadena (rondasJugador.respuesta)
-//            listaAcadena(&respuesta, rondasJugador.respuesta, sizeof(char));
         }
-
-        /// Copia respuesta del jugador a cadena (rondasJugador.respuesta)
-        listaAcadena(&respuesta, rondasJugador.respuesta, sizeof(char));
 
         /// Copia secuencia generada a cadena (rondasJugador.secuencia)
         listaAcadena(&secuencia, rondasJugador.secuencia, sizeof(char));
