@@ -7,7 +7,7 @@
 #define A_MAYUS(l) ((l) >= 'a' && (l) <= 'z' ? (l) - 32 : (l))
 
 #define TECLA_ESP TECLA_RETRO
-#define ES_TECLA_ESP(c) ((c) == TECLA_RETRO ? 1 : 0)
+#define ES_TECLA_ESP(c) ((c) == TECLA_ESP ? 1 : 0)
 
 
 #include <stdio.h>

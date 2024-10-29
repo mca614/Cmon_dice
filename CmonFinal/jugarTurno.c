@@ -208,7 +208,7 @@ void jugarTurno(tJugador* jugador, tDatosPartida *datos, Accion mostrar_sec, Acc
             else /// LA SECUENCIA ERA INCORRECTA
             {
                 if(es_tecla_esp)
-                    printf("Presiono la tecla especial!\n"); ///aaaa
+                    printf("Presiono la tecla especial!\n");
                 else
                     printf("Secuencia incorrecta\n");
                 mostrarRespuesta(&respuesta, mostrar_resp);
