@@ -11,4 +11,5 @@
 #define MUSICA4 "musica/underCorruption.mp3"
 #define MUSICA5 "musica/corruption.mp3"
 void reproducirMusica(const char* musica);
+void cerrarMusica(); /// ASEGURA QUE SE LIBEREN LOS RECURSOS UTILIZADOS POR MCI
 #endif // MUSICA_H_INCLUDED

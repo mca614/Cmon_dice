@@ -93,6 +93,6 @@ int main()
             remove(nombreArchivo);
         }
     }
-
+    cerrarMusica();
     return 0;
 }
