@@ -1,9 +1,10 @@
 # $${\color{green}Bienvenido \space \color{green}a \space \Huge\color{red}C \tiny \color{green}mon \space \color{green}dice}$$🎲
 
-> Juego realizado en C para múltiples jugadores basado en el tradicional Simón dice.
+> Cmon Dice es un juego de memoria inspirado en el conocido "Simón Dice", en el que los jugadores deben recordar e ingresar secuencias de colores mostradas en pantalla. Los jugadores tienen un
+> tiempo limitado para memorizar y reproducir la secuencia.
 
 > ## Cómo Jugar 🕹️
-> **Iniciar el Juego**
+> **Iniciar el Juego** 🎮
 > 
 > 1. Ejecuta el programa y selecciona la opción **[1] Jugar**.
 > 2. Ingresa los nombres de los jugadores.
@@ -11,18 +12,19 @@
 >    - Facil
 >    - Medio
 >    - Difícil
-> 4. El juego sorteará el orden de los jugadores y mostrará las configuraciones, incluyendo:
+> 4. Se sorteará el orden de los jugadores
+> 5. Se mostrarán las configuraciones, incluyendo:
 >    - Cantidad de vidas
 >    - Tiempo para ver la secuencia de colores
 >    - Tiempo para ingresar la secuencia
 >      
->  **Objetivo del Juego**
+>  **Objetivo del Juego** :dart:
 >
 > Memoriza e ingresa correctamente la secuencia de colores que se mostrará (R = Rojo, V = Verde, A = Amarillo, N = Naranja).
 >
 > La secuencia se muestra letra por letra, y debes ingresarla en el orden correcto antes de que el tiempo se acabe.
 >
-> **Reglas del Juego**
+> **Reglas del Juego** 📖
 > - Secuencia Correcta:
 >     - Si ingresas la secuencia sin usar vidas, obtienes +3 puntos.
 >     - Si usas vidas, obtienes +1 punto por secuencia correcta.
@@ -33,7 +35,7 @@
 >      - Se queda sin vidas.
 >      - Completa la secuencia correctamente sin errores.
 >   
->  **Fin del Juego**
+>  **Fin del Juego** 🏆
 > - Cuando todos los jugadores hayan jugado sus respectivos turnos y gastado todas sus vidas, el juego finalizará, ganando el o los jugadores con más puntos obtenidos.  
 
 > ## Configuración ⚙
