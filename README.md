@@ -48,9 +48,9 @@ Media| 8 segundos | 15 segundos | 2
 Difícil| 5 segundos | 10 segundos | 0
 
 > ## Requisitos del juego 📋
->   ### Sistema operativo
+> ### Sistema operativo
 > - Windows
->   ### Librerias
+> ### Librerias
 > - Libreria CURL
 
 > ## Testing
