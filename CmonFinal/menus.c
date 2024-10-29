@@ -248,6 +248,7 @@ int menuComenzarJuego(){
     char opcion = '\0';
 
     printf("\nEs el turno del siguiente jugador...\n");
+    sleep(1);
 
     printf("\e[?25h"); // mostrar mouse
     fflush(stdout);
