@@ -2,7 +2,6 @@
 
 > Cmon Dice es un juego de memoria inspirado en el conocido "Simón Dice", en el que los jugadores deben recordar e ingresar secuencias de colores mostradas en pantalla. Los jugadores tienen un
 > tiempo limitado para memorizar y reproducir la secuencia.
-
 > ## Cómo Jugar 🕹️
 > **Iniciar el Juego** 🎮
 > 
@@ -50,6 +49,11 @@ Difícil| 5 segundos | 10 segundos | 0
 > ## Requisitos del juego 📋
 > ### Sistema operativo
 >   - Windows
-> ### Librerias
->   - Libreria CURL
+> ### Libreria CURL:
+> 1) Instalar Curl en Windows (https://curl.se/windows/)
+> 2) Descomprimir el zip y copiar la carpeta a una ubicación que no se modifique en el futuro
+> 3) Agregar dentro de PATH (como variable de entorno) la ubicación a la carpeta “bin”
+> 4) En el IDE: Settings > Compiler > Linker Settings: agregar ubicación a “lib\libcurl.dll.a”
+> 5) En el IDE: Settings > Compiler > Search directories > Compiler y Resource compiler: agregar ubicación a “include”
+> 6) En el IDE: Settings > Compiler > Search directories > Linker: agregar ubicación a “lib”
 
