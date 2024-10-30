@@ -155,10 +155,10 @@
 1730050007 source:c:\users\lenovo\onedrive\escritorio\unlam\2024\algoritmos\github\cmon_dice\cmonfinal\secuencia\secuencia.c
 	"secuencia.h"
 
-1730305315 source:c:\users\contt\onedrive\escritorio\tp estru cturas\cmon_dice\cmonfinal\cmon.c
+1730325401 source:c:\users\contt\onedrive\escritorio\tp estru cturas\cmon_dice\cmonfinal\cmon.c
 	"cmon.h"
 
-1730304224 c:\users\contt\onedrive\escritorio\tp estru cturas\cmon_dice\cmonfinal\cmon.h
+1730325469 c:\users\contt\onedrive\escritorio\tp estru cturas\cmon_dice\cmonfinal\cmon.h
 	<stdio.h>
 	<stdlib.h>
 	"estructurasDatos/cola/colaDinamica.h"
@@ -176,7 +176,7 @@
 
 1729978442 c:\users\contt\onedrive\escritorio\tp estru cturas\cmon_dice\cmonfinal\estructurasdatos\nodo.h
 
-1730305346 c:\users\contt\onedrive\escritorio\tp estru cturas\cmon_dice\cmonfinal\jugarturno.h
+1730327713 c:\users\contt\onedrive\escritorio\tp estru cturas\cmon_dice\cmonfinal\jugarturno.h
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -192,7 +192,7 @@
 	<string.h>
 	"../nodo.h"
 
-1730200489 c:\users\contt\onedrive\escritorio\tp estru cturas\cmon_dice\cmonfinal\secuencia\secuencia.h
+1730325401 c:\users\contt\onedrive\escritorio\tp estru cturas\cmon_dice\cmonfinal\secuencia\secuencia.h
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -216,7 +216,7 @@
 	<unistd.h>
 	<windows.h>
 
-1730305359 c:\users\contt\onedrive\escritorio\tp estru cturas\cmon_dice\cmonfinal\menu.h
+1730325784 c:\users\contt\onedrive\escritorio\tp estru cturas\cmon_dice\cmonfinal\menu.h
 	<stdio.h>
 	<stdlib.h>
 	"cmon.h"
@@ -228,10 +228,10 @@
 1729880207 source:c:\users\contt\onedrive\escritorio\tp estru cturas\cmon_dice\cmonfinal\estructurasdatos\lista\lista.c
 	"lista.h"
 
-1730305578 source:c:\users\contt\onedrive\escritorio\tp estru cturas\cmon_dice\cmonfinal\jugarturno.c
+1730328521 source:c:\users\contt\onedrive\escritorio\tp estru cturas\cmon_dice\cmonfinal\jugarturno.c
 	"jugarTurno.h"
 
-1730305057 source:c:\users\contt\onedrive\escritorio\tp estru cturas\cmon_dice\cmonfinal\main.c
+1730325784 source:c:\users\contt\onedrive\escritorio\tp estru cturas\cmon_dice\cmonfinal\main.c
 	"cmon.h"
 
 1729777521 source:c:\users\contt\onedrive\escritorio\tp estru cturas\cmon_dice\cmonfinal\secuencia\api.c
@@ -240,7 +240,7 @@
 1730200489 source:c:\users\contt\onedrive\escritorio\tp estru cturas\cmon_dice\cmonfinal\secuencia\hilocronometro.c
 	"hiloCronometro.h"
 
-1730305459 source:c:\users\contt\onedrive\escritorio\tp estru cturas\cmon_dice\cmonfinal\secuencia\secuencia.c
+1730325401 source:c:\users\contt\onedrive\escritorio\tp estru cturas\cmon_dice\cmonfinal\secuencia\secuencia.c
 	"secuencia.h"
 
 1730150868 source:c:\users\matia\documents\github\cmon_dice\cmonfinal\cmon.c
@@ -465,7 +465,7 @@
 1730148072 source:c:\users\matia\documents\github\cmon_dice\cmonfinal\interfaz\interfaz.c
 	"interfaz.h"
 
-1730200489 c:\users\contt\onedrive\escritorio\tp estru cturas\cmon_dice\cmonfinal\interfaz\interfaz.h
+1730325401 c:\users\contt\onedrive\escritorio\tp estru cturas\cmon_dice\cmonfinal\interfaz\interfaz.h
 	<stdio.h>
 	<stdlib.h>
 	<windows.h>
@@ -474,7 +474,7 @@
 
 1730200489 c:\users\contt\onedrive\escritorio\tp estru cturas\cmon_dice\cmonfinal\interfaz\colores.h
 
-1730304224 c:\users\contt\onedrive\escritorio\tp estru cturas\cmon_dice\cmonfinal\musica\musica.h
+1730325784 c:\users\contt\onedrive\escritorio\tp estru cturas\cmon_dice\cmonfinal\musica\musica.h
 	<stdio.h>
 	<windows.h>
 	<MMsystem.h>
@@ -482,9 +482,9 @@
 1730200489 source:c:\users\contt\onedrive\escritorio\tp estru cturas\cmon_dice\cmonfinal\interfaz\interfaz.c
 	"interfaz.h"
 
-1730305760 source:c:\users\contt\onedrive\escritorio\tp estru cturas\cmon_dice\cmonfinal\menus.c
+1730325784 source:c:\users\contt\onedrive\escritorio\tp estru cturas\cmon_dice\cmonfinal\menus.c
 	"menu.h"
 
-1730304224 source:c:\users\contt\onedrive\escritorio\tp estru cturas\cmon_dice\cmonfinal\musica\musica.c
+1730325401 source:c:\users\contt\onedrive\escritorio\tp estru cturas\cmon_dice\cmonfinal\musica\musica.c
 	"musica.h"
 

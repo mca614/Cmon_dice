@@ -35,7 +35,7 @@ void leer_cant_retroceso_valido(int *cant_retroceso, int vidas, int cant_letras_
 void generarSecuencia(t_lista *secuencia);
 void mostrarSecuencia(t_lista *secuencia, int tiempo_mostrar, int ronda , Accion accion);
 void mostrarRespuesta(t_lista *respuesta, Accion accion);
-void ingresarSecuencia(t_lista *respuesta, int tiempo_limite, int cant_max_ingreso, int *cant_letras_resp, int *es_tecla_esp); // actualizado con cronometro
+void ingresarSecuencia(t_lista *respuesta, int tiempo_limite, int cant_max_ingreso, int *cant_letras_resp, int *es_tecla_esp, int vidasJugador); // actualizado con cronometro
 /*********************************************************************************************************/
 
 void jugarTurno(tJugador *jugador, tDatosPartida *datos, Accion mostrar_sec, Accion mostrar_resp, Cmp cmp);

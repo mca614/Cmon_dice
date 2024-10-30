@@ -53,7 +53,7 @@ void mostrarRespuesta(t_lista *respuesta, Accion accion)
         mapLista(respuesta, NULL, accion);
 }
 
-void ingresarSecuencia(t_lista *respuesta, int tiempo_limite, int cant_max_ingreso, int *cant_letras_resp, int *es_tecla_esp)
+void ingresarSecuencia(t_lista *respuesta, int tiempo_limite, int cant_max_ingreso, int *cant_letras_resp, int *es_tecla_esp, int vidasJugador)
 {
     char letra;
     //datos del cronometro
@@ -74,7 +74,8 @@ void ingresarSecuencia(t_lista *respuesta, int tiempo_limite, int cant_max_ingre
         }
 
         letra = getch();
-        *es_tecla_esp = ES_TECLA_ESP(letra) && *cant_letras_resp ? 1 : 0;
+        *es_tecla_esp = ES_TECLA_ESP(letra) && *cant_letras_resp && vidasJugador != 0 ? 1 : 0;
+
         if(ES_COLOR(letra)){
             printf("%c ", A_MAYUS(letra));
         }
@@ -180,7 +181,7 @@ void jugarTurno(tJugador* jugador, tDatosPartida *datos, Accion mostrar_sec, Acc
         mostrarSecuencia(&secuencia, datos->tiempoSecuencia, ronda, mostrar_sec);
 
         printf("\nIngresa la secuencia: ");
-        ingresarSecuencia(&respuesta, datos->tiempoRespuesta, ronda, &cant_letras_resp, &es_tecla_esp);
+        ingresarSecuencia(&respuesta, datos->tiempoRespuesta, ronda, &cant_letras_resp, &es_tecla_esp, jugador->vidas);
 
         /// ASIGNAR PUNTAJE Y ACTUALIZAR VIDAS
 
@@ -198,7 +199,7 @@ void jugarTurno(tJugador* jugador, tDatosPartida *datos, Accion mostrar_sec, Acc
                 mostrarSecuencia(&secuencia, datos->tiempoSecuencia, ronda, mostrar_sec);
 
                 printf("\nIngresa la secuencia: ");
-                ingresarSecuencia(&respuesta, datos->tiempoRespuesta, ronda, &cant_letras_resp, &es_tecla_esp);
+                ingresarSecuencia(&respuesta, datos->tiempoRespuesta, ronda, &cant_letras_resp, &es_tecla_esp, jugador->vidas);
                 utilizo_vidas = 1;
             }
             else /// LA SECUENCIA ERA INCORRECTA
@@ -224,7 +225,7 @@ void jugarTurno(tJugador* jugador, tDatosPartida *datos, Accion mostrar_sec, Acc
                     mostrarSecuencia(&secuencia, datos->tiempoSecuencia, ronda, mostrar_sec);
 
                     printf("\nIngresa la secuencia: ");
-                    ingresarSecuencia(&respuesta, datos->tiempoRespuesta, ronda, &cant_letras_resp, &es_tecla_esp);
+                    ingresarSecuencia(&respuesta, datos->tiempoRespuesta, ronda, &cant_letras_resp, &es_tecla_esp, jugador->vidas);
                 }
                 else
                 {
@@ -235,7 +236,7 @@ void jugarTurno(tJugador* jugador, tDatosPartida *datos, Accion mostrar_sec, Acc
                     printf("Ingrese la secuencia faltante:\n");
                     mostrarRespuesta(&respuesta, mostrar_resp);
 
-                    ingresarSecuencia(&respuesta, datos->tiempoRespuesta, ronda-cant_letras_resp, &cant_letras_resp, &es_tecla_esp);
+                    ingresarSecuencia(&respuesta, datos->tiempoRespuesta, ronda-cant_letras_resp, &cant_letras_resp, &es_tecla_esp, jugador->vidas);
                 }
 
                 jugador->vidas-=cant_retroceso;
