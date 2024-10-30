@@ -7,7 +7,7 @@ void bienvenidoSimonDice() {
     printf("=============================================\n");
     printf("\n");
 
-     printf("\033[1;37;41m   [ R ]   \033[0m");
+    printf("\033[1;37;41m   [ R ]   \033[0m");
     printf("\033[1;37;43m   [ A ]   \033[0m");
     printf("\033[1;37;43m   [ N ]   \033[0m");
     printf("\033[1;37;42m   [ V ]   \033[0m");
@@ -59,7 +59,7 @@ int ingresarJugador(tJugador *jugador, unsigned *cantidadJugadores){
 
     *ptr = '\0';
 
-    printf("\nIngrese nombre del jugador o escape para cancelar: ");
+    printf("\nIngrese nombre del jugador o\nescape para cancelar: ");
     letra = getch();
     while(longMemoria <= MAX_L_JUGADOR + 1  && letra != TECLA_ESCAPE && letra != TECLA_ENTER){
 
@@ -84,7 +84,7 @@ int ingresarJugador(tJugador *jugador, unsigned *cantidadJugadores){
             nombre = (char*)realloc(nombre, longMemoria);
 
             system("cls");
-            printf("\nIngrese nombre del jugador o escape para cancelar: ");
+            printf("\nIngrese nombre del jugador o\nescape para cancelar: ");
             printf("%s", nombre);
         }
 
@@ -148,7 +148,7 @@ int cargarDificultad(tDatosPartida *datosPartida){
 
     if(!archivoConfDificultad){
         printf("\nNo se logro abrir el archivo\n"
-               "No se pudo obtener configuraciones de dificultad...\n");
+               "No se pudo obtener configuraciones\nde dificultad...\n");
         return 0;
     }
 
