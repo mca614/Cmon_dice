@@ -35,7 +35,7 @@ void jugarPartida(void *jugador, void *extra){
 
     if(menuComenzarJuego(*((tJugador*)jugador))){
         system("cls");
-
+        system("pause");
         jugarTurno(((tJugador*)jugador), datos, mostrarLetraSecuencia, mostrarLetraRespuesta, cmp_letras);
 
         if(((tJugador*)jugador)->puntuacion > datos->maximaPuntuacion)

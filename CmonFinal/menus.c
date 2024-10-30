@@ -32,8 +32,10 @@ char menuConError(const char *msj, const char *opc)
         opcElegida = getch();
         fflush(stdin);
 
-        if(ES_DIGITO_VALIDO(opcElegida))
+        if(ES_DIGITO_VALIDO(opcElegida)){
             printf("%c", opcElegida);
+            Sleep(600);
+        }
 
         system("cls");
     }
@@ -46,69 +48,15 @@ int obtenerValorAleatorio(int menorValor, int mayorValor) {
     return (rand() % (mayorValor - menorValor + 1)) + menorValor;
 }
 
-int ingresarJugador(tJugador *jugador, unsigned *cantidadJugadores){
-    char letra;
-    char *nombre, *ptr;
-    int longMemoria = 1;
+void ingresarJugador(tJugador *jugador, unsigned *cantidadJugadores){
+    char *pNombre = jugador->nombre;
 
-    nombre = (char*)malloc(longMemoria);
-    ptr = nombre;
+    fgets(pNombre, MAX_L_JUGADOR, stdin);
+    pNombre = strrchr(pNombre, '\n');
+    *pNombre = '\0';
 
-    if(!ptr)
-        return 0;
-
-    *ptr = '\0';
-
-    printf("\nIngrese nombre del jugador o\nescape para cancelar: ");
-    letra = getch();
-    while(longMemoria <= MAX_L_JUGADOR + 1  && letra != TECLA_ESCAPE && letra != TECLA_ENTER){
-
-        if(longMemoria <= MAX_L_JUGADOR && ES_LETRA(letra)){
-            printf("%c", letra);
-            *ptr = letra;
-            longMemoria++;
-            nombre = (char*)realloc(nombre, longMemoria);
-
-            if(!nombre)
-                return 0;
-
-            ptr++;
-            *ptr = '\0';
-        }
-
-        else if(longMemoria > 1 && letra == TECLA_RETRO){
-            ptr--;
-            *ptr = '\0';
-
-            longMemoria--;
-            nombre = (char*)realloc(nombre, longMemoria);
-
-            system("cls");
-            printf("\nIngrese nombre del jugador o\nescape para cancelar: ");
-            printf("%s", nombre);
-        }
-
-        letra = getch();
-
-        if(longMemoria > MAX_L_JUGADOR){
-            printf("\nSe excede el largo maximo");
-            printf("\nIngrese nombre del jugador o\nescape para cancelar: ");
-            printf("%s", nombre);
-        }
-
-    }
-
+    jugador->id = obtenerValorAleatorio(*cantidadJugadores * -1, *cantidadJugadores);
     system("cls");
-
-    if(letra == TECLA_ENTER && strlen(nombre)){
-        jugador->id = obtenerValorAleatorio(*cantidadJugadores * -1, *cantidadJugadores);
-        strcpy(jugador->nombre, nombre);
-        longMemoria = 1;
-    }else
-        longMemoria = 0;
-
-    free(nombre);
-    return longMemoria ? 1 : 0;
 }
 
 void menuIngresoJugadores(t_lista *listaJugadores, unsigned *cantidadJugadores){
@@ -129,11 +77,13 @@ void menuIngresoJugadores(t_lista *listaJugadores, unsigned *cantidadJugadores){
 
             system("cls");
 
-            if(ingresarJugador(&jugador, cantidadJugadores)){
-                agregarOrdenado(listaJugadores, &jugador, 1, sizeof(tJugador), cmpJugadores);
-                (*cantidadJugadores)++;
-            }else
-                printf("\nCancela ingreso...");
+            do{
+                printf("\nIngrese nombre del jugador: ");
+                ingresarJugador(&jugador, cantidadJugadores);
+            }while(strcmpi(jugador.nombre, "") == 0);
+
+            agregarOrdenado(listaJugadores, &jugador, 1, sizeof(tJugador), cmpJugadores);
+            (*cantidadJugadores)++;
         }
 
     }while(opcion != '2');
@@ -209,8 +159,9 @@ int menuDificultad(tDatosPartida *datosPartida){
 int menuComenzarJuego(){
     char opcion = '\0';
 
+    system("cls");
     printf("\nEs el turno del siguiente jugador...\n");
-    sleep(1);
+    sleep(2);
 
     printf("\e[?25h"); // mostrar mouse
     fflush(stdout);
@@ -222,4 +173,3 @@ int menuComenzarJuego(){
 
     return opcion == '1' ? 1 : 0;
 }
-

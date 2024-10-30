@@ -27,7 +27,7 @@ int cmp_letras( void *a, void *b)
 void mostrarSecuencia(t_lista *secuencia, int tiempo_mostrar, int ronda, Accion accion)
 {
     int tiempo;
-    float aux = 0;
+    float tiempoAux = 0;
 
     printf("\e[?25l"); // Ocultar mouse
     fflush(stdout);
@@ -38,11 +38,11 @@ void mostrarSecuencia(t_lista *secuencia, int tiempo_mostrar, int ronda, Accion 
 
     sleep(1);
 
-    aux = tiempo_mostrar/(ronda);
-    aux = aux > 1.5 ? 1.5 : aux;
-    aux = aux < 0.5 ? 0.5 : aux;
+    tiempoAux = tiempo_mostrar/(ronda);
+    tiempoAux = tiempoAux > 1.5 ? 1.5 : tiempoAux;
+    tiempoAux = tiempoAux < 0.5 ? 0.5 : tiempoAux;
 
-    tiempo = (int)(aux * 1000);
+    tiempo = (int)(tiempoAux * 1000);
     mapLista(secuencia, &tiempo, accion); /// agregar cadena que guarda la secuencia mostrada
 }
 
@@ -142,7 +142,7 @@ void listaAcadena (t_lista* pl, char* cad, unsigned cantBytes)
 void jugarTurno(tJugador* jugador, tDatosPartida *datos, Accion mostrar_sec, Accion mostrar_resp, Cmp cmp)
 {
     t_lista secuencia, respuesta;
-    int turnoTerminado = 0, ronda = 1, utilizo_vidas = 0, cant_retroceso, cant_letras_resp = 0, es_tecla_esp = 0;
+    int turnoTerminado = 0, ronda = 1, utilizo_vidas = 0, vidasUsadas = 0, cant_retroceso, cant_letras_resp = 0, es_tecla_esp = 0;
     tRonda rondasJugador; /// Se usa para agregar datos de las rondas (secuencia, respuesta, vidasUsadas, puntosRonda, puntosTotales) a la cola
     tCola colaRondas; /// Cola que acumula las rondas de los jugadores
 
@@ -160,7 +160,7 @@ void jugarTurno(tJugador* jugador, tDatosPartida *datos, Accion mostrar_sec, Acc
 
     printf("%s, es tu turno! Vidas: %d\n", jugador->nombre, jugador->vidas);
 
-    sleep(1);
+    sleep(2);
     system("cls");
 
     while(jugador->vidas>=0 && !turnoTerminado)
@@ -199,13 +199,12 @@ void jugarTurno(tJugador* jugador, tDatosPartida *datos, Accion mostrar_sec, Acc
 
                 printf("\nIngresa la secuencia: ");
                 ingresarSecuencia(&respuesta, datos->tiempoRespuesta, ronda, &cant_letras_resp, &es_tecla_esp);
-
                 utilizo_vidas = 1;
             }
             else /// LA SECUENCIA ERA INCORRECTA
             {
                 if(es_tecla_esp)
-                    printf("Presiono la tecla especial!\n"); ///aaaa
+                    printf("Presiono la tecla especial!\n");
                 else
                     printf("Secuencia incorrecta\n");
                 mostrarRespuesta(&respuesta, mostrar_resp);
@@ -234,12 +233,13 @@ void jugarTurno(tJugador* jugador, tDatosPartida *datos, Accion mostrar_sec, Acc
 
                     system("cls");
                     printf("Ingrese la secuencia faltante:\n");
-
                     mostrarRespuesta(&respuesta, mostrar_resp);
+
                     ingresarSecuencia(&respuesta, datos->tiempoRespuesta, ronda-cant_letras_resp, &cant_letras_resp, &es_tecla_esp);
                 }
 
                 jugador->vidas-=cant_retroceso;
+                vidasUsadas += cant_retroceso;
                 utilizo_vidas = 1;
             }
 
@@ -253,14 +253,12 @@ void jugarTurno(tJugador* jugador, tDatosPartida *datos, Accion mostrar_sec, Acc
             {
                 printf("Secuencia correcta!\n+1 puntos por usar vidas\n");
                 jugador->puntuacion += 1;
-
                 rondasJugador.puntosRonda = 1;
             }
             else
             {
                 printf("Secuencia correcta!\n+3 puntos por no usar vidas\n");
                 jugador->puntuacion += 3;
-
                 rondasJugador.puntosRonda = 3;
             }
 
@@ -276,29 +274,203 @@ void jugarTurno(tJugador* jugador, tDatosPartida *datos, Accion mostrar_sec, Acc
             rondasJugador.puntosRonda = 0;
         }
 
-        /// Copia secuencia generada a cadena (rondasJugador.secuencia)
-        listaAcadena(&secuencia, rondasJugador.secuencia, sizeof(char));
-
         /// Copia respuesta del jugador a cadena (rondasJugador.respuesta)
         listaAcadena(&respuesta, rondasJugador.respuesta, sizeof(char));
 
-        rondasJugador.vidasUsadas = datos->cantVidas - jugador->vidas;
+        /// Copia secuencia generada a cadena (rondasJugador.secuencia)
+        listaAcadena(&secuencia, rondasJugador.secuencia, sizeof(char));
+
+        rondasJugador.vidasUsadas = vidasUsadas;
+        vidasUsadas = 0;
         rondasJugador.id = jugador->id;
 
         /// Acolar en colaRondas datos de la ronda
         ponerEnCola(&colaRondas, sizeof(tRonda), &rondasJugador);
-        ronda++;
+
+        /// Vaciar lista respuesta
         vaciarLista(&respuesta);
+
+        ronda++;
     }
 
-    if(turnoTerminado==1)
+    if(turnoTerminado==1){
         printf("\nSECUENCIA INCORRECTA Y SE QUEDO SIN VIDAS.\nPUNTUACION FINAL: %d\n", jugador->puntuacion);
+        sleep(2);
+    }
 
     /// Desacolar de colaRondas en informe
     exportarRondasJugadorHaciaInforme(datos->archInforme, &colaRondas);
+
+    /// Vaciar lista secuencia
+    vaciarLista(&secuencia);
 
     /// Por si faltó vaciar la cola
     vaciarCola(&colaRondas);
     fflush(stdin);
 }
+
+
+
+//void jugarTurno(tJugador* jugador, tDatosPartida *datos, Accion mostrar_sec, Accion mostrar_resp, Cmp cmp)
+//{
+//    t_lista secuencia, respuesta;
+//    int turnoTerminado = 0, ronda = 1, utilizo_vidas = 0, cant_retroceso, cant_letras_resp = 0, es_tecla_esp = 0;
+//    tRonda rondasJugador; /// Se usa para agregar datos de las rondas (secuencia, respuesta, vidasUsadas, puntosRonda, puntosTotales) a la cola
+//    tCola colaRondas; /// Cola que acumula las rondas de los jugadores
+//
+//    centrarVentanaConsola();
+//    ajustarConsola(80,38,45,25);
+//    colorFondo(VIOLETA_4, VERDE_MEDIO);
+//
+//    crearLista(&secuencia);
+//    crearLista(&respuesta);
+//
+//    rondasJugador.puntosTotales = 0;
+//
+//    printf("\e[?25l"); // Ocultar mouse
+//    fflush(stdout);
+//
+//    printf("%s, es tu turno! Vidas: %d\n", jugador->nombre, jugador->vidas);
+//
+//    sleep(1);
+//    system("cls");
+//
+//    while(jugador->vidas>=0 && !turnoTerminado)
+//    {
+//        utilizo_vidas = 0;
+//        cant_letras_resp = 0;
+//        datos->tiempoSecuencia++;
+//
+//        if(!(obtenerSecuencia(&secuencia)))
+//            return;
+//
+//        printf("\n---------------- Ronda: %d -----------------\n", ronda);
+//
+//        printf("Vidas: %d\n", jugador->vidas);
+//
+//        sleep(1);
+//        mostrarSecuencia(&secuencia, datos->tiempoSecuencia, ronda, mostrar_sec);
+//
+//        printf("\nIngresa la secuencia: ");
+//        ingresarSecuencia(&respuesta, datos->tiempoRespuesta, ronda, &cant_letras_resp, &es_tecla_esp);
+//
+//        /// ASIGNAR PUNTAJE Y ACTUALIZAR VIDAS
+//
+//        while(jugador->vidas>0 && !esSecuenciaCorrecta(&secuencia, &respuesta, cmp))
+//        {
+//            printf("\nVidas: %d\n", jugador->vidas);
+//            if(cant_letras_resp == 0) /// NO INGRESÓ NADA
+//            {
+//                system("cls");
+//
+//                jugador->vidas--;
+//                printf("No ingreso ninguna secuencia.\nSe le restara una vida.\nVidas:%d\nSe mostrara nuevamente la secuencia\n",jugador->vidas);
+//
+//                sleep(2);
+//                mostrarSecuencia(&secuencia, datos->tiempoSecuencia, ronda, mostrar_sec);
+//
+//                printf("\nIngresa la secuencia: ");
+//                ingresarSecuencia(&respuesta, datos->tiempoRespuesta, ronda, &cant_letras_resp, &es_tecla_esp);
+//
+//                utilizo_vidas = 1;
+//            }
+//            else /// LA SECUENCIA ERA INCORRECTA
+//            {
+//                if(es_tecla_esp)
+//                    printf("Presiono la tecla especial!\n"); ///aaaa
+//                else
+//                    printf("Secuencia incorrecta\n");
+//                mostrarRespuesta(&respuesta, mostrar_resp);
+//                printf("\nSe le restaran las vidas en base a la\ncantidad de jugadas que desee retroceder"
+//                       "\nIngrese un entero de 1 a %d para retroceder",MINIMO(cant_letras_resp,jugador->vidas));
+//                if(jugador->vidas > cant_letras_resp)
+//                    printf("\nO puede ingresar %d para volver a ver la secuencia\n"
+//                           "e ingresar una respuesta nueva (-%d vidas)", cant_letras_resp+1, cant_letras_resp+1);
+//                printf("\n---->: ");
+//                leer_cant_retroceso_valido(&cant_retroceso, jugador->vidas, cant_letras_resp);
+//
+//                if(cant_retroceso>cant_letras_resp)///le tiene que mostrar la sec otra vez e ingresar de nuevo
+//                {
+//                    vaciarLista(&respuesta);
+//                    cant_letras_resp = 0;
+//                    printf("Le mostraremos nuevamente la secuencia:\n");
+//                    mostrarSecuencia(&secuencia, datos->tiempoSecuencia, ronda, mostrar_sec);
+//
+//                    printf("\nIngresa la secuencia: ");
+//                    ingresarSecuencia(&respuesta, datos->tiempoRespuesta, ronda, &cant_letras_resp, &es_tecla_esp);
+//                }
+//                else
+//                {
+//                    eliminarNnodosLista(&respuesta, cant_retroceso, cant_letras_resp);
+//                    cant_letras_resp -= cant_retroceso;
+//
+//                    system("cls");
+//                    printf("Ingrese la secuencia faltante:\n");
+//
+//                    mostrarRespuesta(&respuesta, mostrar_resp);
+//                    ingresarSecuencia(&respuesta, datos->tiempoRespuesta, ronda-cant_letras_resp, &cant_letras_resp, &es_tecla_esp);
+//                }
+//
+//                jugador->vidas-=cant_retroceso;
+//                utilizo_vidas = 1;
+//            }
+//
+//            system("cls");
+//        }
+//
+//        /// SI LA RESPUESTA ES CORRECTA
+//        if (esSecuenciaCorrecta(&secuencia, &respuesta, cmp))
+//        {
+//            if(utilizo_vidas)
+//            {
+//                printf("Secuencia correcta!\n+1 puntos por usar vidas\n");
+//                jugador->puntuacion += 1;
+//
+//                rondasJugador.puntosRonda = 1;
+//            }
+//            else
+//            {
+//                printf("Secuencia correcta!\n+3 puntos por no usar vidas\n");
+//                jugador->puntuacion += 3;
+//
+//                rondasJugador.puntosRonda = 3;
+//            }
+//
+//            rondasJugador.puntosTotales += rondasJugador.puntosRonda;
+//            sleep(2);
+//            system("cls");
+//        }
+//        else
+//        {
+//            if(jugador->vidas==0 && !esSecuenciaCorrecta(&secuencia, &respuesta, cmp))
+//                turnoTerminado=1;
+//
+//            rondasJugador.puntosRonda = 0;
+//        }
+//
+//        /// Copia secuencia generada a cadena (rondasJugador.secuencia)
+//        listaAcadena(&secuencia, rondasJugador.secuencia, sizeof(char));
+//
+//        /// Copia respuesta del jugador a cadena (rondasJugador.respuesta)
+//        listaAcadena(&respuesta, rondasJugador.respuesta, sizeof(char));
+//
+//        rondasJugador.vidasUsadas = datos->cantVidas - jugador->vidas;
+//        rondasJugador.id = jugador->id;
+//
+//        /// Acolar en colaRondas datos de la ronda
+//        ponerEnCola(&colaRondas, sizeof(tRonda), &rondasJugador);
+//        ronda++;
+//        vaciarLista(&respuesta);
+//    }
+//
+//    if(turnoTerminado==1)
+//        printf("\nSECUENCIA INCORRECTA Y SE QUEDO SIN VIDAS.\nPUNTUACION FINAL: %d\n", jugador->puntuacion);
+//
+//    /// Desacolar de colaRondas en informe
+//    exportarRondasJugadorHaciaInforme(datos->archInforme, &colaRondas);
+//
+//    /// Por si faltó vaciar la cola
+//    vaciarCola(&colaRondas);
+//    fflush(stdin);
+//}
 

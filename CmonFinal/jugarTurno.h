@@ -6,7 +6,7 @@
                     ||(c)=='a' || (c)=='n' || (c)=='r' || (c)=='v') ? 1 : 0)
 #define A_MAYUS(l) ((l) >= 'a' && (l) <= 'z' ? (l) - 32 : (l))
 
-#define TECLA_ESP TECLA_RETRO
+#define TECLA_ESP 8 /// Tecla retroceso (backspace)
 #define ES_TECLA_ESP(c) ((c) == TECLA_ESP ? 1 : 0)
 
 
