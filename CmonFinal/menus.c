@@ -92,7 +92,7 @@ int ingresarJugador(tJugador *jugador, unsigned *cantidadJugadores){
 
         if(longMemoria > MAX_L_JUGADOR){
             printf("\nSe excede el largo maximo");
-            printf("\nIngrese nombre del jugador o escape para cancelar: ");
+            printf("\nIngrese nombre del jugador o\nescape para cancelar: ");
             printf("%s", nombre);
         }
 
