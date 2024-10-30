@@ -35,7 +35,7 @@ void jugarPartida(void *jugador, void *extra){
 
     if(menuComenzarJuego(*((tJugador*)jugador))){
         system("cls");
-
+        system("pause");
         jugarTurno(((tJugador*)jugador), datos, mostrarLetraSecuencia, mostrarLetraRespuesta, cmp_letras);
 
         if(((tJugador*)jugador)->puntuacion > datos->maximaPuntuacion)
@@ -47,7 +47,7 @@ void jugarPartida(void *jugador, void *extra){
     }
 }
 
-FILE* generarArchivoDeInforme(const char* nombrePrefijo)
+FILE* generarArchivoDeInforme(const char* nombrePrefijo, char* nomArchGenerado)
 {
     time_t tiempo;
     struct tm* tiempoActual;
@@ -58,7 +58,7 @@ FILE* generarArchivoDeInforme(const char* nombrePrefijo)
     tiempoActual = localtime(&tiempo);
     sprintf(nombreArchivo,"%s_%d-%02d-%02d-%02d-%02d.txt",nombrePrefijo,tiempoActual->tm_year+1900,tiempoActual->tm_mon+1,tiempoActual->tm_mday,tiempoActual->tm_hour,tiempoActual->tm_min);
     pf = fopen(nombreArchivo,"wt");
-
+    strcpy(nomArchGenerado,nombreArchivo);
     return pf;
 }
 void exportarRondasJugadorHaciaInforme(FILE* archInforme, tCola* colaTurno)

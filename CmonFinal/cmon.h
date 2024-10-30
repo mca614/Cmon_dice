@@ -1,8 +1,9 @@
 #ifndef CMON_H_INCLUDED
 #define CMON_H_INCLUDED
 
-#define MAX_L_JUGADOR 10
-#define MAX_L_SEC 50
+#define MAX_L_JUGADOR 20
+#define MAX_L_SEC 100
+
 #define MAX_TAM_PATH 50
 #define MAX_LINEA 1024
 
@@ -20,7 +21,7 @@ typedef struct{
 
 typedef struct{
     int id;
-    char nombre[MAX_L_JUGADOR + 1];
+    char nombre[MAX_L_JUGADOR+1];
     int vidas;
     int puntuacion;
 }tJugador;
@@ -47,7 +48,7 @@ int cmpJugadores(void *a, void *b);
 void cargarMostrarDatosJugador(void *v, void *extra);
 
 void jugarPartida(void *jugador, void *extra);
-FILE* generarArchivoDeInforme(const char* nombrePrefijo);
+FILE* generarArchivoDeInforme(const char* nombrePrefijo, char* nomArchGenerado);
 void exportarRondasJugadorHaciaInforme(FILE* archInforme, tCola* colaTurno);
 void exportarGanadoresHaciaInforme(FILE* archInforme, t_lista* ganadores);
 

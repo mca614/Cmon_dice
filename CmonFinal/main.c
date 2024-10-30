@@ -5,11 +5,10 @@ int main()
     tJugador jugadorAux;
     t_lista listaJugadores;
     tDatosPartida datosPartida;
+    char nombreArchivo[MAX_TAM_PATH];
     char opcion = '0';
     unsigned eligeDificultad = 0;
     unsigned cantidadJugadores = 0;
-
-    //opc=menuPrincipal(&listaJugadores,&cantidadJugadores);
 
     crearLista(&listaJugadores);
     centrarVentanaConsola();
@@ -18,8 +17,22 @@ int main()
     bienvenidoSimonDice();
     colorFondo(VIOLETA_4, VIOLETA_0);
 
+    opcion = menuConError(
+        "\n==============================================\n"
+        "\t\tCMON DICE\n"
+        "==============================================\n"
+        "[A] Jugar\n"
+        "[B] Salir\n"
+        "Seleccione una opcion: ", "ABab"
+    );
+
+    if(opcion == 'B' || opcion == 'b'){
+        printf("\nSaliendo...\n");
+        return 0;
+    }
+
     do{
-        /// Menú ingreso de jugadores
+        /// Menï¿½ ingreso de jugadores
         menuIngresoJugadores(&listaJugadores, &cantidadJugadores);
 
         if(siListaVacia(&listaJugadores)){
@@ -36,7 +49,7 @@ int main()
         return 0;
     }
 
-    /// Menú dificultad
+    /// Menï¿½ dificultad
     do{
         eligeDificultad = menuDificultad(&datosPartida);
 
@@ -80,6 +93,8 @@ int main()
     /// Muestra las configuraciones del juego
     printf(
         "\nInstrucciones para jugar...\n"
+        "\nEscriba la secuencia mostrada usando las teclas A, R, V, N.\n"
+        "Para volver n letras durante el ingreso apriete la tecla retroceso o backspace.\n"
         "\nConfiguraciones de dificultad...\n"
         "\nTiempo en que se muestra secuencia: %u"
         "\nTiempo que tiene el jugador para contestar: %u"
@@ -91,10 +106,11 @@ int main()
     system("pause");
 
     /// Generar archivo informe
-    datosPartida.archInforme = generarArchivoDeInforme("informe.txt");
+    /// Debe estar creada la carpeta historial
+    datosPartida.archInforme = generarArchivoDeInforme("historialPartidas/informe-juego", nombreArchivo);
 
-    /// Reproducir Musica (VERIFICAR QUE -lwinmm ESTÉ AGREGADO COMO PARÁMETRO EN BUILD OPTIONS > LINKER SETTINGS > OTHER LINK OPTIONS
-    reproducirMusica(MUSICA7);
+    /// Reproducir Musica (VERIFICAR QUE -lwinmm ESTï¿½ AGREGADO COMO PARï¿½METRO EN BUILD OPTIONS > LINKER SETTINGS > OTHER LINK OPTIONS
+    reproducirMusica(MUSICA3);
 
     colorFondo(VIOLETA_4, VERDE_CLARO);
     /// Jugar partidas
@@ -130,8 +146,11 @@ int main()
     else
         printf("\nNo hubo ganadores\n");
 
-    /// Cerrar archivo informe
+    sleep(3);
+
+    /// Cerrar archivo informe y Liberar recursos de archivo mp3
     fclose(datosPartida.archInforme);
+    cerrarMusica();
 
     return 0;
 }

@@ -14,4 +14,5 @@
 #define MUSICA7 "musica/cvh.mp3"
 
 void reproducirMusica(const char* musica);
+void cerrarMusica(); /// ASEGURA QUE SE LIBEREN LOS RECURSOS UTILIZADOS POR MCI
 #endif // MUSICA_H_INCLUDED

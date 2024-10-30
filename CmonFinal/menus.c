@@ -1,9 +1,8 @@
 #include "menu.h"
 
 void bienvenidoSimonDice() {
-    system("cls");
-
-    printf("=============================================\n");
+    system("cls"); // Usa "cls" si estï¿½s en Windows
+    printf("\n=============================================\n");
     printf("          Bienvenido a Simon Dice       \n");
     printf("=============================================\n");
     printf("\n");
@@ -18,31 +17,6 @@ void bienvenidoSimonDice() {
     system("cls");
     //fflush(stdin);
 }
-
-// int menuPrincipal(t_lista* listaJugadores,unsigned* cantidadJugadores)
-// {
-//    int opc;
-//    do{
-//        system("cls");
-//        printf("\n==============================================\n"
-//                            "\t\tCMON DICE\n"
-//                "==============================================\n"
-//                    "\n1. Jugar"
-//                    "\n2. Salir"
-//                    "\nElija una opcion:");
-//        scanf("%d", &opc);
-//        if(opc==1)
-//             menuIngresoJugadores(listaJugadores, cantidadJugadores);
-//        else{
-//            if(opc!=2)
-//            {
-//                puts("\n ERROR INGRESE VALOR NUEVAMENTE");
-//                system("pause");
-//            }
-//            }
-//    }while(opc<1||opc>2);
-//    return opc;
-//}
 
 char menuConError(const char *msj, const char *opc)
 {
@@ -59,8 +33,10 @@ char menuConError(const char *msj, const char *opc)
         opcElegida = getch();
         fflush(stdin);
 
-        if(ES_DIGITO_VALIDO(opcElegida))
+        if(ES_DIGITO_VALIDO(opcElegida)){
             printf("%c", opcElegida);
+            Sleep(600);
+        }
 
         system("cls");
     }
@@ -164,14 +140,19 @@ void menuIngresoJugadores(t_lista *listaJugadores, unsigned *cantidadJugadores){
                               , "12");
 
         if(opcion == '1'){
+            do{
+                system("cls");
 
-            system("cls");
+                printf("\nIngrese nombre del jugador o salir para cancelar el ingreso: ");
+                ingresarJugador(&jugador, cantidadJugadores);
+            }while(strcmpi(jugador.nombre, "") == 0 && strstr(jugador.nombre, "salir") == NULL);
 
-            if(ingresarJugador(&jugador, cantidadJugadores)){
+            if(strstr(jugador.nombre, "salir") == NULL){
                 agregarOrdenado(listaJugadores, &jugador, 1, sizeof(tJugador), cmpJugadores);
                 (*cantidadJugadores)++;
-            }else
-                printf("\nCancela ingreso...");
+            }
+            else
+                printf("\nSe cancela el ingreso...");
         }
 
     }while(opcion != '2');
@@ -186,12 +167,12 @@ int cargarDificultad(tDatosPartida *datosPartida){
 
     if(!archivoConfDificultad){
         printf("\nNo se logro abrir el archivo\n"
-               "No se pudo obtener configuraciones de dificultad...\n");
+               "No se pudo obtener configuraciones\nde dificultad...\n");
         return 0;
     }
 
     while(!resultadoBusquedaDificultad && fgets(linea, MAX_LINEA, archivoConfDificultad)){
-        /// Se busca en el archivo config línea a línea (F | 20 | 20 | 5) el primer caracter
+        /// Se busca en el archivo config lï¿½nea a lï¿½nea (F | 20 | 20 | 5) el primer caracter
         resultadoBusquedaDificultad = *linea == datosPartida->dificultad ? 1 : 0;
 
         if(resultadoBusquedaDificultad){
@@ -247,8 +228,9 @@ int menuDificultad(tDatosPartida *datosPartida){
 int menuComenzarJuego(){
     char opcion = '\0';
 
+    system("cls");
     printf("\nEs el turno del siguiente jugador...\n");
-    sleep(1);
+    sleep(2);
 
     printf("\e[?25h"); // mostrar mouse
     fflush(stdout);
@@ -260,4 +242,3 @@ int menuComenzarJuego(){
 
     return opcion == '1' ? 1 : 0;
 }
-

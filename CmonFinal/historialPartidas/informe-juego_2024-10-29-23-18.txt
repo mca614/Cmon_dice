@@ -1,0 +1,12 @@
+Jugador 1
+-|-|0|0
+Puntos obtenidos: 0
+
+Jugador 2
+A|A|0|3
+AA|RR|2|0
+Puntos obtenidos: 3
+
+================ GANADORES ===============
+-------NOMBRE JUGADOR | PUNTUACION--------
+Matias|3

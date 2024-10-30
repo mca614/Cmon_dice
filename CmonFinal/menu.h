@@ -11,6 +11,8 @@
 #define TECLA_ENTER 13
 #define TECLA_RETRO 8
 
+#define ES_DIGITO_VALIDO(l) ((l) >= '1' && (l) <= '9') || ((l) >= 'a' && (l) <= 'z')
+
 void bienvenidoSimonDice();
 int menuPrincipal(t_lista* listaJugadores,unsigned* cantidadJugadores);
 char menuConError(const char *msj, const char *opc);

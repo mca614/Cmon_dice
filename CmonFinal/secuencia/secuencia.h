@@ -11,15 +11,9 @@
 #include "../interfaz/interfaz.h"
 
 char seleccionarLetra (char* letras);
-
 int obtenerSecuencia(t_lista* plSecuencia);
-
 int mostrarSecuencia_ (t_lista* plSecuencia, unsigned cantLetras, unsigned tiempoBase);
-
-//int mostrarSecuencia (t_lista* plSecuencia, unsigned cantLetras, unsigned tiempoBase, void accion (void* a, void* b)); // funcion que se va a usa en el juego
-
 void mostrarLetraSecuencia ( void * dato, void * cond);
-
 void mostrarLetra_ ( void * dato, void * cond);
 
 #endif // SECUENCIA_H_INCLUDED
