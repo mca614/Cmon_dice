@@ -18,6 +18,9 @@ int main()
     colorFondo(VIOLETA_4, VIOLETA_0);
 
     opcion = menuConError(
+        "\n==============================================\n"
+        "\t\tCMON DICE\n"
+        "==============================================\n"
         "[A] Jugar\n"
         "[B] Salir\n"
         "Seleccione una opcion: ", "ABab"
@@ -90,6 +93,8 @@ int main()
     /// Muestra las configuraciones del juego
     printf(
         "\nInstrucciones para jugar...\n"
+        "\nEscriba la secuencia mostrada usando las teclas A, R, V, N.\n"
+        "Para volver n letras durante el ingreso apriete la tecla retroceso o backspace.\n"
         "\nConfiguraciones de dificultad...\n"
         "\nTiempo en que se muestra secuencia: %u"
         "\nTiempo que tiene el jugador para contestar: %u"
@@ -140,6 +145,8 @@ int main()
     }
     else
         printf("\nNo hubo ganadores\n");
+
+    sleep(3);
 
     /// Cerrar archivo informe y Liberar recursos de archivo mp3
     fclose(datosPartida.archInforme);

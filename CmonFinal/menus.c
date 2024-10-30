@@ -2,7 +2,7 @@
 
 void bienvenidoSimonDice() {
     system("cls"); // Usa "cls" si estás en Windows
-    printf("=============================================\n");
+    printf("\n=============================================\n");
     printf("          Bienvenido a Simon Dice       \n");
     printf("=============================================\n");
     printf("\n");
@@ -74,16 +74,19 @@ void menuIngresoJugadores(t_lista *listaJugadores, unsigned *cantidadJugadores){
                               , "12");
 
         if(opcion == '1'){
-
-            system("cls");
-
             do{
-                printf("\nIngrese nombre del jugador: ");
-                ingresarJugador(&jugador, cantidadJugadores);
-            }while(strcmpi(jugador.nombre, "") == 0);
+                system("cls");
 
-            agregarOrdenado(listaJugadores, &jugador, 1, sizeof(tJugador), cmpJugadores);
-            (*cantidadJugadores)++;
+                printf("\nIngrese nombre del jugador o salir para cancelar el ingreso: ");
+                ingresarJugador(&jugador, cantidadJugadores);
+            }while(strcmpi(jugador.nombre, "") == 0 && strstr(jugador.nombre, "salir") == NULL);
+
+            if(strstr(jugador.nombre, "salir") == NULL){
+                agregarOrdenado(listaJugadores, &jugador, 1, sizeof(tJugador), cmpJugadores);
+                (*cantidadJugadores)++;
+            }
+            else
+                printf("\nSe cancela el ingreso...");
         }
 
     }while(opcion != '2');
