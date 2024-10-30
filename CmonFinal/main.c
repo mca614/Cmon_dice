@@ -141,8 +141,9 @@ int main()
     else
         printf("\nNo hubo ganadores\n");
 
-    /// Cerrar archivo informe
+    /// Cerrar archivo informe y Liberar recursos de archivo mp3
     fclose(datosPartida.archInforme);
+    cerrarMusica();
 
     return 0;
 }
