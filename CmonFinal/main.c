@@ -18,6 +18,9 @@ int main()
     colorFondo(VIOLETA_4, VIOLETA_0);
 
     opcion = menuConError(
+        "=============================================\n"
+        "          Bienvenido a Simon Dice       \n"
+        "=============================================\n"
         "[A] Jugar\n"
         "[B] Salir\n"
         "Seleccione una opcion: ", "ABab"
@@ -105,7 +108,7 @@ int main()
     datosPartida.archInforme = generarArchivoDeInforme("historialPartidas/informe-juego", nombreArchivo);
 
     /// Reproducir Musica (VERIFICAR QUE -lwinmm ESTÉ AGREGADO COMO PARÁMETRO EN BUILD OPTIONS > LINKER SETTINGS > OTHER LINK OPTIONS
-    //reproducirMusica(MUSICA1);
+    reproducirMusica(MUSICA3);
 
     colorFondo(VIOLETA_4, VERDE_CLARO);
     /// Jugar partidas
