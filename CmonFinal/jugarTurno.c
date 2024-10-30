@@ -255,7 +255,6 @@ void jugarTurno(tJugador* jugador, tDatosPartida *datos, Accion mostrar_sec, Acc
                 jugador->puntuacion += 1;
 
                 rondasJugador.puntosRonda = 1;
-                vaciarLista(&respuesta);
             }
             else
             {
@@ -263,7 +262,6 @@ void jugarTurno(tJugador* jugador, tDatosPartida *datos, Accion mostrar_sec, Acc
                 jugador->puntuacion += 3;
 
                 rondasJugador.puntosRonda = 3;
-                vaciarLista(&respuesta);
             }
 
             rondasJugador.puntosTotales += rondasJugador.puntosRonda;
@@ -290,6 +288,7 @@ void jugarTurno(tJugador* jugador, tDatosPartida *datos, Accion mostrar_sec, Acc
         /// Acolar en colaRondas datos de la ronda
         ponerEnCola(&colaRondas, sizeof(tRonda), &rondasJugador);
         ronda++;
+        vaciarLista(&respuesta);
     }
 
     if(turnoTerminado==1)

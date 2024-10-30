@@ -101,7 +101,8 @@ int main()
     system("pause");
 
     /// Generar archivo informe
-    datosPartida.archInforme = generarArchivoDeInforme("informe.txt", nombreArchivo);
+    /// Debe estar creada la carpeta historial
+    datosPartida.archInforme = generarArchivoDeInforme("historialPartidas/informe-juego", nombreArchivo);
 
     /// Reproducir Musica (VERIFICAR QUE -lwinmm ESTÉ AGREGADO COMO PARÁMETRO EN BUILD OPTIONS > LINKER SETTINGS > OTHER LINK OPTIONS
     reproducirMusica(MUSICA1);
