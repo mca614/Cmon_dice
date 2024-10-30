@@ -1,0 +1,17 @@
+Jugador 1
+-|-|0|0
+Puntos obtenidos: 0
+
+Jugador 2
+A|A|0|3
+AA|AA|0|3
+AAR|ANN|2|0
+Puntos obtenidos: 6
+
+Jugador 3
+-|-|0|0
+Puntos obtenidos: 0
+
+================ GANADORES ===============
+-------NOMBRE JUGADOR | PUNTUACION--------
+Juan|6
