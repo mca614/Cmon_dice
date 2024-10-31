@@ -155,10 +155,10 @@
 1730050007 source:c:\users\lenovo\onedrive\escritorio\unlam\2024\algoritmos\github\cmon_dice\cmonfinal\secuencia\secuencia.c
 	"secuencia.h"
 
-1730325401 source:c:\users\contt\onedrive\escritorio\tp estru cturas\cmon_dice\cmonfinal\cmon.c
+1730334166 source:c:\users\contt\onedrive\escritorio\tp estru cturas\cmon_dice\cmonfinal\cmon.c
 	"cmon.h"
 
-1730325469 c:\users\contt\onedrive\escritorio\tp estru cturas\cmon_dice\cmonfinal\cmon.h
+1730333582 c:\users\contt\onedrive\escritorio\tp estru cturas\cmon_dice\cmonfinal\cmon.h
 	<stdio.h>
 	<stdlib.h>
 	"estructurasDatos/cola/colaDinamica.h"
@@ -228,10 +228,10 @@
 1729880207 source:c:\users\contt\onedrive\escritorio\tp estru cturas\cmon_dice\cmonfinal\estructurasdatos\lista\lista.c
 	"lista.h"
 
-1730328521 source:c:\users\contt\onedrive\escritorio\tp estru cturas\cmon_dice\cmonfinal\jugarturno.c
+1730328689 source:c:\users\contt\onedrive\escritorio\tp estru cturas\cmon_dice\cmonfinal\jugarturno.c
 	"jugarTurno.h"
 
-1730325784 source:c:\users\contt\onedrive\escritorio\tp estru cturas\cmon_dice\cmonfinal\main.c
+1730334241 source:c:\users\contt\onedrive\escritorio\tp estru cturas\cmon_dice\cmonfinal\main.c
 	"cmon.h"
 
 1729777521 source:c:\users\contt\onedrive\escritorio\tp estru cturas\cmon_dice\cmonfinal\secuencia\api.c

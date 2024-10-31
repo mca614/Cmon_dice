@@ -47,6 +47,87 @@ void jugarPartida(void *jugador, void *extra){
     }
 }
 
+int generarArchivoConf(){
+    tDatosDificultad datos[3];
+
+    FILE *arch;
+    char opcion, dificultad[][MAX_L_DIF] = {"Facil", "Media", "Dificil"};
+    int i = 0;
+
+    opcion = menuConError("\n1. Generar archivo configuracion"
+                          "\n2. Salir"
+                          "\nIngrese una opcion: ", "12");
+
+    if(opcion == '1'){
+        arch = fopen("config.txt", "wt");
+
+        if(!arch){
+            printf("\nError al abrir el archivo");
+            return 0;
+        }
+
+        for(i=0; i<3; i++){
+            strcpy(datos[i].dificultad, dificultad[i]);
+
+            do{
+                system("cls");
+                printf("\nDificultad: %s", datos[i].dificultad);
+                printf("\nIngrese un tiempo de secuencia entre %d y %d: ", VALOR_MIN, VALOR_MAX);
+                scanf("%d", &datos[i].tiempoSecuencia);
+                fflush(stdin);
+
+                if(datos[i].tiempoSecuencia < VALOR_MIN || datos[i].tiempoSecuencia > VALOR_MAX){
+                    printf("\nValor erroneo. Ingrese un valor entre %d y %d", VALOR_MIN, VALOR_MAX);
+                    sleep(1);
+                }
+            }while(datos[i].tiempoSecuencia < VALOR_MIN || datos[i].tiempoSecuencia > VALOR_MAX);
+
+            do{
+                system("cls");
+                printf("\nDificultad: %s", datos[i].dificultad);
+                printf("\nIngrese un tiempo de respuesta entre %d y %d: ", VALOR_MIN, VALOR_MAX);
+                scanf("%d", &datos[i].tiempoRespuesta);
+                fflush(stdin);
+
+                if(datos[i].tiempoRespuesta < VALOR_MIN || datos[i].tiempoRespuesta > VALOR_MAX){
+                    printf("\nValor erroneo. Ingrese un valor entre %d y %d", VALOR_MIN, VALOR_MAX);
+                    sleep(1);
+                }
+            }while(datos[i].tiempoRespuesta < VALOR_MIN || datos[i].tiempoRespuesta > VALOR_MAX);
+
+            do{
+                system("cls");
+                printf("\nDificultad: %s", datos[i].dificultad);
+                printf("\nIngrese una cantidad de vidas entre %d y %d: ", 0, VIDAS_MAX);
+                scanf("%d", &datos[i].cantVidas);
+                fflush(stdin);
+
+                if(datos[i].cantVidas < 0 || datos[i].cantVidas > VIDAS_MAX){
+                    printf("\nValor erroneo. Ingrese un valor entre %d y %d", 0, VIDAS_MAX);
+                    sleep(1);
+                }
+            }while(datos[i].cantVidas < 0 || datos[i].cantVidas > VIDAS_MAX);
+
+            system("cls");
+
+            fprintf(arch, "%c | %d | %d | %d\n", *(datos[i].dificultad), datos[i].tiempoSecuencia, datos[i].tiempoRespuesta, datos[i].cantVidas);
+        }
+
+        for(i=0; i<3; i++){
+            printf("Dificultad: %s\nTiempo secuencia: %d\nTiempo respuesta: %d\nCantidad de vidas: %d\n",
+                   datos[i].dificultad ,datos[i].tiempoSecuencia, datos[i].tiempoRespuesta, datos[i].cantVidas);
+            puts("");
+        }
+
+        printf("Se genero el archivo config.txt...");
+    }
+
+    fflush(stdin);
+    sleep(3);
+    fclose(arch);
+    return 1;
+}
+
 FILE* generarArchivoDeInforme(const char* nombrePrefijo, char* nomArchGenerado)
 {
     time_t tiempo;

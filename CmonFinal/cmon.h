@@ -1,14 +1,26 @@
 #ifndef CMON_H_INCLUDED
 #define CMON_H_INCLUDED
 
+#define VALOR_MAX 20
+#define VALOR_MIN 1
+#define VIDAS_MAX 5
+#define MAX_L_DIF 10
 #define MAX_L_JUGADOR 20
 #define MAX_L_SEC 100
-
+#define MAX_L_DIF 10
 #define MAX_TAM_PATH 50
 #define MAX_LINEA 1024
 
+
 #include <stdio.h>
 #include <stdlib.h>
+
+typedef struct{
+    int tiempoSecuencia;
+    int tiempoRespuesta;
+    int cantVidas;
+    char dificultad[MAX_L_DIF];
+}tDatosDificultad;
 
 typedef struct{
     char dificultad;
@@ -48,6 +60,7 @@ int cmpJugadores(void *a, void *b);
 void cargarMostrarDatosJugador(void *v, void *extra);
 
 void jugarPartida(void *jugador, void *extra);
+int generarArchivoConf();
 FILE* generarArchivoDeInforme(const char* nombrePrefijo, char* nomArchGenerado);
 void exportarRondasJugadorHaciaInforme(FILE* archInforme, tCola* colaTurno);
 void exportarGanadoresHaciaInforme(FILE* archInforme, t_lista* ganadores);

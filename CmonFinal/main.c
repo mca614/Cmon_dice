@@ -10,6 +10,12 @@ int main()
     unsigned eligeDificultad = 0;
     unsigned cantidadJugadores = 0;
 
+    ///Generar archivo config.txt
+//    if(!generarArchivoConf()){
+//        printf("\nSaliendo...");
+//        return 0;
+//    }
+
     crearLista(&listaJugadores);
     centrarVentanaConsola();
     ajustarConsola(80,38,45,25);
@@ -32,7 +38,7 @@ int main()
     }
 
     do{
-        /// Men� ingreso de jugadores
+        /// Menu ingreso de jugadores
         menuIngresoJugadores(&listaJugadores, &cantidadJugadores);
 
         if(siListaVacia(&listaJugadores)){
@@ -49,7 +55,7 @@ int main()
         return 0;
     }
 
-    /// Men� dificultad
+    /// Menu dificultad
     do{
         eligeDificultad = menuDificultad(&datosPartida);
 
