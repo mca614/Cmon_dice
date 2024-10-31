@@ -5,7 +5,7 @@
 > ## Cómo Jugar 🕹️
 > **Iniciar el Juego** 🎮
 > 
-> 1. Ejecuta el programa y selecciona la opción **[1] Jugar**.
+> 1. Ejecuta el programa y selecciona la opción **[A] Jugar**.
 > 2. Ingresa los nombres de los jugadores.
 > 3. Elige el nivel de dificultad:
 >    - Facil
