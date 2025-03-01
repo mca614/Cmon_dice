@@ -188,7 +188,7 @@ void jugarTurno(tJugador* jugador, tDatosPartida *datos, Accion mostrar_sec, Acc
         while(jugador->vidas>0 && !esSecuenciaCorrecta(&secuencia, &respuesta, cmp))
         {
             printf("\nVidas: %d\n", jugador->vidas);
-            if(cant_letras_resp == 0) /// NO INGRESÓ NADA
+            if(cant_letras_resp == 0) /// NO INGRESï¿½ NADA
             {
                 system("cls");
 
@@ -305,7 +305,7 @@ void jugarTurno(tJugador* jugador, tDatosPartida *datos, Accion mostrar_sec, Acc
     /// Vaciar lista secuencia
     vaciarLista(&secuencia);
 
-    /// Por si faltó vaciar la cola
+    /// Por si faltï¿½ vaciar la cola
     vaciarCola(&colaRondas);
     fflush(stdin);
 }
@@ -360,7 +360,7 @@ void jugarTurno(tJugador* jugador, tDatosPartida *datos, Accion mostrar_sec, Acc
 //        while(jugador->vidas>0 && !esSecuenciaCorrecta(&secuencia, &respuesta, cmp))
 //        {
 //            printf("\nVidas: %d\n", jugador->vidas);
-//            if(cant_letras_resp == 0) /// NO INGRESÓ NADA
+//            if(cant_letras_resp == 0) /// NO INGRESï¿½ NADA
 //            {
 //                system("cls");
 //
@@ -470,7 +470,7 @@ void jugarTurno(tJugador* jugador, tDatosPartida *datos, Accion mostrar_sec, Acc
 //    /// Desacolar de colaRondas en informe
 //    exportarRondasJugadorHaciaInforme(datos->archInforme, &colaRondas);
 //
-//    /// Por si faltó vaciar la cola
+//    /// Por si faltï¿½ vaciar la cola
 //    vaciarCola(&colaRondas);
 //    fflush(stdin);
 //}

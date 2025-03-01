@@ -1,7 +1,7 @@
 #include "menu.h"
 
 void bienvenidoSimonDice() {
-    system("cls"); // Usa "cls" si estás en Windows
+    system("cls"); // Usa "cls" si estï¿½s en Windows
     printf("\n=============================================\n");
     printf("          Bienvenido a Simon Dice       \n");
     printf("=============================================\n");
@@ -15,6 +15,7 @@ void bienvenidoSimonDice() {
 
     system("pause");
     system("cls");
+    //fflush(stdin);
 }
 
 char menuConError(const char *msj, const char *opc)
@@ -48,16 +49,81 @@ int obtenerValorAleatorio(int menorValor, int mayorValor) {
     return (rand() % (mayorValor - menorValor + 1)) + menorValor;
 }
 
-void ingresarJugador(tJugador *jugador, unsigned *cantidadJugadores){
-    char *pNombre = jugador->nombre;
+int ingresarJugador(tJugador *jugador, unsigned *cantidadJugadores){
+    char letra;
+    char *nombre, *ptr;
+    int longMemoria = 1;
 
-    fgets(pNombre, MAX_L_JUGADOR, stdin);
-    pNombre = strrchr(pNombre, '\n');
-    *pNombre = '\0';
+    nombre = (char*)malloc(longMemoria);
+    ptr = nombre;
 
-    jugador->id = obtenerValorAleatorio(*cantidadJugadores * -1, *cantidadJugadores);
+    if(!ptr)
+        return 0;
+
+    *ptr = '\0';
+
+    printf("\nIngrese nombre del jugador o escape para cancelar: ");
+    letra = getch();
+    while(longMemoria <= MAX_L_JUGADOR + 1  && letra != TECLA_ESCAPE && letra != TECLA_ENTER){
+
+        if(longMemoria <= MAX_L_JUGADOR && ES_LETRA(letra)){
+            printf("%c", letra);
+            *ptr = letra;
+            longMemoria++;
+            nombre = (char*)realloc(nombre, longMemoria);
+
+            if(!nombre)
+                return 0;
+
+            ptr++;
+            *ptr = '\0';
+        }
+
+        else if(longMemoria > 1 && letra == TECLA_RETRO){
+            ptr--;
+            *ptr = '\0';
+
+            longMemoria--;
+            nombre = (char*)realloc(nombre, longMemoria);
+
+            system("cls");
+            printf("\nIngrese nombre del jugador o escape para cancelar: ");
+            printf("%s", nombre);
+        }
+
+        letra = getch();
+
+        if(longMemoria > MAX_L_JUGADOR){
+            printf("\nSe excede el largo maximo");
+            printf("\nIngrese nombre del jugador o escape para cancelar: ");
+            printf("%s", nombre);
+        }
+
+    }
+
     system("cls");
+
+    if(letra == TECLA_ENTER && strlen(nombre)){
+        jugador->id = obtenerValorAleatorio(*cantidadJugadores * -1, *cantidadJugadores);
+        strcpy(jugador->nombre, nombre);
+        longMemoria = 1;
+    }else
+        longMemoria = 0;
+
+    free(nombre);
+    return longMemoria ? 1 : 0;
 }
+
+//void ingresarJugador(tJugador *jugador, unsigned *cantidadJugadores){
+//    char *pNombre = jugador->nombre;
+//
+//    fgets(pNombre, MAX_L_JUGADOR, stdin);
+//    pNombre = strrchr(pNombre, '\n');
+//    *pNombre = '\0';
+//
+//    jugador->id = obtenerValorAleatorio(*cantidadJugadores * -1, *cantidadJugadores);
+//    system("cls");
+//}
 
 void menuIngresoJugadores(t_lista *listaJugadores, unsigned *cantidadJugadores){
     char opcion;
@@ -106,7 +172,7 @@ int cargarDificultad(tDatosPartida *datosPartida){
     }
 
     while(!resultadoBusquedaDificultad && fgets(linea, MAX_LINEA, archivoConfDificultad)){
-        /// Se busca en el archivo config línea a línea (F | 20 | 20 | 5) el primer caracter
+        /// Se busca en el archivo config lï¿½nea a lï¿½nea (F | 20 | 20 | 5) el primer caracter
         resultadoBusquedaDificultad = *linea == datosPartida->dificultad ? 1 : 0;
 
         if(resultadoBusquedaDificultad){
