@@ -79,6 +79,7 @@ void menuIngresoJugadores(t_lista *listaJugadores, unsigned *cantidadJugadores){
 
                 printf("\nIngrese nombre del jugador o salir para cancelar el ingreso: ");
                 ingresarJugador(&jugador, cantidadJugadores);
+
             }while(strcmpi(jugador.nombre, "") == 0 && strstr(jugador.nombre, "salir") == NULL);
 
             if(strstr(jugador.nombre, "salir") == NULL){

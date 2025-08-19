@@ -1,0 +1,10 @@
+Jugador 1
+R|R|0|3
+RV|RV|0|3
+RVV|RVV|0|3
+RVVR|RRRA|2|0
+Puntos obtenidos: 9
+
+================ GANADORES ===============
+-------NOMBRE JUGADOR | PUNTUACION--------
+mili|9

@@ -1,0 +1,8 @@
+Jugador 1
+A|A|0|3
+AR|A|3|0
+Puntos obtenidos: 3
+
+================ GANADORES ===============
+-------NOMBRE JUGADOR | PUNTUACION--------
+mili|3

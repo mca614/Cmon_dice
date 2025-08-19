@@ -1,0 +1,12 @@
+Jugador 1
+A|A|0|3
+AN|AN|0|3
+ANN|ANN|0|3
+ANNA|ANNA|0|3
+ANNAN|ANNAN|3|1
+ANNANR|AAA|0|0
+Puntos obtenidos: 13
+
+================ GANADORES ===============
+-------NOMBRE JUGADOR | PUNTUACION--------
+mili|13

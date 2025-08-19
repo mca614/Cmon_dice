@@ -11,10 +11,10 @@ int main()
     unsigned cantidadJugadores = 0;
 
     ///Generar archivo config.txt
-//    if(!generarArchivoConf()){
-//        printf("\nSaliendo...");
-//        return 0;
-//    }
+    if(!generarArchivoConf()){
+        printf("\nSaliendo...");
+        return 0;
+    }
 
     crearLista(&listaJugadores);
     centrarVentanaConsola();
@@ -121,7 +121,7 @@ int main()
     colorFondo(VIOLETA_4, VERDE_CLARO);
     /// Jugar partidas
     datosPartida.maximaPuntuacion = 0;
-    mapLista(&listaJugadores, &datosPartida, jugarPartida);
+    mapLista(&listaJugadores, &datosPartida, jugarPartida);///juego
 
     /// Obtener y mostrar ganadores
     filtrarLista(&listaJugadores, &datosPartida.maximaPuntuacion, jugadoresNoGanadores, NULL);

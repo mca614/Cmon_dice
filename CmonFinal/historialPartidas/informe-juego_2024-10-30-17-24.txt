@@ -1,0 +1,4 @@
+Jugador 1
+-|-|0|0
+Puntos obtenidos: 0
+

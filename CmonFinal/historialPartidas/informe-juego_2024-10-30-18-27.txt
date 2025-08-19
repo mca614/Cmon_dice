@@ -1,0 +1,9 @@
+Jugador 1
+V|V|0|3
+VA|VA|0|3
+VAV|VA|3|0
+Puntos obtenidos: 6
+
+================ GANADORES ===============
+-------NOMBRE JUGADOR | PUNTUACION--------
+mili|6

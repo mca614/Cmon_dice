@@ -1,0 +1,11 @@
+Jugador 1
+A|A|0|3
+AA|AA|0|3
+AAA|AAA|0|3
+AAAR|AAAR|1|1
+AAARR|AAAAA|0|0
+Puntos obtenidos: 10
+
+================ GANADORES ===============
+-------NOMBRE JUGADOR | PUNTUACION--------
+mili|10

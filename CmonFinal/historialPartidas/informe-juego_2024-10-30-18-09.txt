@@ -1,0 +1,8 @@
+Jugador 1
+V|V|0|3
+VV|V|3|0
+Puntos obtenidos: 3
+
+================ GANADORES ===============
+-------NOMBRE JUGADOR | PUNTUACION--------
+a|3

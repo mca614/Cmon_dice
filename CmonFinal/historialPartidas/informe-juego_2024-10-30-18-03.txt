@@ -1,0 +1,12 @@
+Jugador 1
+V|V|0|3
+VR|VR|0|3
+VRV|VRV|0|3
+VRVR|VRVR|0|3
+VRVRR|VRVRR|0|3
+VRVRRN|RVV|3|0
+Puntos obtenidos: 15
+
+================ GANADORES ===============
+-------NOMBRE JUGADOR | PUNTUACION--------
+mili|15

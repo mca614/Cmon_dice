@@ -1,0 +1,9 @@
+Jugador 1
+A|A|0|3
+AV|AV|2|1
+AVN|AV|0|0
+Puntos obtenidos: 4
+
+================ GANADORES ===============
+-------NOMBRE JUGADOR | PUNTUACION--------
+a|4
